@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     01/03/2017 22:35:28                          */
+/* Created on:     01/03/2017 22:58:01                          */
 /*==============================================================*/
 
 
@@ -100,7 +100,7 @@ create table CONSEILSPORT (
    IDCONSEILSPORT       SERIAL               not null,
    IDSPORT              INT4                 not null,
    RYTHMECONSEIL        INT2                 not null,
-   DETAIL               VARCHAR(300)         null,
+   DETAIL               TEXT                 null,
    constraint PK_CONSEILSPORT primary key (IDCONSEILSPORT)
 );
 
