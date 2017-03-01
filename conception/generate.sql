@@ -1,10 +1,10 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     01/03/2017 13:15:50                          */
+/* Created on:     01/03/2017 22:35:28                          */
 /*==============================================================*/
 
 
-drop index ALIMENTATION_UTILISATEUR_FK;
+drop index ALIMENTATION_REGIME_FK;
 
 drop index ALIMENTATION_PK;
 
@@ -20,7 +20,7 @@ drop index CONSEILSPORT_PK;
 
 drop table CONSEILSPORT;
 
-drop index POIDS_UTILISATEUR_FK;
+drop index POIDS_REGIME_FK;
 
 drop index POIDS_PK;
 
@@ -36,13 +36,13 @@ drop index SPORT_PK;
 
 drop table SPORT;
 
-drop index SPORT_UTILISATEUR2_FK;
+drop index SPORT_REGIME2_FK;
 
-drop index SPORT_UTILISATEUR_FK;
+drop index SPORT_REGIME_FK;
 
-drop index SPORT_UTILISATEUR_PK;
+drop index SPORT_REGIME_PK;
 
-drop table SPORT_UTILISATEUR;
+drop table SPORT_REGIME;
 
 drop index UTILISATEUR_PK;
 
@@ -53,10 +53,11 @@ drop table UTILISATEUR;
 /*==============================================================*/
 create table ALIMENTATION (
    IDALIMENTATION       SERIAL               not null,
-   IDUTILISATEUR        INT4                 not null,
+   IDREGIME             INT4                 not null,
    REPAS                VARCHAR(300)         not null,
    BOISSON              VARCHAR(100)         null,
    PERIODE              INT2                 not null,
+   DATEALIMENTATION     DATE                 not null,
    constraint PK_ALIMENTATION primary key (IDALIMENTATION)
 );
 
@@ -68,10 +69,10 @@ IDALIMENTATION
 );
 
 /*==============================================================*/
-/* Index: ALIMENTATION_UTILISATEUR_FK                           */
+/* Index: ALIMENTATION_REGIME_FK                                */
 /*==============================================================*/
-create  index ALIMENTATION_UTILISATEUR_FK on ALIMENTATION (
-IDUTILISATEUR
+create  index ALIMENTATION_REGIME_FK on ALIMENTATION (
+IDREGIME
 );
 
 /*==============================================================*/
@@ -122,7 +123,7 @@ IDSPORT
 /*==============================================================*/
 create table POIDS (
    IDPOIDS              SERIAL               not null,
-   IDUTILISATEUR        INT4                 not null,
+   IDREGIME             INT4                 not null,
    POIDS                INT2                 not null,
    DATEPOIDS            DATE                 not null,
    constraint PK_POIDS primary key (IDPOIDS)
@@ -136,10 +137,10 @@ IDPOIDS
 );
 
 /*==============================================================*/
-/* Index: POIDS_UTILISATEUR_FK                                  */
+/* Index: POIDS_REGIME_FK                                       */
 /*==============================================================*/
-create  index POIDS_UTILISATEUR_FK on POIDS (
-IDUTILISATEUR
+create  index POIDS_REGIME_FK on POIDS (
+IDREGIME
 );
 
 /*==============================================================*/
@@ -186,35 +187,35 @@ IDSPORT
 );
 
 /*==============================================================*/
-/* Table: SPORT_UTILISATEUR                                     */
+/* Table: SPORT_REGIME                                          */
 /*==============================================================*/
-create table SPORT_UTILISATEUR (
-   IDUTILISATEUR        INT4                 not null,
+create table SPORT_REGIME (
+   IDREGIME             INT4                 not null,
    IDSPORT              INT4                 not null,
-   DATESPORT            DATE                 not null,
-   RYTHMEUTILISATEUR    NUMERIC(10,1)        not null,
-   constraint PK_SPORT_UTILISATEUR primary key (IDUTILISATEUR, IDSPORT)
+   DATESPORT            DATE                 null,
+   RYTHMESPORT          INT2                 null,
+   constraint PK_SPORT_REGIME primary key (IDREGIME, IDSPORT)
 );
 
 /*==============================================================*/
-/* Index: SPORT_UTILISATEUR_PK                                  */
+/* Index: SPORT_REGIME_PK                                       */
 /*==============================================================*/
-create unique index SPORT_UTILISATEUR_PK on SPORT_UTILISATEUR (
-IDUTILISATEUR,
+create unique index SPORT_REGIME_PK on SPORT_REGIME (
+IDREGIME,
 IDSPORT
 );
 
 /*==============================================================*/
-/* Index: SPORT_UTILISATEUR_FK                                  */
+/* Index: SPORT_REGIME_FK                                       */
 /*==============================================================*/
-create  index SPORT_UTILISATEUR_FK on SPORT_UTILISATEUR (
-IDUTILISATEUR
+create  index SPORT_REGIME_FK on SPORT_REGIME (
+IDREGIME
 );
 
 /*==============================================================*/
-/* Index: SPORT_UTILISATEUR2_FK                                 */
+/* Index: SPORT_REGIME2_FK                                      */
 /*==============================================================*/
-create  index SPORT_UTILISATEUR2_FK on SPORT_UTILISATEUR (
+create  index SPORT_REGIME2_FK on SPORT_REGIME (
 IDSPORT
 );
 
@@ -242,8 +243,8 @@ IDUTILISATEUR
 );
 
 alter table ALIMENTATION
-   add constraint FK_ALIMENTA_ALIMENTAT_UTILISAT foreign key (IDUTILISATEUR)
-      references UTILISATEUR (IDUTILISATEUR)
+   add constraint FK_ALIMENTA_ALIMENTAT_REGIME foreign key (IDREGIME)
+      references REGIME (IDREGIME)
       on delete restrict on update restrict;
 
 alter table CONSEILSPORT
@@ -252,8 +253,8 @@ alter table CONSEILSPORT
       on delete restrict on update restrict;
 
 alter table POIDS
-   add constraint FK_POIDS_POIDS_UTI_UTILISAT foreign key (IDUTILISATEUR)
-      references UTILISATEUR (IDUTILISATEUR)
+   add constraint FK_POIDS_POIDS_REG_REGIME foreign key (IDREGIME)
+      references REGIME (IDREGIME)
       on delete restrict on update restrict;
 
 alter table REGIME
@@ -261,13 +262,13 @@ alter table REGIME
       references UTILISATEUR (IDUTILISATEUR)
       on delete restrict on update restrict;
 
-alter table SPORT_UTILISATEUR
-   add constraint FK_SPORT_UT_SPORT_UTI_UTILISAT foreign key (IDUTILISATEUR)
-      references UTILISATEUR (IDUTILISATEUR)
+alter table SPORT_REGIME
+   add constraint FK_SPORT_RE_SPORT_REG_REGIME foreign key (IDREGIME)
+      references REGIME (IDREGIME)
       on delete restrict on update restrict;
 
-alter table SPORT_UTILISATEUR
-   add constraint FK_SPORT_UT_SPORT_UTI_SPORT foreign key (IDSPORT)
+alter table SPORT_REGIME
+   add constraint FK_SPORT_RE_SPORT_REG_SPORT foreign key (IDSPORT)
       references SPORT (IDSPORT)
       on delete restrict on update restrict;
 
