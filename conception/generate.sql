@@ -272,3 +272,13 @@ alter table SPORT_REGIME
       references SPORT (IDSPORT)
       on delete restrict on update restrict;
 
+/*==============================================================*/
+/* VUES						                                    */
+/*==============================================================*/
+
+CREATE VIEW REGIME_UTILISATEUR AS
+	SELECT U.*,
+	R.IDREGIME, R.DATEDEBUT, R.DATEFIN, R.POIDSOBJECTIF
+	FROM REGIME R
+	JOIN UTILISATEUR U ON R.IDUTILISATEUR = U.IDUTILISATEUR;
+	

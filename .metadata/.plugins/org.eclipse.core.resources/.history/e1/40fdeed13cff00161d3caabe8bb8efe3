@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
+    <wb-module deploy-name="SuiviRegime">
+        <wb-resource deploy-path="/" source-path="/www" tag="defaultRootSource"/>
+        <property name="context-root" value="SuiviRegime"/>
+        <property name="java-output-path" value="/SuiviRegime/build/classes"/>
+    </wb-module>
+</project-modules>

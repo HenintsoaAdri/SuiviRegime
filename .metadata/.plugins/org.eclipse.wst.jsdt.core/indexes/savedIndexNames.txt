@@ -1,0 +1,7 @@
+INDEX VERSION 1.3+A:\Projet\Projet WebService Framework\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1554397951.index
+731999276.index
+1334147437.index
+1188635945.index
+2399608400.index
+2444367763.index
