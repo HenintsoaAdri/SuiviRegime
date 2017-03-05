@@ -1,0 +1,29 @@
+package s6.suiviRegime.dao;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.time.DayOfWeek;
+import java.util.Vector;
+
+import s6.suiviRegime.modele.*;
+
+public class Creation {
+	
+	public static Utilisateur creerUtilisateurRecommandation(ResultSet res) throws Exception{
+		Utilisateur model = new Utilisateur(
+				res.getInt("IDUtilisateur"),
+				creerRegionRecommandation(res),
+				res.getString("NOMUtilisateur"), 
+				res.getString("PRENOMUtilisateur"),
+				res.getDate("DATENUtilisateur").toLocalDate(),
+				res.getString("SEXEUtilisateur"),
+				res.getString("EMAILUtilisateur"),
+				res.getString("IDENTIFIANT"),
+				res.getString("PASSWORDUtilisateur"),
+				res.getString("PHOTOUtilisateur"),
+				res.getString("ADRESSEUtilisateur"),
+				res.getBoolean("ISCONFIRMED"));
+		return model;
+	}
+
+}

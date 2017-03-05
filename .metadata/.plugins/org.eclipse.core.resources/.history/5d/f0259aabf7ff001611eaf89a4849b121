@@ -1,0 +1,5 @@
+package s6.suiviRegime.dao;
+
+public class AlimentationConseilDAO {
+
+}

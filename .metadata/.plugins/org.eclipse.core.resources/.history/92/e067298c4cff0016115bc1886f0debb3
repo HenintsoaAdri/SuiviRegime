@@ -1,0 +1,9 @@
+package s6.suiviRegime.modele;
+
+public class Regime {
+	int id;
+	Utilisateur utilisateur;
+	LocalDate debut;
+	LocalDate fin;
+	int poidsObjectif;
+}

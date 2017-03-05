@@ -1,0 +1,10 @@
+package s6.suiviRegime.modele;
+
+public class Alimentation {
+	int id;
+	Regime regime;
+	String repas;
+	String boisson;
+	int period;
+	LocalDate date;
+}

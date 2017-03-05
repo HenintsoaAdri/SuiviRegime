@@ -1,0 +1,7 @@
+package s6.suiviRegime.modele;
+
+public class Sport {
+	int id;
+	String sport;
+	String activités;
+}

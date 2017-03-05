@@ -1,0 +1,9 @@
+package s6.suiviRegime.modele;
+
+public class AlimentationConseil {
+	int id;
+	String matin;
+	String midi;
+	String soir;
+	String nom;
+}

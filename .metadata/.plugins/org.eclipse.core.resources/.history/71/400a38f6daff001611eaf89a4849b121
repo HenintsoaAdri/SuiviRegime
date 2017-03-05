@@ -1,0 +1,7 @@
+package s6.suiviRegime.modele;
+
+public class Poids {
+	int id;
+	Regime regime;
+	
+}

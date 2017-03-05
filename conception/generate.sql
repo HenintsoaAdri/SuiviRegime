@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     01/03/2017 22:58:01                          */
+/* Created on:     05/03/2017 08:43:47                          */
 /*==============================================================*/
 
 
@@ -80,6 +80,7 @@ IDREGIME
 /*==============================================================*/
 create table CONSEILALIMENTATION (
    IDCONSEILALIMENTATION SERIAL               not null,
+   NOMCONSEILALIMENTATION VARCHAR(300)         not null,
    MATIN                VARCHAR(500)         not null,
    MIDI                 VARCHAR(500)         not null,
    SOIR                 VARCHAR(500)         not null,
@@ -272,13 +273,3 @@ alter table SPORT_REGIME
       references SPORT (IDSPORT)
       on delete restrict on update restrict;
 
-/*==============================================================*/
-/* VUES						                                    */
-/*==============================================================*/
-
-CREATE VIEW REGIME_UTILISATEUR AS
-	SELECT U.*,
-	R.IDREGIME, R.DATEDEBUT, R.DATEFIN, R.POIDSOBJECTIF
-	FROM REGIME R
-	JOIN UTILISATEUR U ON R.IDUTILISATEUR = U.IDUTILISATEUR;
-	

@@ -1445,7 +1445,7 @@ EntityComment 0 Arial,8,N</a:FontList>
 <o:EntitySymbol Id="o44">
 <a:CreationDate>1488350614</a:CreationDate>
 <a:ModificationDate>1488396354</a:ModificationDate>
-<a:Rect>((-58580,13737), (-36000,21802))</a:Rect>
+<a:Rect>((-59044,13737), (-35536,21802))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -2444,11 +2444,11 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:DataItem>
 <o:DataItem Id="o114">
 <a:ObjectID>D7EF5F55-F216-438F-82DE-14952098B1E5</a:ObjectID>
-<a:Name>conseilAlimentation</a:Name>
-<a:Code>CONSEILALIMENTATION</a:Code>
+<a:Name>nomConseilAlimentation</a:Name>
+<a:Code>NOMCONSEILALIMENTATION</a:Code>
 <a:CreationDate>1488398470</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488398470</a:ModificationDate>
+<a:ModificationDate>1488692570</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA300</a:DataType>
 <a:Length>300</a:Length>

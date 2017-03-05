@@ -1,0 +1,13 @@
+package s6.suiviRegime.modele;
+
+public class SportConseil extends Sport {
+	
+	int idSport;
+	float rythme;
+	String details;
+	
+	public SportConseil(int id, String sport, String activite) {
+		super(id, sport, activite);
+	}
+
+}

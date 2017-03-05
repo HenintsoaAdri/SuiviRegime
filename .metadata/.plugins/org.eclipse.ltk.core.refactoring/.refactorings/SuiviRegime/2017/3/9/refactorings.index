@@ -1,0 +1,15 @@
+1488460273736	Rename type 'Profil'
+1488523300175	Rename type 'UtilisateurDao'
+1488524195955	Rename type 'ConseilAlimentation'
+1488524462672	Copy compilation units
+1488524493008	Rename type 'SportRegime'
+1488524500390	Rename type 'SportConseil'
+1488524506333	Rename type 'Sport'
+1488524512009	Rename type 'Regime'
+1488524525840	Rename type 'Poids'
+1488524532989	Rename type 'AlimentationConseil'
+1488524538268	Rename type 'Alimentation'
+1488524630558	Rename type 'DAO'
+1488525329517	Move method
+1488525333679	Move method
+1488525337819	Move method
