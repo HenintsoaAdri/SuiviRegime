@@ -8,7 +8,7 @@ public class Creation {
 	
 	public static Utilisateur creerUtilisateur(ResultSet res) throws Exception{
 		Utilisateur model = new Utilisateur(
-				res.getInt("IDPROFIL"),
+				res.getInt("IDUTILISATEUR"),
 				res.getString("NOM"), 
 				res.getString("PRENOM"),
 				res.getDate("DATENAISSANCE").toLocalDate(),
@@ -24,7 +24,7 @@ public class Creation {
 		SportRegime model = new SportRegime(
 				res.getInt("IDSPORT"),
 				res.getString("SPORT"),
-				res.getString("ACTIVITE"),
+				res.getString("ACTIVITES"),
 				regime,
 				res.getDate("DATESPORT").toLocalDate(),
 				res.getInt("RYTHMESPORT"));
@@ -38,7 +38,7 @@ public class Creation {
 		Sport model = new Sport(
 				res.getInt("IDSPORT"),
 				res.getString("SPORT"),
-				res.getString("ACTIVITE"));
+				res.getString("ACTIVITES"));
 		return model;
 	}
 
@@ -85,8 +85,18 @@ public class Creation {
 		SportConseil model = new SportConseil(
 				res.getInt("IDCONSEILSPORT"),
 				res.getString("SPORT"),
-				res.getString("ACTIVITE"),
+				res.getString("ACTIVITES"),
 				res.getInt("IDSPORT"),
+				res.getFloat("RYTHMECONSEIL"),
+				res.getString("DETAIL"));
+		return model;
+	}
+	public static SportConseil creerSportConseil(ResultSet res, Sport sport) throws Exception{
+		SportConseil model = new SportConseil(
+				res.getInt("IDCONSEILSPORT"),
+				sport.getSport(),
+				sport.getActivite(),
+				sport.getId(),
 				res.getFloat("RYTHMECONSEIL"),
 				res.getString("DETAIL"));
 		return model;

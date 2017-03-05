@@ -131,7 +131,7 @@ public class SportDAO {
 			if(res.next()){
 				return Creation.creerSport(res);
 			}
-			throw new Exception("Ce SportRegime est introuvable ou a \u00e9t\u00e9 retir\u00e9");
+			throw new Exception("Ce Sport est introuvable ou a \u00e9t\u00e9 retir\u00e9");
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;

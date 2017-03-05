@@ -102,7 +102,7 @@ public class PoidsDAO {
 	}
 	public static List<Poids> findAll() throws Exception {
 		
-		String query = "SELECT * FROM POIDS";
+		String query = "SELECT * FROM REGIME_POIDS";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -119,7 +119,7 @@ public class PoidsDAO {
 	}
 	public static List<Poids> findByRegime(Regime regime) throws Exception {
 		
-		String query = "SELECT * FROM POIDS WHERE IDREGIME = ?";
+		String query = "SELECT * FROM REGIME_POIDS WHERE IDREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -137,7 +137,7 @@ public class PoidsDAO {
 	}
 	public static Poids findById(int id) throws Exception {
 		
-		String query = "SELECT * FROM POIDS WHERE IDPOIDS = ?";
+		String query = "SELECT * FROM REGIME_POIDS WHERE IDPOIDS = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;

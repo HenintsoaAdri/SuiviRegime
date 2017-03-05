@@ -108,9 +108,9 @@ public class Utilisateur {
 
 	public void setSexe(String sexe) {
 		if(sexe.startsWith("F")||sexe.startsWith("f")) {
-			this.sexe = "F";
+			this.sexe = "FEMININ";
 		}else{
-			this.sexe = "M";
+			this.sexe = "MASCULIN";
 		}
 	}
 	public boolean isFemme(){

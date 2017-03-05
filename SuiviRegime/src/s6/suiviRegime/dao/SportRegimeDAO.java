@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Vector;
 
 import s6.suiviRegime.modele.Regime;
+import s6.suiviRegime.modele.Sport;
 import s6.suiviRegime.modele.SportRegime;
 
 public class SportRegimeDAO{
@@ -93,7 +94,7 @@ public class SportRegimeDAO{
 
 	public static List<SportRegime> findAll(int offset) throws Exception {
 		
-		String query = "SELECT * FROM SPORT_REGIME LIMIT 10 OFFSET ?";
+		String query = "SELECT * FROM REGIME_SPORT LIMIT 10 OFFSET ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -112,7 +113,7 @@ public class SportRegimeDAO{
 	
 	public static List<SportRegime> findBySport(int id) throws Exception {
 		
-		String query = "SELECT * FROM SPORT_REGIME WHERE IDSPORT = ?";
+		String query = "SELECT * FROM REGIME_SPORT WHERE IDSPORT = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -131,7 +132,7 @@ public class SportRegimeDAO{
 	
 	public static List<SportRegime> findByRegime(Regime regime) throws Exception {
 		
-		String query = "SELECT * FROM SPORT_REGIME WHERE IDREGIME = ?";
+		String query = "SELECT * FROM REGIME_SPORT WHERE IDREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -148,17 +149,17 @@ public class SportRegimeDAO{
 		}
 	}
 	
-	public static SportRegime findBySportRegime(int idSport, int idRegime) throws Exception {
+	public static SportRegime findBySportRegime(Sport sport, Regime regime) throws Exception {
 		
-		String query = "SELECT * FROM SPORT_REGIME WHERE IDREGIME = ? AND IDSPORT= ?";
+		String query = "SELECT * FROM REGIME_SPORT WHERE IDREGIME = ? AND IDSPORT= ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
 			con = UtilDB.getConnPostgre();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, idRegime);
-			statement.setInt(2, idSport);
+			statement.setInt(1, regime.getId());
+			statement.setInt(2, sport.getId());
 			res = statement.executeQuery();
 			if(res.next()){
 				return Creation.creerSportRegime(res);

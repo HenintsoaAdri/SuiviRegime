@@ -115,7 +115,7 @@ public class AlimentationDAO {
 	
 	public static Alimentation findById(int id) throws Exception {
 		
-		String query = "SELECT * FROM ALIMENTATION WHERE IDALIMENTATION = ?";
+		String query = "SELECT * FROM REGIME_ALIMENTATION WHERE IDALIMENTATION = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;

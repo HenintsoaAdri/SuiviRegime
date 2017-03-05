@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Vector;
 
+import s6.suiviRegime.modele.Sport;
 import s6.suiviRegime.modele.SportConseil;
 
 public class SportConseilDAO {
@@ -91,7 +92,7 @@ public class SportConseilDAO {
 
 	public static List<SportConseil> findAll(int offset) throws Exception {
 		
-		String query = "SELECT * FROM CONSEILSPORT LIMIT 10 OFFSET ?";
+		String query = "SELECT * FROM CONSEIL_SPORT LIMIT 10 OFFSET ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -107,10 +108,27 @@ public class SportConseilDAO {
 			if(con != null)	con.close();
 		}
 	}
-	
+	public static List<SportConseil> findBySport(Sport sport) throws Exception {
+		
+		String query = "SELECT * FROM CONSEIL_SPORT WHERE IDSPORT = ?";
+		Connection con = null;
+		PreparedStatement statement = null;
+		try{
+			con = UtilDB.getConnPostgre();
+			statement = con.prepareStatement(query);
+			statement.setInt(1, sport.getId());
+			return DBToSportConseil(statement.executeQuery(), sport);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(statement != null) statement.close();
+			if(con != null)	con.close();
+		}
+	}
 	public static SportConseil findById(int id) throws Exception {
 		
-		String query = "SELECT * FROM CONSEILSPORT WHERE IDCONSEILSPORT = ?";
+		String query = "SELECT * FROM CONSEIL_SPORT WHERE IDCONSEILSPORT = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;
@@ -133,6 +151,20 @@ public class SportConseilDAO {
 		}
 	}
 	
+	static List<SportConseil> DBToSportConseil(ResultSet res, Sport sport) throws Exception {
+		try{
+			List<SportConseil> model = new Vector<SportConseil>();
+			while(res.next()){
+				model.add(Creation.creerSportConseil(res, sport));
+			}
+			return model;
+		}catch(Exception e){
+			throw e;
+		}finally {
+			if(res != null) res.close();
+		}
+	}
+
 	static List<SportConseil> DBToSportConseil(ResultSet res)throws Exception{
 		try{
 			List<SportConseil> model = new Vector<SportConseil>();

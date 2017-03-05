@@ -1,0 +1,60 @@
+package s6.suiviRegime.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import s6.suiviRegime.dao.AlimentationConseilDAO;
+import s6.suiviRegime.dao.AlimentationDAO;
+import s6.suiviRegime.modele.Alimentation;
+import s6.suiviRegime.modele.AlimentationConseil;
+
+public class TestDAO {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testAlimentationConseilFind() throws Exception {
+		AlimentationConseil a = AlimentationConseilDAO.findById(1);
+		assertEquals("Minceur Ventre Plat", a.getNom());		
+	}
+
+	@Test
+	public void testAlimentationFind() throws Exception {
+		Alimentation a = AlimentationDAO.findById(1);
+		assertEquals("Henintsoa",a.getRegime().getUtilisateur().getNom());
+		assertEquals(50 ,a.getRegime().getPoidsObjectif());
+	}
+//	@Test
+//	public void testPoidsFind() {
+//		fail("Not yet implemented");
+//	}
+//	@Test
+//	public void testRegimeFind() {
+//		fail("Not yet implemented");
+//	}
+//	@Test
+//	public void testSportFind() {
+//		fail("Not yet implemented");
+//	}
+//	@Test
+//	public void testSportRegimeFind() {
+//		fail("Not yet implemented");
+//	}
+//	@Test
+//	public void testSportConseilFind() {
+//		fail("Not yet implemented");
+//	}
+//	@Test
+//	public void testUtilisateurFind() {
+//		fail("Not yet implemented");
+//	}
+}

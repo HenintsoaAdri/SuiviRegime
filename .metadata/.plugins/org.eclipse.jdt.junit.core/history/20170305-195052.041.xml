@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestDAO" project="SuiviRegime" tests="4" started="4" failures="0" errors="0" ignored="0">
+  <testsuite name="s6.suiviRegime.test.TestDAO" time="0.799">
+    <testcase name="testAlimentationFind" classname="s6.suiviRegime.test.TestDAO" time="0.334"/>
+    <testcase name="testAlimentationConseilFind" classname="s6.suiviRegime.test.TestDAO" time="0.137"/>
+    <testcase name="testRegimeFind" classname="s6.suiviRegime.test.TestDAO" time="0.189"/>
+    <testcase name="testPoidsFind" classname="s6.suiviRegime.test.TestDAO" time="0.139"/>
+  </testsuite>
+</testrun>

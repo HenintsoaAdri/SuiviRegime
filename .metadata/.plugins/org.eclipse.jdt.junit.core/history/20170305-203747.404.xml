@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestDAO" project="SuiviRegime" tests="7" started="7" failures="0" errors="0" ignored="0">
+  <testsuite name="s6.suiviRegime.test.TestDAO" time="1.011">
+    <testcase name="testAlimentationFind" classname="s6.suiviRegime.test.TestDAO" time="0.229"/>
+    <testcase name="testSportConseilFind" classname="s6.suiviRegime.test.TestDAO" time="0.102"/>
+    <testcase name="testSportFind" classname="s6.suiviRegime.test.TestDAO" time="0.096"/>
+    <testcase name="testAlimentationConseilFind" classname="s6.suiviRegime.test.TestDAO" time="0.099"/>
+    <testcase name="testRegimeFind" classname="s6.suiviRegime.test.TestDAO" time="0.099"/>
+    <testcase name="testSportRegimeFind" classname="s6.suiviRegime.test.TestDAO" time="0.287"/>
+    <testcase name="testPoidsFind" classname="s6.suiviRegime.test.TestDAO" time="0.099"/>
+  </testsuite>
+</testrun>
