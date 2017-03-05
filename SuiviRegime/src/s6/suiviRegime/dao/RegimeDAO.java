@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Vector;
 
 import s6.suiviRegime.modele.Regime;
+import s6.suiviRegime.modele.Utilisateur;
 
 public class RegimeDAO {
 
@@ -91,9 +92,27 @@ public class RegimeDAO {
 		}
 	}
 
+	public static List<Regime> findAll() throws Exception {
+		
+		String query = "SELECT * FROM REGIME_UTILISATEUR";
+		Connection con = null;
+		PreparedStatement statement = null;
+		try{
+			con = UtilDB.getConnPostgre();
+			statement = con.prepareStatement(query);
+			return DBToRegime(statement.executeQuery());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(statement != null) statement.close();
+			if(con != null)	con.close();
+		}
+	}
+
 	public static List<Regime> findAll(int offset) throws Exception {
 		
-		String query = "SELECT * FROM REGIME LIMIT 10 OFFSET ?";
+		String query = "SELECT * FROM REGIME_UTILISATEUR LIMIT 10 OFFSET ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -109,10 +128,28 @@ public class RegimeDAO {
 			if(con != null)	con.close();
 		}
 	}
+	public static List<Regime> findByUtilisateur(Utilisateur utilisateur) throws Exception {
+		
+		String query = "SELECT * FROM REGIME_UTILISATEUR LIMIT 10 OFFSET ?";
+		Connection con = null;
+		PreparedStatement statement = null;
+		try{
+			con = UtilDB.getConnPostgre();
+			statement = con.prepareStatement(query);
+			statement.setInt(1, utilisateur.getId());
+			return DBToRegime(statement.executeQuery(), utilisateur);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(statement != null) statement.close();
+			if(con != null)	con.close();
+		}
+	}
 	
 	public static Regime findById(int id) throws Exception {
 		
-		String query = "SELECT * FROM REGIME WHERE IDREGIME = ?";
+		String query = "SELECT * FROM REGIME_UTILISATEUR WHERE IDREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;
@@ -135,6 +172,20 @@ public class RegimeDAO {
 		}
 	}
 	
+	static List<Regime> DBToRegime(ResultSet res, Utilisateur utilisateur) throws Exception {
+		try{
+			List<Regime> model = new Vector<Regime>();
+			while(res.next()){
+				model.add(Creation.creerRegime(res, utilisateur));
+			}
+			return model;
+		}catch(Exception e){
+			throw e;
+		}finally {
+			if(res != null) res.close();
+		}
+	}
+
 	static List<Regime> DBToRegime(ResultSet res)throws Exception{
 		try{
 			List<Regime> model = new Vector<Regime>();

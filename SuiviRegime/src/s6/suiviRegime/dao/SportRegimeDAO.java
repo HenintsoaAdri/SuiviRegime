@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Vector;
 
+import s6.suiviRegime.modele.Regime;
 import s6.suiviRegime.modele.SportRegime;
 
 public class SportRegimeDAO{
@@ -128,7 +129,7 @@ public class SportRegimeDAO{
 		}
 	}
 	
-	public static List<SportRegime> findByRegime(int id) throws Exception {
+	public static List<SportRegime> findByRegime(Regime regime) throws Exception {
 		
 		String query = "SELECT * FROM SPORT_REGIME WHERE IDREGIME = ?";
 		Connection con = null;
@@ -136,8 +137,8 @@ public class SportRegimeDAO{
 		try{
 			con = UtilDB.getConnPostgre();
 			statement = con.prepareStatement(query);
-			statement.setInt(1, id);
-			return DBToSportRegime(statement.executeQuery());
+			statement.setInt(1, regime.getId());
+			return DBToSportRegime(statement.executeQuery(), regime);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -172,7 +173,20 @@ public class SportRegimeDAO{
 			if(con != null)	con.close();
 		}
 	}
-	
+
+	static List<SportRegime> DBToSportRegime(ResultSet res, Regime regime) throws Exception {
+		try{
+			List<SportRegime> model = new Vector<SportRegime>();
+			while(res.next()){
+				model.add(Creation.creerSportRegime(res, regime));
+			}
+			return model;
+		}catch(Exception e){
+			throw e;
+		}finally {
+			if(res != null) res.close();
+		}
+	}
 	static List<SportRegime> DBToSportRegime(ResultSet res)throws Exception{
 		try{
 			List<SportRegime> model = new Vector<SportRegime>();

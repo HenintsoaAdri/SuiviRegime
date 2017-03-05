@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Vector;
 
 import s6.suiviRegime.modele.Alimentation;
+import s6.suiviRegime.modele.Regime;
 
 public class AlimentationDAO {
 
@@ -136,6 +137,26 @@ public class AlimentationDAO {
 			if(con != null)	con.close();
 		}
 	}
+	public static List<Alimentation> findByRegime(Regime regime) throws Exception {
+		
+		String query = "SELECT * FROM ALIMENTATION WHERE IDREGIME = ?";
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet res = null;
+		try{
+			con = UtilDB.getConnPostgre();
+			statement = con.prepareStatement(query);
+			statement.setInt(1, regime.getId());
+			return DBToAlimentation(statement.executeQuery(), regime);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(res != null) res.close();
+			if(statement != null) statement.close();
+			if(con != null)	con.close();
+		}
+	}
 	
 	static List<Alimentation> DBToAlimentation(ResultSet res)throws Exception{
 		try{
@@ -149,6 +170,19 @@ public class AlimentationDAO {
 		}finally {
 			if(res != null) res.close();
 		}
-		
+	}
+
+	static List<Alimentation> DBToAlimentation(ResultSet res, Regime regime) throws Exception {
+		try{
+			List<Alimentation> model = new Vector<Alimentation>();
+			while(res.next()){
+				model.add(Creation.creerAlimentation(res, regime));
+			}
+			return model;
+		}catch(Exception e){
+			throw e;
+		}finally {
+			if(res != null) res.close();
+		}
 	}	
 }

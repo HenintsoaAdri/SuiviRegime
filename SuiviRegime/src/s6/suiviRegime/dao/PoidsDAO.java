@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Vector;
 
 import s6.suiviRegime.modele.Poids;
+import s6.suiviRegime.modele.Regime;
 
 public class PoidsDAO {
 
@@ -99,7 +100,41 @@ public class PoidsDAO {
 			if(con != null)	con.close();
 		}
 	}
-	
+	public static List<Poids> findAll() throws Exception {
+		
+		String query = "SELECT * FROM POIDS";
+		Connection con = null;
+		PreparedStatement statement = null;
+		try{
+			con = UtilDB.getConnPostgre();
+			statement = con.prepareStatement(query);
+			return DBToPoids(statement.executeQuery());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(statement != null) statement.close();
+			if(con != null)	con.close();
+		}
+	}
+	public static List<Poids> findByRegime(Regime regime) throws Exception {
+		
+		String query = "SELECT * FROM POIDS WHERE IDREGIME = ?";
+		Connection con = null;
+		PreparedStatement statement = null;
+		try{
+			con = UtilDB.getConnPostgre();
+			statement = con.prepareStatement(query);
+			statement.setInt(1, regime.getId());
+			return DBToPoids(statement.executeQuery(),regime);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(statement != null) statement.close();
+			if(con != null)	con.close();
+		}
+	}
 	public static Poids findById(int id) throws Exception {
 		
 		String query = "SELECT * FROM POIDS WHERE IDPOIDS = ?";
@@ -130,6 +165,20 @@ public class PoidsDAO {
 			List<Poids> model = new Vector<Poids>();
 			while(res.next()){
 				model.add(Creation.creerPoids(res));
+			}
+			return model;
+		}catch(Exception e){
+			throw e;
+		}finally {
+			if(res != null) res.close();
+		}
+		
+	}
+	static List<Poids> DBToPoids(ResultSet res, Regime regime)throws Exception{
+		try{
+			List<Poids> model = new Vector<Poids>();
+			while(res.next()){
+				model.add(Creation.creerPoids(res, regime));
 			}
 			return model;
 		}catch(Exception e){

@@ -81,7 +81,23 @@ public class SportDAO {
 			if(con != null)	con.close();
 		}
 	}
-
+	public static List<Sport> findAll() throws Exception {
+		
+		String query = "SELECT * FROM SPORT";
+		Connection con = null;
+		PreparedStatement statement = null;
+		try{
+			con = UtilDB.getConnPostgre();
+			statement = con.prepareStatement(query);
+			return DBToSport(statement.executeQuery());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(statement != null) statement.close();
+			if(con != null)	con.close();
+		}
+	}
 	public static List<Sport> findAll(int offset) throws Exception {
 		
 		String query = "SELECT * FROM SPORT LIMIT 10 OFFSET ?";
@@ -138,6 +154,5 @@ public class SportDAO {
 		}finally {
 			if(res != null) res.close();
 		}
-		
 	}
 }
