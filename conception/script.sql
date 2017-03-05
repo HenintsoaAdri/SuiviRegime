@@ -9,7 +9,7 @@ INSERT INTO alimentation (idalimentation, idregime, repas, boisson, periode, dat
 INSERT INTO alimentation (idalimentation, idregime, repas, boisson, periode, datealimentation) VALUES (7, 1, 'Riz - Saucisse', 'Jus de fruit', 3, '2017-03-02');
 INSERT INTO alimentation (idalimentation, idregime, repas, boisson, periode, datealimentation) VALUES (4, 1, 'Yaourt - Pain confiture', 'Jus de fruit', 1, '2017-03-02');
 
-INSERT INTO conseilalimentation (idconseilalimentation, matin, midi, soir, "conseilAlimentation") VALUES (1, 'Thé ou café (nature) - Porridge de flocons d''avoine (40 g de flocons cuits dans du lait d''amande) - 1 petite pomme cuite', 'Salade de pomme de terre tièdes, aneth - Brochette de poulet, courgettes poêlées dans huile d''olive, romarin - Yaourt au bifidus avec quelques cranberries - Café sans sucre', 'Endive aux noix et bleu - Magret de canard, riz basmati au curcuma - Banane poêlée au cacao - Infusion de verveine', 'Minceur Ventre Plat');
+INSERT INTO conseilalimentation (idconseilalimentation, nomconseilalimentation, matin, midi, soir) VALUES (1, 'Minceur Ventre Plat', 'Thé ou café (nature) - Porridge de flocons d''avoine (40 g de flocons cuits dans du lait d''amande) - 1 petite pomme cuite', 'Salade de pomme de terre tièdes, aneth - Brochette de poulet, courgettes poêlées dans huile d''olive, romarin - Yaourt au bifidus avec quelques cranberries - Café sans sucre', 'Endive aux noix et bleu - Magret de canard, riz basmati au curcuma - Banane poêlée au cacao - Infusion de verveine');
 
 INSERT INTO sport (idsport, sport, activites) VALUES (1, 'Fitness', 'Corde à sauter');
 INSERT INTO sport (idsport, sport, activites) VALUES (2, 'Fitness', 'Squat');

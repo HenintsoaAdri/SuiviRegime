@@ -119,6 +119,7 @@ public class AlimentationConseilDAO {
 		try{
 			con = UtilDB.getConnPostgre();
 			statement = con.prepareStatement(query);
+			statement.setInt(1, offset);
 			return DBToAlimentationConseil(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();

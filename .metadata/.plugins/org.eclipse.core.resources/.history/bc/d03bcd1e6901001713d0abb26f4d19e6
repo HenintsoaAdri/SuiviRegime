@@ -40,10 +40,11 @@ public class AlimentationConseilDAO {
 	public static void update(AlimentationConseil model) throws Exception {
 		
 		String query = "UPDATE CONSEILALIMENTATION "
-				+ "SET NOMCONSEILALIMENTATION = ?, "
+				+ "SET IDCONSEILALIMENTATION = ?, "
+				+ "NOMCONSEILALIMENTATION = ?, "
 				+ "MATIN = ?, "
 				+ "MIDI = ?, "
-				+ "SOIR = ? "
+				+ "SOIR = ?"
 				+ "WHERE IDCONSEILALIMENTATION = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
@@ -101,24 +102,6 @@ public class AlimentationConseilDAO {
 			con = UtilDB.getConnPostgre();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToAlimentationConseil(statement.executeQuery());
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}finally {
-			if(statement != null) statement.close();
-			if(con != null)	con.close();
-		}
-	}
-
-	public static List<AlimentationConseil> findAll() throws Exception {
-		
-		String query = "SELECT * FROM CONSEILALIMENTATION";
-		Connection con = null;
-		PreparedStatement statement = null;
-		try{
-			con = UtilDB.getConnPostgre();
-			statement = con.prepareStatement(query);
 			return DBToAlimentationConseil(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();

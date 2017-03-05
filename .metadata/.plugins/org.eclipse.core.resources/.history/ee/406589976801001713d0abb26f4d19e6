@@ -21,16 +21,15 @@ public class AlimentationConseilDAO {
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	
-	    	statement.setString(1, model.getNom());
-	    	statement.setString(2, model.getMatin());
-	    	statement.setString(3, model.getMidi());
-	    	statement.setString(4, model.getSoir());
+	    	statement.setInt(1, model.getIdSport());
+	    	statement.setFloat(2, model.getRythme());
+	    	statement.setString(3, model.getDetails());
 			statement.execute();
 			con.commit();
 		}catch(Exception e){
 			con.rollback();
 			e.printStackTrace();
-			throw new Exception("Conseil d'Alimentation contenant des erreurs, cr\u00e9ation \u00e9chou\u00e9e.");
+			throw new Exception("AlimentationConseil contenant des erreurs, cr\u00e9ation \u00e9chou\u00e9e.");
 		}finally {
 			if(statement != null)statement.close();
 			if(con != null)con.close();
@@ -40,10 +39,9 @@ public class AlimentationConseilDAO {
 	public static void update(AlimentationConseil model) throws Exception {
 		
 		String query = "UPDATE CONSEILALIMENTATION "
-				+ "SET NOMCONSEILALIMENTATION = ?, "
-				+ "MATIN = ?, "
-				+ "MIDI = ?, "
-				+ "SOIR = ? "
+				+ "SET IDSPORT = ?, "
+				+ "RYTHMECONSEIL = ?, "
+				+ "DETAIL = ? "
 				+ "WHERE IDCONSEILALIMENTATION = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
@@ -52,11 +50,10 @@ public class AlimentationConseilDAO {
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	
-	    	statement.setString(1, model.getNom());
-	    	statement.setString(2, model.getMatin());
-	    	statement.setString(3, model.getMidi());
-	    	statement.setString(4, model.getSoir());
-	    	statement.setInt(5, model.getId());
+	    	statement.setInt(1, model.getIdSport());
+	    	statement.setFloat(2, model.getRythme());
+	    	statement.setString(3, model.getDetails());
+	    	statement.setInt(4, model.getId());
 			statement.execute();
 			con.commit();
 		}
@@ -101,24 +98,6 @@ public class AlimentationConseilDAO {
 			con = UtilDB.getConnPostgre();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToAlimentationConseil(statement.executeQuery());
-		} catch (Exception e) {
-			e.printStackTrace();
-			throw e;
-		}finally {
-			if(statement != null) statement.close();
-			if(con != null)	con.close();
-		}
-	}
-
-	public static List<AlimentationConseil> findAll() throws Exception {
-		
-		String query = "SELECT * FROM CONSEILALIMENTATION";
-		Connection con = null;
-		PreparedStatement statement = null;
-		try{
-			con = UtilDB.getConnPostgre();
-			statement = con.prepareStatement(query);
 			return DBToAlimentationConseil(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
