@@ -1,6 +1,6 @@
 package s6.suiviRegime.modele;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Alimentation {
 	int id;
@@ -8,9 +8,9 @@ public class Alimentation {
 	String repas;
 	String boisson;
 	int periode;
-	LocalDate date;
+	Date date;
 		
-	public Alimentation(int id, Regime regime, String repas, String boisson, int periode, LocalDate date) {
+	public Alimentation(int id, Regime regime, String repas, String boisson, int periode, Date date) {
 		super();
 		this.setId(id);
 		this.setRegime(regime);
@@ -55,10 +55,10 @@ public class Alimentation {
 		this.periode = periode;
 	}
 	
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 }

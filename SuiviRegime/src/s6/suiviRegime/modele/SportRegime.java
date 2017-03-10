@@ -1,18 +1,18 @@
 package s6.suiviRegime.modele;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class SportRegime extends Sport {
 	
 	Regime regime;
-	LocalDate date;
+	Date date;
 	float rythme;
 	
 	public SportRegime(int id, String sport, String activite) {
 		super(id, sport, activite);
 	}
 	
-	public SportRegime(int id, String sport, String activite, Regime regime, LocalDate date, float rythme) {
+	public SportRegime(int id, String sport, String activite, Regime regime, Date date, float rythme) {
 		super(id, sport, activite);
 		this.setRegime(regime);
 		this.setDate(date);
@@ -25,10 +25,10 @@ public class SportRegime extends Sport {
 	public void setRegime(Regime regime) {
 		this.regime = regime;
 	}
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	public float getRythme() {

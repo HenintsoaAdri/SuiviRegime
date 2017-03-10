@@ -23,39 +23,47 @@ public class TestDAO {
 
 	@Test
 	public void testAlimentationConseilFind() throws Exception {
-		AlimentationConseil a = AlimentationConseilDAO.findById(1);
+		AlimentationConseilDao dao = new AlimentationConseilDao();
+		AlimentationConseil a = dao.findById(1);
 		assertEquals("Minceur Ventre Plat", a.getNom());		
 	}
 	@Test
 	public void testAlimentationFind() throws Exception {
-		Alimentation a = AlimentationDAO.findById(1);
+		AlimentationDao dao = new AlimentationDao();
+		Alimentation a = dao.findById(1);
 		assertEquals("Henintsoa", a.getRegime().getUtilisateur().getNom());
 		assertEquals(50, a.getRegime().getPoidsObjectif(),0.1);
 		assertEquals(LocalDate.of(2017,03, 01), a.getDate());
 	}
 	@Test
 	public void testPoidsFind() throws Exception {
-		Poids p = PoidsDAO.findById(1);
+		PoidsDao dao = new PoidsDao();
+		Poids p = dao.findById(1);
 		assertEquals("Henintsoa", p.getRegime().getUtilisateur().getNom());
 		assertEquals(50, p.getRegime().getPoidsObjectif(),0.1);
 		assertEquals(57, p.getPoids(),0.1);
 	}
 	@Test
 	public void testRegimeFind() throws Exception {
-		Regime r = RegimeDAO.findById(1);
+		RegimeDao dao = new RegimeDao();
+		Regime r = dao.findById(1);
 		assertEquals("Henintsoa", r.getUtilisateur().getNom());
 		assertEquals(LocalDate.of(2017,06,01), r.getFin());
 		assertEquals(50, r.getPoidsObjectif(),0.1);
 	}
 	@Test
 	public void testSportFind() throws Exception {
-		Sport s = SportDAO.findById(1);
+		SportDao dao = new SportDao();
+		Sport s = dao.findById(1);
 		assertEquals("Fitness", s.getSport());
 		assertEquals("Corde à sauter", s.getActivite());
 	}
 	@Test
 	public void testSportRegimeFind() throws Exception {
-		SportRegime s = SportRegimeDAO.findBySportRegime(SportDAO.findById(8),RegimeDAO.findById(1));
+		SportRegimeDao dao = new SportRegimeDao();
+		RegimeDao regime = new RegimeDao();
+		SportDao sport = new SportDao();
+		SportRegime s = dao.findBySportRegime(sport.findById(8),regime.findById(1));
 		assertEquals(LocalDate.of(2017,03, 01), s.getDate());
 		assertEquals(30, s.getRythme(),0.1);
 		assertEquals("Running",s.getSport());
@@ -63,13 +71,15 @@ public class TestDAO {
 	}
 	@Test
 	public void testSportConseilFind() throws Exception {
-		SportConseil s = SportConseilDAO.findById(1);
+		SportConseilDao dao = new SportConseilDao();
+		SportConseil s = dao.findById(1);
 		assertEquals("Fitness", s.getSport());
 		assertEquals("Corde à sauter", s.getActivite());
 	}
 	@Test
 	public void testUtilisateurFind() throws Exception {
-		Utilisateur u = UtilisateurDAO.findById(1);
+		UtilisateurDao dao = new UtilisateurDao();
+		Utilisateur u = dao.findById(1);
 		assertEquals("Henintsoa", u.getNom());
 		assertEquals("Adri", u.getPrenom());
 		assertEquals("Femme", u.getSexeString());

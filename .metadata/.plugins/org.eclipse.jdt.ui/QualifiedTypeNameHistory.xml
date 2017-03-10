@@ -3,8 +3,18 @@
 <fullyQualifiedTypeName name="s6.suiviRegime.utilitaire.StringUtil"/>
 <fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="java.time.LocalDate"/>
 <fullyQualifiedTypeName name="java.sql.ResultSet"/>
-<fullyQualifiedTypeName name="s6.suiviRegime.modele.Utilisateur"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.modele.Regime"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.dao.AlimentationConseilDAO"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.dao.AlimentationDAO"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.modele.Alimentation"/>
+<fullyQualifiedTypeName name="java.time.LocalDate"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.dao.PoidsDAO"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.modele.Sport"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.modele.Utilisateur"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.modele.AlimentationConseil"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.dao.SportDao"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.dao.SportRegimeDao"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="java.text.DateFormat"/>
 </qualifiedTypeNameHistroy>

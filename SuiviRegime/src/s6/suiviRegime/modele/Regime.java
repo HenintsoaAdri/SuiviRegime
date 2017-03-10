@@ -1,13 +1,13 @@
 package s6.suiviRegime.modele;
 
-import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 public class Regime {
 	int id;
 	Utilisateur utilisateur;
-	LocalDate debut;
-	LocalDate fin;
+	Date debut;
+	Date fin;
 	float poidsObjectif;
 	List<Poids> poids;
 	List<Alimentation> alimentation;
@@ -15,7 +15,7 @@ public class Regime {
 	
 	public Regime(){}
 	
-	public Regime(int id, Utilisateur utilisateur, LocalDate debut, LocalDate fin, float poidsObjectif) {
+	public Regime(int id, Utilisateur utilisateur, Date debut, Date fin, float poidsObjectif) {
 		super();
 		this.setId(id);
 		this.setUtilisateur(utilisateur);
@@ -36,16 +36,16 @@ public class Regime {
 	public void setUtilisateur(Utilisateur utilisateur) {
 		this.utilisateur = utilisateur;
 	}
-	public LocalDate getDebut() {
+	public Date getDebut() {
 		return debut;
 	}
-	public void setDebut(LocalDate debut) {
+	public void setDebut(Date debut) {
 		this.debut = debut;
 	}
-	public LocalDate getFin() {
+	public Date getFin() {
 		return fin;
 	}
-	public void setFin(LocalDate fin) {
+	public void setFin(Date fin) {
 		this.fin = fin;
 	}
 	public float getPoidsObjectif() {

@@ -1,14 +1,14 @@
 package s6.suiviRegime.modele;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 public class Poids {
 	int id;
 	Regime regime;
-	LocalDate date;
+	Date date;
 	float poids;
 		
-	public Poids(int id, Regime regime, LocalDate date, float poids) {
+	public Poids(int id, Regime regime, Date date, float poids) {
 		super();
 		this.setId(id);
 		this.setRegime(regime);
@@ -30,10 +30,10 @@ public class Poids {
 		this.regime = regime;
 	}
 	
-	public LocalDate getDate() {
+	public Date getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(Date date) {
 		this.date = date;
 	}
 	

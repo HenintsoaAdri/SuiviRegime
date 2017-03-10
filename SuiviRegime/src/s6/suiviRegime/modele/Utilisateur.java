@@ -1,12 +1,8 @@
 package s6.suiviRegime.modele;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.DateTimeParseException;
-import java.time.format.FormatStyle;
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import s6.suiviRegime.utilitaire.StringUtil;
 
@@ -14,7 +10,7 @@ public class Utilisateur {
 	int id;
 	String nom;
 	String prenom;
-	LocalDate dateNaissance; 
+	Date dateNaissance; 
 	String sexe;
 	String identifiant="";
 	String password;
@@ -24,7 +20,7 @@ public class Utilisateur {
 
 	public Utilisateur() {}
 
-	public Utilisateur(int id, String nom, String prenom, LocalDate dateNaissance, String sexe, String email, String identifiant, String password, String adresse) throws Exception {
+	public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String sexe, String email, String identifiant, String password, String adresse) throws Exception {
 		super();
 		this.setId(id);
 		this.setNom(nom);
@@ -67,33 +63,33 @@ public class Utilisateur {
 		return getNom()+" "+getPrenom();
 	}
 
-	public LocalDate getDateNaissance() {
+	public Date getDateNaissance() {
 		return dateNaissance;
 	}
 	public String getDateNaissanceString(){
-		return DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG).format(getDateNaissance());
+		return DateFormat.getDateInstance().format(getDateNaissance());
 	}
 	public String getFullDateNaissanceString(){
 		String ne = "N\u00e9";
 		if(isFemme()) ne+="e";
 		return ne+" le "+getDateNaissanceString();
 	}
-	public void setDateNaissance(LocalDate dateNaissance) {
+	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
-	public void setDateNaissance(String dateNaissance) throws Exception{
-		try{
-			setDateNaissance(LocalDate.parse(dateNaissance));
-		} catch (DateTimeParseException e) {
-			try{
-				DateTimeFormatter format = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("d MMMM, uuuu").toFormatter(Locale.FRANCE);
-				setDateNaissance(LocalDate.parse(dateNaissance, format));
-			}catch(Exception e1){
-				e1.printStackTrace();
-				throw new Exception("Format de date non support\u00e9");				
-			}
-		}
-	}
+//	public void setDateNaissance(String dateNaissance) throws Exception{
+//		try{
+//			setDateNaissance(new Date(dateNaissance));
+//		} catch (DateTimeParseException e) {
+//			try{
+//				DateTimeFormatter format = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("d MMMM, uuuu").toFormatter(Locale.FRANCE);
+//				setDateNaissance(Date.parse(dateNaissance, format));
+//			}catch(Exception e1){
+//				e1.printStackTrace();
+//				throw new Exception("Format de date non support\u00e9");				
+//			}
+//		}
+//	}
 	public String getSexe() {
 		return sexe;
 	}

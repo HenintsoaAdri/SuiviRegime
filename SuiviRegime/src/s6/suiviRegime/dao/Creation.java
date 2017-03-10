@@ -11,7 +11,7 @@ public class Creation {
 				res.getInt("IDUTILISATEUR"),
 				res.getString("NOM"), 
 				res.getString("PRENOM"),
-				res.getDate("DATENAISSANCE").toLocalDate(),
+				res.getDate("DATENAISSANCE"),
 				res.getString("SEXE"),
 				res.getString("EMAIL"),
 				res.getString("IDENTIFIANT"),
@@ -26,7 +26,7 @@ public class Creation {
 				res.getString("SPORT"),
 				res.getString("ACTIVITES"),
 				regime,
-				res.getDate("DATESPORT").toLocalDate(),
+				res.getDate("DATESPORT"),
 				res.getInt("RYTHMESPORT"));
 		return model;
 	}
@@ -46,7 +46,7 @@ public class Creation {
 		Poids model = new Poids(
 				res.getInt("IDPOIDS"),
 				regime,
-				res.getDate("DATEPOIDS").toLocalDate(),
+				res.getDate("DATEPOIDS"),
 				res.getFloat("POIDS"));
 		return model;
 	}
@@ -61,7 +61,7 @@ public class Creation {
 				res.getString("REPAS"),
 				res.getString("BOISSON"),
 				res.getInt("PERIODE"),
-				res.getDate("DATEALIMENTATION").toLocalDate());
+				res.getDate("DATEALIMENTATION"));
 		return model;
 	}
 	public static Alimentation creerAlimentation(ResultSet res) throws Exception{
@@ -72,8 +72,8 @@ public class Creation {
 		Regime model = new Regime(
 				res.getInt("IDREGIME"),
 				utilisateur,
-				res.getDate("DATEDEBUT").toLocalDate(),
-				res.getDate("DATEFIN").toLocalDate(),
+				res.getDate("DATEDEBUT"),
+				res.getDate("DATEFIN"),
 				res.getFloat("POIDSOBJECTIF"));
 		return model;
 	}
