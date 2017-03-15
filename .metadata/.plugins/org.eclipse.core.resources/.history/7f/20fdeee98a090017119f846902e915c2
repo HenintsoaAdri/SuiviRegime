@@ -3,12 +3,12 @@ package s6.suiviRegime.test;
 import static org.junit.Assert.*;
 
 import java.time.LocalDate;
-import java.sql.Date;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import oracle.security.o3logon.O3LoginClientHelper;
 import s6.suiviRegime.dao.*;
 import s6.suiviRegime.daoGenere.ObjectDao;
 import s6.suiviRegime.modele.*;
@@ -35,7 +35,7 @@ public class TestDAO {
 		Alimentation a = dao.findById(1);
 		assertEquals("Henintsoa", a.getRegime().getUtilisateur().getNom());
 		assertEquals(50, a.getRegime().getPoidsObjectif(),0.1);
-		assertEquals(Date.valueOf("2017-03-01"), a.getDate());
+		assertEquals(LocalDate.of(2017,03, 01), a.getDate());
 	}
 	@Test
 	public void testPoidsFind() throws Exception {
@@ -50,7 +50,7 @@ public class TestDAO {
 		RegimeDao dao = new RegimeDao();
 		Regime r = dao.findById(1);
 		assertEquals("Henintsoa", r.getUtilisateur().getNom());
-		assertEquals(Date.valueOf("2017-06-01"), r.getFin());
+		assertEquals(LocalDate.of(2017,06,01), r.getFin());
 		assertEquals(50, r.getPoidsObjectif(),0.1);
 	}
 	@Test
@@ -66,7 +66,7 @@ public class TestDAO {
 		RegimeDao regime = new RegimeDao();
 		SportDao sport = new SportDao();
 		SportRegime s = dao.findBySportRegime(sport.findById(8),regime.findById(1));
-		assertEquals(Date.valueOf("2017-03-01"), s.getDate());
+		assertEquals(LocalDate.of(2017,03, 01), s.getDate());
 		assertEquals(30, s.getRythme(),0.1);
 		assertEquals("Running",s.getSport());
 		assertEquals("Marche à pied",s.getActivite());

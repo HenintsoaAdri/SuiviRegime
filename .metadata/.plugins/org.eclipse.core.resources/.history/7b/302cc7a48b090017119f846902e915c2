@@ -66,7 +66,7 @@ public class TestDAO {
 		RegimeDao regime = new RegimeDao();
 		SportDao sport = new SportDao();
 		SportRegime s = dao.findBySportRegime(sport.findById(8),regime.findById(1));
-		assertEquals(Date.valueOf("2017-03-01"), s.getDate());
+		assertEquals(Date.valueOf(2017,03, 01), s.getDate());
 		assertEquals(30, s.getRythme(),0.1);
 		assertEquals("Running",s.getSport());
 		assertEquals("Marche à pied",s.getActivite());

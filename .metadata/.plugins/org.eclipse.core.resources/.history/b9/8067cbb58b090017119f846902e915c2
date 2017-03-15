@@ -11,7 +11,7 @@ import s6.suiviRegime.modele.BaseModele;
 public class ObjectDao {
 	public  void save(BaseModele model) throws Exception{
  		String query = "INSERT INTO "
- 				+ getNomClasse(model).toUpperCase()
+ 				+ getNomClasse(model).
  				+ " (NOM, MATIN, MIDI, SOIR) "
  				+ "VALUES(?, ?, ?, ?)";
 		Connection con = null;

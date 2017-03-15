@@ -10,10 +10,7 @@ import s6.suiviRegime.modele.BaseModele;
 
 public class ObjectDao {
 	public  void save(BaseModele model) throws Exception{
- 		String query = "INSERT INTO "
- 				+ getNomClasse(model).toUpperCase()
- 				+ " (NOM, MATIN, MIDI, SOIR) "
- 				+ "VALUES(?, ?, ?, ?)";
+ 		String query = "INSERT INTO ALIMENTATIONCONSEIL (NOM, MATIN, MIDI, SOIR) VALUES(?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -164,7 +161,7 @@ public class ObjectDao {
 		model.setSoir(res.getString("SOIR"));
 		return model;
 	}
-	public String getNomClasse(BaseModele model){
-		return model.getClass().getSimpleName();
+	public String getNomClass(BaseModele model){
+		return model.getClass().getName();
 	}
 }

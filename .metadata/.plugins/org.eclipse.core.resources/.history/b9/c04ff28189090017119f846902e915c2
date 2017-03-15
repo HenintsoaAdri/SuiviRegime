@@ -6,14 +6,11 @@ import java.sql.ResultSet;
 import java.util.List;
 import java.util.Vector;
 
-import s6.suiviRegime.modele.BaseModele;
+import s6.suiviRegime.modele.AlimentationConseil;
 
 public class ObjectDao {
-	public  void save(BaseModele model) throws Exception{
- 		String query = "INSERT INTO "
- 				+ getNomClasse(model).toUpperCase()
- 				+ " (NOM, MATIN, MIDI, SOIR) "
- 				+ "VALUES(?, ?, ?, ?)";
+	public  void save(AlimentationConseil model) throws Exception{
+ 		String query = "INSERT INTO ALIMENTATIONCONSEIL (NOM, MATIN, MIDI, SOIR) VALUES(?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -35,7 +32,7 @@ public class ObjectDao {
 			 if(con != null)con.close();
 		}
 	}
-	public  void update(BaseModele model) throws Exception{
+	public  void update(AlimentationConseil model) throws Exception{
 
 		String query = "UPDATE ALIMENTATIONCONSEIL SET NOM= ?, MATIN= ?, MIDI= ?, SOIR= ? WHERE IDALIMENTATIONCONSEIL = ?";
 		Connection con = null;
@@ -60,7 +57,7 @@ public class ObjectDao {
 			 if(con != null)con.close();
 		}
 	}
-	public void delete(BaseModele model) throws Exception{
+	public void delete(AlimentationConseil model) throws Exception{
 
 		String query = "DELETE FROM ALIMENTATIONCONSEIL WHERE IDALIMENTATIONCONSEIL = ?";
 		Connection con = null;
@@ -81,7 +78,7 @@ public class ObjectDao {
 			 if(con != null)con.close();
 		}
 	}
-	public List<BaseModele> findAll() throws Exception{
+	public List<AlimentationConseil> findAll() throws Exception{
 
 		String query = "SELECT * FROM ALIMENTATIONCONSEIL";
 		Connection con = null;
@@ -98,7 +95,7 @@ public class ObjectDao {
 			 if(con != null)con.close();
 		}
 	}
-	public List<BaseModele> findAll(int offset) throws Exception{
+	public List<AlimentationConseil> findAll(int offset) throws Exception{
 
 		String query = "SELECT * FROM ALIMENTATIONCONSEIL";
 		Connection con = null;
@@ -140,10 +137,10 @@ public class ObjectDao {
 			 if(con != null)con.close();
 		}
 	}
-	public List<BaseModele> DBToModel(BaseModele model, ResultSet res) throws Exception{
+	public List<AlimentationConseil> DBToModel(ResultSet res) throws Exception{
 
 		try{
-			 List<BaseModele> model = new Vector<AlimentationConseil>();
+			 List<AlimentationConseil> model = new Vector<AlimentationConseil>();
 			 while(res.next()){ 
 				 model.add(creer(res));
 			 }
@@ -154,7 +151,7 @@ public class ObjectDao {
 			 if(res != null) res.close();
 		}
 	}
-	public BaseModele creer(BaseModele model, ResultSet res) throws Exception{
+	public AlimentationConseil creer(ResultSet res) throws Exception{
 
 		AlimentationConseil model = new AlimentationConseil();
 		model.setId(res.getInt("IDALIMENTATIONCONSEIL"));
@@ -163,8 +160,5 @@ public class ObjectDao {
 		model.setMidi(res.getString("MIDI"));
 		model.setSoir(res.getString("SOIR"));
 		return model;
-	}
-	public String getNomClasse(BaseModele model){
-		return model.getClass().getSimpleName();
 	}
 }

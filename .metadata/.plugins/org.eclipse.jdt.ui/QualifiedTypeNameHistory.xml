@@ -4,7 +4,6 @@
 <fullyQualifiedTypeName name="s6.suiviRegime.modele.Regime"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.dao.AlimentationConseilDAO"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.dao.AlimentationDAO"/>
-<fullyQualifiedTypeName name="s6.suiviRegime.modele.Alimentation"/>
 <fullyQualifiedTypeName name="java.time.LocalDate"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.dao.PoidsDAO"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.modele.Sport"/>
@@ -12,7 +11,6 @@
 <fullyQualifiedTypeName name="s6.suiviRegime.modele.AlimentationConseil"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.dao.SportDao"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.dao.SportRegimeDao"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="java.text.DateFormat"/>
 <fullyQualifiedTypeName name="java.nio.file.Path"/>
 <fullyQualifiedTypeName name="jdk.net.NetworkPermission"/>
@@ -31,4 +29,9 @@
 <fullyQualifiedTypeName name="s6.suiviRegime.utilitaire.ClasseAGenerer"/>
 <fullyQualifiedTypeName name="java.io.FileReader"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.utilitaire.DaoGenerateur"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.modele.BaseModele"/>
+<fullyQualifiedTypeName name="oracle.security.o3logon.O3LoginClientHelper"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.daoGenere.ObjectDao"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.modele.Alimentation"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
 </qualifiedTypeNameHistroy>

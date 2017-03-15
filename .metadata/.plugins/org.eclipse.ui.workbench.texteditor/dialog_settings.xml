@@ -2,20 +2,20 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="\t\t" key="selection"/>
+		<item value="Sys" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="Sys"/>
+			<item value="sys"/>
 			<item value="\t \t"/>
 			<item value="\n \t"/>
 			<item value="getConnPostgre"/>
 			<item value="()"/>
 			<item value="nerate"/>
 			<item value="Date.valueOf(model.getDate())"/>
-			<item value="LocalDate"/>
-			<item value=".toLocalDate()"/>
 		</list>
 		<list key="replacehistory">
 			<item value="\t\t"/>
