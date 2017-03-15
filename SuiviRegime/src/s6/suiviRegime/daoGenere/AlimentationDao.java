@@ -1,8 +1,11 @@
 package s6.suiviRegime.daoGenere;
+
 import java.sql.*;
 import java.util.List;
 import java.util.Vector;
+
 import s6.suiviRegime.modele.*;
+
 public class AlimentationDao{ 
 	public  void save(Alimentation model) throws Exception{
  		String query = "INSERT INTO ALIMENTATION (IDREGIME, REPAS, BOISSON, PERIODE, DATE) VALUES(?, ?, ?, ?, ?)";
@@ -151,6 +154,12 @@ public class AlimentationDao{
 	public Alimentation creer(ResultSet res) throws Exception{
 
 		Alimentation model = new Alimentation();
-			 return model;
+		model.setId(res.getInt("IDALIMENTATION"));
+		model.setRegime(new RegimeDao().findById(res.getInt("IDREGIME")));
+		model.setRepas(res.getString("REPAS"));
+		model.setBoisson(res.getString("BOISSON"));
+		model.setPeriode(res.getInt("PERIODE"));
+		model.setDate(res.getDate("DATE"));
+		return model;
 	}
 }

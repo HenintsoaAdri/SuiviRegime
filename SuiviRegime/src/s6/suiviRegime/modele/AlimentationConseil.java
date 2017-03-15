@@ -1,7 +1,6 @@
 package s6.suiviRegime.modele;
 
-public class AlimentationConseil {
-	int id;
+public class AlimentationConseil extends BaseModele{
 	String nom;
 	String matin;
 	String midi;

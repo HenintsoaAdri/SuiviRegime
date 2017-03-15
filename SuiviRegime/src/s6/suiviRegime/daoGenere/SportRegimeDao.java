@@ -1,8 +1,11 @@
 package s6.suiviRegime.daoGenere;
+
 import java.sql.*;
 import java.util.List;
 import java.util.Vector;
+
 import s6.suiviRegime.modele.*;
+
 public class SportRegimeDao{ 
 	public  void save(SportRegime model) throws Exception{
  		String query = "INSERT INTO SPORTREGIME (IDREGIME, DATE, RYTHME) VALUES(?, ?, ?)";
@@ -147,6 +150,10 @@ public class SportRegimeDao{
 	public SportRegime creer(ResultSet res) throws Exception{
 
 		SportRegime model = new SportRegime();
-			 return model;
+		model.setId(res.getInt("IDSPORTREGIME"));
+		model.setRegime(new RegimeDao().findById(res.getInt("IDREGIME")));
+		model.setDate(res.getDate("DATE"));
+		model.setRythme(res.getFloat("RYTHME"));
+		return model;
 	}
 }

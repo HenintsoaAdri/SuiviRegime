@@ -2,8 +2,7 @@ package s6.suiviRegime.modele;
 
 import java.util.Date;
 
-public class Poids {
-	int id;
+public class Poids extends BaseModele{
 	Regime regime;
 	Date date;
 	float poids;

@@ -2,8 +2,7 @@ package s6.suiviRegime.modele;
 
 import java.util.Date;
 
-public class Alimentation {
-	int id;
+public class Alimentation extends BaseModele{
 	Regime regime;
 	String repas;
 	String boisson;

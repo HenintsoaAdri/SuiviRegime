@@ -1,8 +1,11 @@
 package s6.suiviRegime.daoGenere;
+
 import java.sql.*;
 import java.util.List;
 import java.util.Vector;
+
 import s6.suiviRegime.modele.*;
+
 public class RegimeDao{ 
 	public  void save(Regime model) throws Exception{
  		String query = "INSERT INTO REGIME (IDUTILISATEUR, DEBUT, FIN, POIDSOBJECTIF) VALUES(?, ?, ?, ?)";
@@ -149,6 +152,11 @@ public class RegimeDao{
 	public Regime creer(ResultSet res) throws Exception{
 
 		Regime model = new Regime();
-			 return model;
+		model.setId(res.getInt("IDREGIME"));
+		model.setUtilisateur(new UtilisateurDao().findById(res.getInt("IDUTILISATEUR")));
+		model.setDebut(res.getDate("DEBUT"));
+		model.setFin(res.getDate("FIN"));
+		model.setPoidsObjectif(res.getFloat("POIDSOBJECTIF"));
+		return model;
 	}
 }

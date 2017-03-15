@@ -1759,3 +1759,6 @@ user global configuration and to define the default location to store repositori
 not correct please set the HOME environment variable and restart Eclipse. Otherwise Git for Windows and
 EGit might behave differently since they see different configuration options.
 This warning can be switched off on the Team > Git > Confirmations and Warnings preference page.
+
+!ENTRY org.eclipse.wst.server.discovery 1 0 2017-03-15 16:33:26.373
+!MESSAGE cacheFile=file:/A:/eclipse/configuration/org.eclipse.wst.server.discovery/serverAdapterSitesDetails.xml

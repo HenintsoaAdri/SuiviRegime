@@ -102,8 +102,12 @@ public class ClasseAGenerer {
 	public void setPackages(String packages) {
 		this.packages = packages.replace(";", ".*");
 	}
-	public String getNonPrimitifMethode(String attribut){
+	public String getNonPrimitifMethod(String attribut){
 		if(containsAttributObject)return StringUtil.firstUpper(attribut.replace("id", "")).concat("().getId");
+		else return attribut;
+	}
+	public String getNonPrimitifNom(String attribut){
+		if(containsAttributObject)return StringUtil.firstUpper(attribut.replace("id", ""));
 		else return attribut;
 	}
 }

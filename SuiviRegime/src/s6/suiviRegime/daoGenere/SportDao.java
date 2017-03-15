@@ -1,8 +1,11 @@
 package s6.suiviRegime.daoGenere;
+
 import java.sql.*;
 import java.util.List;
 import java.util.Vector;
+
 import s6.suiviRegime.modele.*;
+
 public class SportDao{ 
 	public  void save(Sport model) throws Exception{
  		String query = "INSERT INTO SPORT (SPORT, ACTIVITE) VALUES(?, ?)";
@@ -145,6 +148,9 @@ public class SportDao{
 	public Sport creer(ResultSet res) throws Exception{
 
 		Sport model = new Sport();
-			 return model;
+		model.setId(res.getInt("IDSPORT"));
+		model.setSport(res.getString("SPORT"));
+		model.setActivite(res.getString("ACTIVITE"));
+		return model;
 	}
 }

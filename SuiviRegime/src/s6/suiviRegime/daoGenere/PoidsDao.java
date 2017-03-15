@@ -1,8 +1,11 @@
 package s6.suiviRegime.daoGenere;
+
 import java.sql.*;
 import java.util.List;
 import java.util.Vector;
+
 import s6.suiviRegime.modele.*;
+
 public class PoidsDao{ 
 	public  void save(Poids model) throws Exception{
  		String query = "INSERT INTO POIDS (IDREGIME, DATE, POIDS) VALUES(?, ?, ?)";
@@ -147,6 +150,10 @@ public class PoidsDao{
 	public Poids creer(ResultSet res) throws Exception{
 
 		Poids model = new Poids();
-			 return model;
+		model.setId(res.getInt("IDPOIDS"));
+		model.setRegime(new RegimeDao().findById(res.getInt("IDREGIME")));
+		model.setDate(res.getDate("DATE"));
+		model.setPoids(res.getFloat("POIDS"));
+		return model;
 	}
 }

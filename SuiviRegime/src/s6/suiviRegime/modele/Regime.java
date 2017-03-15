@@ -3,8 +3,7 @@ package s6.suiviRegime.modele;
 import java.util.Date;
 import java.util.List;
 
-public class Regime {
-	int id;
+public class Regime extends BaseModele{
 	Utilisateur utilisateur;
 	Date debut;
 	Date fin;

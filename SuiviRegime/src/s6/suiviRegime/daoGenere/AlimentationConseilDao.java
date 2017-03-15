@@ -1,8 +1,11 @@
 package s6.suiviRegime.daoGenere;
+
 import java.sql.*;
 import java.util.List;
 import java.util.Vector;
+
 import s6.suiviRegime.modele.*;
+
 public class AlimentationConseilDao{ 
 	public  void save(AlimentationConseil model) throws Exception{
  		String query = "INSERT INTO ALIMENTATIONCONSEIL (NOM, MATIN, MIDI, SOIR) VALUES(?, ?, ?, ?)";
@@ -149,6 +152,11 @@ public class AlimentationConseilDao{
 	public AlimentationConseil creer(ResultSet res) throws Exception{
 
 		AlimentationConseil model = new AlimentationConseil();
-			 return model;
+		model.setId(res.getInt("IDALIMENTATIONCONSEIL"));
+		model.setNom(res.getString("NOM"));
+		model.setMatin(res.getString("MATIN"));
+		model.setMidi(res.getString("MIDI"));
+		model.setSoir(res.getString("SOIR"));
+		return model;
 	}
 }

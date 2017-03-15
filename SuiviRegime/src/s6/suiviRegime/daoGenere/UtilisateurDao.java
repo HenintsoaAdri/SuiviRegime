@@ -1,8 +1,11 @@
 package s6.suiviRegime.daoGenere;
+
 import java.sql.*;
 import java.util.List;
 import java.util.Vector;
+
 import s6.suiviRegime.modele.*;
+
 public class UtilisateurDao{ 
 	public  void save(Utilisateur model) throws Exception{
  		String query = "INSERT INTO UTILISATEUR (NOM, PRENOM, SEXE, IDENTIFIANT, PASSWORD, ADRESSE, EMAIL) VALUES(?, ?, ?, ?, ?, ?, ?)";
@@ -155,6 +158,14 @@ public class UtilisateurDao{
 	public Utilisateur creer(ResultSet res) throws Exception{
 
 		Utilisateur model = new Utilisateur();
-			 return model;
+		model.setId(res.getInt("IDUTILISATEUR"));
+		model.setNom(res.getString("NOM"));
+		model.setPrenom(res.getString("PRENOM"));
+		model.setSexe(res.getString("SEXE"));
+		model.setIdentifiant(res.getString("IDENTIFIANT"));
+		model.setPassword(res.getString("PASSWORD"));
+		model.setAdresse(res.getString("ADRESSE"));
+		model.setEmail(res.getString("EMAIL"));
+		return model;
 	}
 }

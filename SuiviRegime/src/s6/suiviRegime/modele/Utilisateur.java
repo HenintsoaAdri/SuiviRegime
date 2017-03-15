@@ -6,8 +6,7 @@ import java.util.List;
 
 import s6.suiviRegime.utilitaire.StringUtil;
 
-public class Utilisateur {
-	int id;
+public class Utilisateur extends BaseModele{
 	String nom;
 	String prenom;
 	Date dateNaissance; 

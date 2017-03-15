@@ -23,7 +23,7 @@ public class DaoGenerateur {
 	public void generateFileDao(File file, String packages) throws Exception{
 		FileReader fileReader = null;
 		BufferedReader bufferedReader = null;
-		if(file.isFile()){
+		if(file.isFile() && !file.getName().equalsIgnoreCase("BaseModele.java")){
 			try {
 				fileReader = new FileReader(file);
 				ClasseAGenerer classe = new ClasseAGenerer(file.getName());
@@ -90,11 +90,11 @@ public class DaoGenerateur {
 		}
 	}
 	public String generateHead(ClasseAGenerer classe, String packages){
-		String head =  "package " + packages + ";\n"
+		String head =  "package " + packages + ";\n\n"
 				+ "import java.sql.*;\n"
 				+ "import java.util.List;\n"
-				+ "import java.util.Vector;\n"
-				+ "import "	+ classe.getPackages() + ";\n"
+				+ "import java.util.Vector;\n\n"
+				+ "import "	+ classe.getPackages() + ";\n\n"
 				+ "public class " + classe.getNomDao() + "{ \n\t";
 				return head;
 	}
@@ -137,10 +137,9 @@ public class DaoGenerateur {
 		for(String[] attribut : classe.getAttribut()){
 			type = attribut[0];
 			nom = attribut[1];
-			if(nom.equalsIgnoreCase("id")) continue;
-			else if(nom.startsWith("id") 
+			if(nom.startsWith("id") 
 					&& type.equalsIgnoreCase("int")) 
-			nom = classe.getNonPrimitifMethode(nom);
+			nom = classe.getNonPrimitifMethod(nom);
 			nom = "model.get" + StringUtil.firstUpper(nom) + "()";
 			if(type.equalsIgnoreCase("Date")) nom = "new Date(".concat(nom).concat(".getTime())");
 			function += "\t statement.set";
@@ -168,10 +167,9 @@ public class DaoGenerateur {
 				for(String[] attribut : classe.getAttribut()){
 					type = attribut[0];
 					nom = attribut[1];
-					if(nom.equalsIgnoreCase("id")) continue;
-					else if(nom.startsWith("id") 
+					if(nom.startsWith("id") 
 							&& attribut[0].equalsIgnoreCase("int")) 
-					nom = classe.getNonPrimitifMethode(nom);
+					nom = classe.getNonPrimitifMethod(nom);
 					nom = "model.get" + StringUtil.firstUpper(nom) + "()";
 					if(type.equalsIgnoreCase("Date")) nom = "new Date(".concat(nom).concat(".getTime())");
 					function += "\t statement.set";
@@ -180,9 +178,7 @@ public class DaoGenerateur {
 					function += ");\n\t\t";
 					i++;
 				}
-				function += "\t statement.setInt("
-						+ i
-						+ ", model.getId());\n\t\t"
+				function += "\t statement.setInt("+ i + ", model.getId());\n\t\t"
 						+ generateEnd(false, false, "throw e");
 				return function;
 	}
@@ -265,7 +261,30 @@ public class DaoGenerateur {
 				+ classe.getNomModele()
 				+ " creer(ResultSet res) throws Exception{\n\n\t\t"
 				+ classe.getNomModele() + " model = new " + classe.getNomModele() + "();\n\t\t"
-				+ "\t return model;\n\t"
+				+ "model.setId(res.getInt(\"ID"
+				+ classe.getNomTable() + "\"));\n\t\t";
+		String type = "";
+		String nom = "";
+		for(String[] attribut : classe.getAttribut()){
+			type = attribut[0];
+			nom = attribut[1];
+			boolean nonPrimitif = attribut[1].startsWith("id") && type.equalsIgnoreCase("int");
+			if(nonPrimitif) 
+			nom = classe.getNonPrimitifNom(nom);
+			function += "model.set"+ StringUtil.firstUpper(nom) 
+				+ "(";
+			if(nonPrimitif){
+				function += "new ".concat(nom.concat("Dao().findById("));
+				nom = attribut[1];
+			}
+			function += "res.get" + StringUtil.firstUpper(type) + "(\""
+				+ nom.toUpperCase()
+				+ "\")";
+			if(nonPrimitif)
+			function+= ")";
+			function += ");\n\t\t";
+		}
+			function += "return model;\n\t"
 				+ "}\n";
 		return function;
 	}

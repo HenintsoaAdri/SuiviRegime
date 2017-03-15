@@ -1,7 +1,6 @@
 package s6.suiviRegime.modele;
 
-public class Sport {
-	int id;
+public class Sport extends BaseModele{
 	String sport;
 	String activite;
 	
