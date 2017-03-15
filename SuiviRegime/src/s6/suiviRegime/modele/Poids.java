@@ -7,7 +7,8 @@ public class Poids {
 	Regime regime;
 	Date date;
 	float poids;
-		
+	
+	public Poids() {}
 	public Poids(int id, Regime regime, Date date, float poids) {
 		super();
 		this.setId(id);

@@ -18,7 +18,7 @@ public class RegimeDao {
 	    Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getUtilisateur().getId());
@@ -49,7 +49,7 @@ public class RegimeDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getUtilisateur().getId());
@@ -76,7 +76,7 @@ public class RegimeDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, model.getId());
 			statement.execute();
@@ -98,9 +98,9 @@ public class RegimeDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
-			return DBToRegime(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -116,10 +116,10 @@ public class RegimeDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToRegime(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -134,7 +134,7 @@ public class RegimeDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, utilisateur.getId());
 			return DBToRegime(statement.executeQuery(), utilisateur);
@@ -154,7 +154,7 @@ public class RegimeDao {
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, id);
 			res = statement.executeQuery();
@@ -186,7 +186,7 @@ public class RegimeDao {
 		}
 	}
 
-	 List<Regime> DBToRegime(ResultSet res)throws Exception{
+	 List<Regime> DBToModel(ResultSet res)throws Exception{
 		try{
 			List<Regime> model = new Vector<Regime>();
 			while(res.next()){

@@ -17,7 +17,7 @@ public class AlimentationConseilDao {
 	    Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	
@@ -48,7 +48,7 @@ public class AlimentationConseilDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	
@@ -76,7 +76,7 @@ public class AlimentationConseilDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(2, model.getId());
 			statement.execute();
@@ -98,10 +98,10 @@ public class AlimentationConseilDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToAlimentationConseil(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -117,9 +117,9 @@ public class AlimentationConseilDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
-			return DBToAlimentationConseil(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -136,7 +136,7 @@ public class AlimentationConseilDao {
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, id);
 			res = statement.executeQuery();
@@ -154,7 +154,7 @@ public class AlimentationConseilDao {
 		}
 	}
 	
-	 List<AlimentationConseil> DBToAlimentationConseil(ResultSet res)throws Exception{
+	 List<AlimentationConseil> DBToModel(ResultSet res)throws Exception{
 		try{
 			List<AlimentationConseil> model = new Vector<AlimentationConseil>();
 			while(res.next()){

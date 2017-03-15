@@ -1,0 +1,11 @@
+import s6.suiviRegime.utilitaire.StringUtil;
+
+public class test {
+
+	public static void main(String[] args) {
+		String type = "int";
+		System.out.println(StringUtil.isPrimitif(type));
+
+	}
+
+}

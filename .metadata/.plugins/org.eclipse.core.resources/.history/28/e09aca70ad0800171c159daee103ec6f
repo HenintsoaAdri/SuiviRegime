@@ -1,0 +1,23 @@
+package s6.suiviRegime.utilitaire;
+
+public enum TypePrimitif {
+	INT("int","Int"),
+	DOUBLE("double","Double"),
+	FLOAT("float","Float"),
+	DATE("Date","Date"),
+	STRING("String","String");
+
+	TypePrimitif(String name, String state) {
+	}
+	public boolean isPrimitif(String type){
+		switch (type) {
+		case "int": return true;
+		case "double": return true;
+		case "float": return true;
+		case "date" : return true;
+		case "String" : return true;
+		}
+		return false;
+	}
+	
+}

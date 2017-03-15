@@ -17,7 +17,7 @@ public class SportDao {
 	    Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setString(1, model.getSport());
@@ -41,7 +41,7 @@ public class SportDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setString(2, model.getSport());
@@ -66,7 +66,7 @@ public class SportDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, model.getId());
 			statement.execute();
@@ -87,9 +87,9 @@ public class SportDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
-			return DBToSport(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -104,10 +104,10 @@ public class SportDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToSport(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -124,7 +124,7 @@ public class SportDao {
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, id);
 			res = statement.executeQuery();
@@ -142,7 +142,7 @@ public class SportDao {
 		}
 	}
 
-	 List<Sport> DBToSport(ResultSet res)throws Exception{
+	 List<Sport> DBToModel(ResultSet res)throws Exception{
 		try{
 			List<Sport> model = new Vector<Sport>();
 			while(res.next()){

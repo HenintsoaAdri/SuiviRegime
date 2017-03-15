@@ -18,7 +18,7 @@ public class AlimentationDao {
 	    Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getRegime().getId());
@@ -50,7 +50,7 @@ public class AlimentationDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getRegime().getId());
@@ -78,7 +78,7 @@ public class AlimentationDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, model.getId());
 			statement.execute();
@@ -100,10 +100,10 @@ public class AlimentationDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToAlimentation(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -120,7 +120,7 @@ public class AlimentationDao {
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, id);
 			res = statement.executeQuery();
@@ -142,23 +142,21 @@ public class AlimentationDao {
 		String query = "SELECT * FROM ALIMENTATION WHERE IDREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
-		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, regime.getId());
-			return DBToAlimentation(statement.executeQuery(), regime);
+			return DBToModel(statement.executeQuery(), regime);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
 		}finally {
-			if(res != null) res.close();
 			if(statement != null) statement.close();
 			if(con != null)	con.close();
 		}
 	}
 	
-	 List<Alimentation> DBToAlimentation(ResultSet res)throws Exception{
+	 List<Alimentation> DBToModel(ResultSet res)throws Exception{
 		try{
 			List<Alimentation> model = new Vector<Alimentation>();
 			while(res.next()){
@@ -172,7 +170,7 @@ public class AlimentationDao {
 		}
 	}
 
-	 List<Alimentation> DBToAlimentation(ResultSet res, Regime regime) throws Exception {
+	 List<Alimentation> DBToModel(ResultSet res, Regime regime) throws Exception {
 		try{
 			List<Alimentation> model = new Vector<Alimentation>();
 			while(res.next()){

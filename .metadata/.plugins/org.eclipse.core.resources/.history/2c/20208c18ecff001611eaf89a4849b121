@@ -1,7 +1,0 @@
-package s6.suiviRegime.dao;
-
-import java.util.List;
-
-public class RegimeDAO {
-	
-}

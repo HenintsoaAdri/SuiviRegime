@@ -1,0 +1,10 @@
+package s6.suiviRegime.utilitaire;
+
+public enum TypePrimitif {
+	INT,DOUBLE,FLOAT,DATE,STRING;
+
+	public TypePrimitif(String name, int ordinal) {
+		super(name, ordinal);
+	}
+	
+}

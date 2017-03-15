@@ -20,7 +20,7 @@ public class UtilisateurDao {
 	    Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 			statement.setString(2, model.getNom());
@@ -64,7 +64,7 @@ public class UtilisateurDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setString(1, model.getNom());
 			statement.setString(2, model.getPrenom());
@@ -94,7 +94,7 @@ public class UtilisateurDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, model.getId());
 			statement.execute();
@@ -116,10 +116,10 @@ public class UtilisateurDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToUtilisateur(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -136,7 +136,7 @@ public class UtilisateurDao {
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, id);
 			res = statement.executeQuery();
@@ -160,7 +160,7 @@ public class UtilisateurDao {
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setString(1, identifiant);
 			res = statement.executeQuery();
@@ -202,7 +202,7 @@ public class UtilisateurDao {
 //			if(con != null)con.close();
 //		}
 //	}
-	static List<Utilisateur> DBToUtilisateur(ResultSet res)throws Exception{
+	static List<Utilisateur> DBToModel(ResultSet res)throws Exception{
 		try{
 			List<Utilisateur> model = new Vector<Utilisateur>();
 			while(res.next()){

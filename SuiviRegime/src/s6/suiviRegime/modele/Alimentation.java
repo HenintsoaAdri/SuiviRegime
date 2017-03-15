@@ -9,7 +9,8 @@ public class Alimentation {
 	String boisson;
 	int periode;
 	Date date;
-		
+	
+	public Alimentation() {}
 	public Alimentation(int id, Regime regime, String repas, String boisson, int periode, Date date) {
 		super();
 		this.setId(id);

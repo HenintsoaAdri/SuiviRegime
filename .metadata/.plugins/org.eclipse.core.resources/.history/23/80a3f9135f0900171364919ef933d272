@@ -1,0 +1,246 @@
+package s6.suiviRegime.utilitaire;
+import java.io.*;
+
+public class DaoGenerateur {
+	File dao = new File("src/s6/suiviRegime/daoGenere");
+	File footerPreparedStatement = new File(dao,"utilitaire/footerDaoPrepared");
+	File footerResultSet = new File(dao,"utilitaire/footerDaoResult");
+	File footerSave = new File(dao,"utilitaire/footerSaveDaoPrepared");
+	public void generateDao(File path, String packages){
+		try {
+			if(path.isFile()){
+				generateFileDao(path, packages);
+				return;
+			}
+			File [] liste = path.listFiles();
+			for(File file : liste){
+				generateFileDao(file, packages);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	public void generateFileDao(File file, String packages) throws Exception{
+		FileReader fileReader = null;
+		BufferedReader bufferedReader = null;
+		if(file.isFile()){
+			try {
+				fileReader = new FileReader(file);
+				ClasseAGenerer classe = new ClasseAGenerer(file.getName());
+				bufferedReader = new BufferedReader(fileReader);
+				String line;
+				int compteurAccolade = 0;
+				while ((line = bufferedReader.readLine()) != null) {
+					if(line.contains("{")){
+						compteurAccolade++;
+						continue;
+					}
+					if(line.contains("}")){
+						compteurAccolade--;
+						continue;
+					}
+					if(line.contains("package")){
+						classe.setPackages(line.split(" ")[1]);
+					}
+					if((compteurAccolade - 1) == 0 && line.endsWith(";")){
+						if(line.contains("="))line = line.substring(0, line.indexOf('='));
+						if(line.contains("List")) continue;
+							line = line.replace(";", "");
+							line = line.replace("private", "");
+							line = line.replace("static final", "");
+							String [] attributType = line.split(" ");
+							classe.addAttribut(attributType[0],attributType[1]);
+					}
+				}
+				writeDao(classe,packages);
+			} catch (Exception e) {
+				throw e;
+			} finally{
+				if(fileReader != null) fileReader.close();
+				if(bufferedReader != null) bufferedReader.close();
+			}
+		}
+		else if(file.isDirectory()){
+			generateDao(file,packages);
+		}
+	}
+	public void writeDao(ClasseAGenerer classe, String packages) throws Exception{
+		FileWriter writer = null;
+		BufferedReader bufferedReader = null;
+		try {
+			File newDao = new File(dao,classe.getNomFichier());
+			dao.mkdir();
+			newDao.createNewFile();
+			writer = new FileWriter(newDao);
+			writer.write(generateHead(classe, packages));
+			writer.write(generateSave(classe));
+			writer.write(generateUpdate(classe));
+			writer.write(generateDelete(classe));			
+			writer.write(generateFindAll(classe));			
+			writer.write(generateFindAllOffset(classe));			
+			writer.write(generateFindById(classe));
+			
+			writer.write("}");
+		} catch (Exception e) {
+			throw e;
+		} finally {
+			if(writer != null)writer.close();
+			if(bufferedReader != null)bufferedReader.close();
+		}
+	}
+	public String generateHead(ClasseAGenerer classe, String packages){
+		String head =  "package " + packages + ";\n"
+				+ "import java.sql.*;\n"
+				+ "import java.util.*;\n"
+				+ "import "	+ classe.getPackages() + ";\n"
+				+ "public class " + classe.getNomDao() + "{ \n \t";
+				return head;
+	}
+	public String generateInitialisation(boolean autoCommit){
+		String init =  "Connection con = null;\n \t"
+				+ "PreparedStatement statement = null;\n \t"
+				+ "try{\n"
+				+ "\t con = UtilDB.getConnexion();\n \t"
+				+ "\t statement = con.prepareStatement(query);\n \t";
+				if(!autoCommit) init += "\t con.setAutoCommit(false);\n \t";
+				return init;
+	}
+	public String generateEnd(boolean autoCommit, boolean resultSet, String throwDeclaration){
+		String end = "";
+		if(!autoCommit)end	+= "\t statement.execute();\n \t"
+				+ "\t con.commit();\n \t";
+		end += "}\n"
+				+ "catch(Exception e){\n \t";
+		if(!autoCommit)end	+= "con.rollback();\n \t";
+		end += "e.printStackTrace();\n \t"
+				+ throwDeclaration + ";\n \t"
+				+ "}\n \t"
+				+ "finally {\n \t";
+		if(resultSet)end += "if(res != null) res.close();\n \t";
+		end	+= "if(statement != null)statement.close();\n \t"
+			+ "if(con != null)con.close();\n \t"
+			+ "}\n \t"
+			+ "}\n \t";
+		return end;
+	}
+	
+	public String generateSave(ClasseAGenerer classe){
+		String function = 
+		"public  void save("
+		+ classe.getNomModele()
+		+ " model) throws Exception{\n \n \t"
+		+ "String query = " + classe.getSaveQuery() + ";\n \t"
+		+ generateInitialisation(false);
+		int i = 1;
+		String type = "";
+		String nom = "";
+		for(String[] attribut : classe.getAttribut()){
+			type = attribut[0];
+			nom = attribut[1];
+			if(attribut[1].equalsIgnoreCase("id")) continue;
+			else if(attribut[1].startsWith("id")) nom = classe.getNonPrimitifMethode(attribut[1]);
+			function += "\t statement.set";
+			function += StringUtil.firstUpper(type);
+			function += "("+ i + ", model.get";
+			function += StringUtil.firstUpper(nom);
+			function += "());\n";
+			i++;
+		}
+		function += generateEnd(false,false,"throw new Exception(\" "
+				+ classe.getNomModele()
+				+ " contenant des erreurs, cr\u00e9ation \u00e9chou\u00e9e.\")");
+		return function;
+	}
+	public String generateUpdate(ClasseAGenerer classe){
+		String function = 
+				"public  void update("
+				+ classe.getNomModele()
+				+ " model) throws Exception{\n\n \t"
+				+ "String query = " + classe.getUpdateQuery() + ";\n \t"
+				+ generateInitialisation(false);
+				int i = 1;
+				String type = "";
+				String nom = "";
+				for(String[] attribut : classe.getAttribut()){
+					type = attribut[0];
+					nom = attribut[1];
+					if(attribut[1].equalsIgnoreCase("id")) continue;
+					else if(attribut[1].startsWith("id")) nom = classe.getNonPrimitifMethode(attribut[1]);
+					function += "\t statement.set";
+					function += StringUtil.firstUpper(type);
+					function += "("+ i + ", model.get";
+					function += StringUtil.firstUpper(nom);
+					function += "());\n";
+					i++;
+				}
+				function += "\t statement.setInt("
+						+ i
+						+ ", model.getId());\n \t"
+						+ generateEnd(false, false, "throw e");
+				return function;
+	}
+	public String generateDelete(ClasseAGenerer classe){
+		String function = 
+		"public void delete("
+				+ classe.getNomModele()
+				+ " model) throws Exception{\n\n \t"
+				+ "String query = " + classe.getDeleteQuery() + ";\n \t"
+				+ generateInitialisation(false)
+				+ "\t statement.setInt(1, model.getId());\n \t"
+				+ generateEnd(false, false, "throw e");
+				return function;
+	}
+	public String generateFindAll(ClasseAGenerer classe){
+		String function = 
+				"public List<"
+				+ classe.getNomModele()
+				+ "> findAll() throws Exception{\n\n \t"
+				+ "String query = " + classe.getFindAllQuery() + ";\n \t"
+				+ generateInitialisation(true) + "\n \t"
+				+ "\t return DBToModel(statement.executeQuery());\n \t"
+				+ generateEnd(true, false, "throw e");
+				return function;
+	}
+	public String generateFindAllOffset(ClasseAGenerer classe){
+		String function = 
+				"public List<"
+				+ classe.getNomModele()
+				+ "> findAll(int offset) throws Exception{\n\n \t"
+				+ "String query = " + classe.getFindAllQuery() + ";\n \t"
+				+ generateInitialisation(true)
+				+ "\t statement.setInt(1, offset);\n \t"
+				+ "\t return DBToModel(statement.executeQuery());\n \t"
+				+ generateEnd(true, false, "throw e");
+				return function;
+	}
+	public String generateFindById(ClasseAGenerer classe){
+		String function = 
+				"public "
+				+ classe.getNomModele()
+				+ " findById(int id) throws Exception{\n\n \t"
+				+ "String query = " + classe.getFindByIdQuery() + ";\n \t"
+				+ "ResultSet res = null;\n \t"
+				+ generateInitialisation(true)
+				+ "\t statement.setInt(1, id);\n \t"
+				+ "\t if(res.next()){\n \t"
+				+ "\t\t return creer(res);\n \t"
+				+ "\t}\n \t"
+				+ "throw new Exception(\"Ce "
+				+ classe.getNomModele()
+				+ " est introuvable ou a \u00e9t\u00e9 retir\u00e9\");\n \t"
+				+ generateEnd(true, true, "throw e");
+				return function;
+	}
+	public String generateDBToModel(ClasseAGenerer classe){
+		String function = 
+				"public List<"
+				+ classe.getNomModele()
+				+ "> findAll(int offset) throws Exception{\n\n \t"
+				+ "String query = " + classe.getFindAllQuery() + ";\n \t"
+				+ generateInitialisation(true)
+				+ "\t statement.setInt(1, offset);\n \t"
+				+ "\t return DBToModel(statement.executeQuery());\n \t"
+				+ generateEnd(true, false, "throw e");
+		return function;
+	}
+}

@@ -1,9 +1,0 @@
-package s6.suiviRegime.modele;
-
-public class SportConseil extends Sport {
-
-	public SportConseil(int id, String sport, String activite) {
-		super(id, sport, activite);
-	}
-
-}

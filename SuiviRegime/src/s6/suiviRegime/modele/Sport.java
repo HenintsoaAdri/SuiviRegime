@@ -5,6 +5,7 @@ public class Sport {
 	String sport;
 	String activite;
 	
+	public Sport() {}
 	public Sport(int id, String sport, String activite) {
 		super();
 		this.setId(id);

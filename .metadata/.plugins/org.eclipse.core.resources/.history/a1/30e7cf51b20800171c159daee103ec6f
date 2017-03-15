@@ -1,0 +1,9 @@
+}
+		catch(Exception e){
+			con.rollback();
+			e.printStackTrace();
+			throw new Exception("Alimentation contenant des erreurs, cr\u00e9ation \u00e9chou\u00e9e.");
+		}finally {
+			if(statement != null)statement.close();
+			if(con != null)con.close();
+		}

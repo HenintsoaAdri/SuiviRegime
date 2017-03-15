@@ -6,7 +6,9 @@ public class AlimentationConseil {
 	String matin;
 	String midi;
 	String soir;
-		
+	
+	
+	public AlimentationConseil() {}
 	public AlimentationConseil(int id, String nom, String matin, String midi, String soir) {
 		super();
 		this.setId(id);

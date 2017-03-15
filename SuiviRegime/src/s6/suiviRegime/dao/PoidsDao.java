@@ -15,7 +15,7 @@ public class PoidsDao {
 	    Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getRegime().getId());
@@ -40,7 +40,7 @@ public class PoidsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getRegime().getId());
@@ -66,7 +66,7 @@ public class PoidsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, model.getId());
 			statement.execute();
@@ -88,10 +88,10 @@ public class PoidsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToPoids(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -106,9 +106,9 @@ public class PoidsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
-			return DBToPoids(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -123,10 +123,10 @@ public class PoidsDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, regime.getId());
-			return DBToPoids(statement.executeQuery(),regime);
+			return DBToModel(statement.executeQuery(),regime);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -142,7 +142,7 @@ public class PoidsDao {
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, id);
 			res = statement.executeQuery();
@@ -160,7 +160,7 @@ public class PoidsDao {
 		}
 	}
 	
-	 List<Poids> DBToPoids(ResultSet res)throws Exception{
+	 List<Poids> DBToModel(ResultSet res)throws Exception{
 		try{
 			List<Poids> model = new Vector<Poids>();
 			while(res.next()){
@@ -174,7 +174,7 @@ public class PoidsDao {
 		}
 		
 	}
-	 List<Poids> DBToPoids(ResultSet res, Regime regime)throws Exception{
+	 List<Poids> DBToModel(ResultSet res, Regime regime)throws Exception{
 		try{
 			List<Poids> model = new Vector<Poids>();
 			while(res.next()){

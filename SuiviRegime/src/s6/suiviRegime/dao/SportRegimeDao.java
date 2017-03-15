@@ -21,7 +21,7 @@ public class SportRegimeDao{
 	    Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getRegime().getId());
@@ -49,7 +49,7 @@ public class SportRegimeDao{
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setDate(1, new Date(model.getDate().getTime()));
@@ -75,7 +75,7 @@ public class SportRegimeDao{
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, model.getRegime().getId());
 			statement.setInt(2, model.getId());
@@ -98,10 +98,10 @@ public class SportRegimeDao{
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToSportRegime(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -117,10 +117,10 @@ public class SportRegimeDao{
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, id);
-			return DBToSportRegime(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -136,10 +136,10 @@ public class SportRegimeDao{
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, regime.getId());
-			return DBToSportRegime(statement.executeQuery(), regime);
+			return DBToModel(statement.executeQuery(), regime);
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -156,7 +156,7 @@ public class SportRegimeDao{
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, regime.getId());
 			statement.setInt(2, sport.getId());
@@ -175,7 +175,7 @@ public class SportRegimeDao{
 		}
 	}
 
-	 List<SportRegime> DBToSportRegime(ResultSet res, Regime regime) throws Exception {
+	 List<SportRegime> DBToModel(ResultSet res, Regime regime) throws Exception {
 		try{
 			List<SportRegime> model = new Vector<SportRegime>();
 			while(res.next()){
@@ -188,7 +188,7 @@ public class SportRegimeDao{
 			if(res != null) res.close();
 		}
 	}
-	 List<SportRegime> DBToSportRegime(ResultSet res)throws Exception{
+	 List<SportRegime> DBToModel(ResultSet res)throws Exception{
 		try{
 			List<SportRegime> model = new Vector<SportRegime>();
 			while(res.next()){

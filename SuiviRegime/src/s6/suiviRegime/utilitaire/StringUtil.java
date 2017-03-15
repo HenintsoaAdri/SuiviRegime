@@ -106,4 +106,17 @@ public class StringUtil {
     	return DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(local.toLocalDate())+" \u00e0 "+
     			DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM).format(local.toLocalTime());
     }
+    public static String firstUpper(String string){
+    	return string.replaceFirst(String.valueOf(string.charAt(0)), String.valueOf(string.charAt(0)).toUpperCase());
+    }
+    public static boolean isPrimitif(String type){
+		switch (type) {
+			case "int": return true;
+			case "double": return true;
+			case "float": return true;
+			case "Date" : return true;
+			case "String" :return true;
+		}
+		return false;
+	}
 }

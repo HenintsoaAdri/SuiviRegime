@@ -14,7 +14,6 @@ public class Regime {
 	List<SportRegime> sport;
 	
 	public Regime(){}
-	
 	public Regime(int id, Utilisateur utilisateur, Date debut, Date fin, float poidsObjectif) {
 		super();
 		this.setId(id);

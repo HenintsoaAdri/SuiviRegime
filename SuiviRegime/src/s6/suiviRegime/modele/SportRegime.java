@@ -8,10 +8,11 @@ public class SportRegime extends Sport {
 	Date date;
 	float rythme;
 	
+	
+	public SportRegime() {}
 	public SportRegime(int id, String sport, String activite) {
 		super(id, sport, activite);
 	}
-	
 	public SportRegime(int id, String sport, String activite, Regime regime, Date date, float rythme) {
 		super(id, sport, activite);
 		this.setRegime(regime);

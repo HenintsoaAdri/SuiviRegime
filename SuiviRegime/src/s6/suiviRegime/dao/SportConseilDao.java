@@ -18,7 +18,7 @@ public class SportConseilDao {
 	    Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	
@@ -47,7 +47,7 @@ public class SportConseilDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	
@@ -74,7 +74,7 @@ public class SportConseilDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(2, model.getId());
 			statement.execute();
@@ -96,10 +96,10 @@ public class SportConseilDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, offset);
-			return DBToSportConseil(statement.executeQuery());
+			return DBToModel(statement.executeQuery());
 		} catch (Exception e) {
 			e.printStackTrace();
 			throw e;
@@ -114,7 +114,7 @@ public class SportConseilDao {
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, sport.getId());
 			return DBToSportConseil(statement.executeQuery(), sport);
@@ -133,7 +133,7 @@ public class SportConseilDao {
 		PreparedStatement statement = null;
 		ResultSet res = null;
 		try{
-			con = UtilDB.getConnPostgre();
+			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, id);
 			res = statement.executeQuery();
@@ -165,7 +165,7 @@ public class SportConseilDao {
 		}
 	}
 
-	 List<SportConseil> DBToSportConseil(ResultSet res)throws Exception{
+	 List<SportConseil> DBToModel(ResultSet res)throws Exception{
 		try{
 			List<SportConseil> model = new Vector<SportConseil>();
 			while(res.next()){

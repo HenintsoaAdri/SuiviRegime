@@ -6,10 +6,11 @@ public class SportConseil extends Sport {
 	float rythme;
 	String details;
 	
+	
+	public SportConseil() {}
 	public SportConseil(int id, String sport, String activite) {
 		super(id, sport, activite);
 	}
-	
 	public SportConseil(int id, String sport, String activite, int idSport, float rythme, String details) {
 		super(id, sport, activite);
 		this.setIdSport(idSport);

@@ -19,7 +19,6 @@ public class Utilisateur {
 	List<Regime> regime;
 
 	public Utilisateur() {}
-
 	public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String sexe, String email, String identifiant, String password, String adresse) throws Exception {
 		super();
 		this.setId(id);

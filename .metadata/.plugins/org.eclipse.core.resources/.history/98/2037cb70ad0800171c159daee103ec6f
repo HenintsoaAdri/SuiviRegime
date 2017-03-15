@@ -1,0 +1,14 @@
+package s6.suiviRegime.utilitaire;
+
+public enum TypePrimitif {
+	INT("int","Int"),
+	DOUBLE("double","Double"),
+	FLOAT("float","Float"),
+	DATE("Date","Date"),
+	STRING("String","String");
+
+	TypePrimitif(String name, String state) {
+	}
+	
+	
+}
