@@ -92,8 +92,7 @@ public class DaoGenerateur {
 	public String generateHead(ClasseAGenerer classe, String packages){
 		String head =  "package " + packages + ";\n"
 				+ "import java.sql.*;\n"
-				+ "import java.util.List;\n"
-				+ "import java.util.Vector;\n"
+				+ "import java.util.*;\n"
 				+ "import "	+ classe.getPackages() + ";\n"
 				+ "public class " + classe.getNomDao() + "{ \n\t";
 				return head;
@@ -142,7 +141,7 @@ public class DaoGenerateur {
 					&& type.equalsIgnoreCase("int")) 
 			nom = classe.getNonPrimitifMethode(nom);
 			nom = "model.get" + StringUtil.firstUpper(nom) + "()";
-			if(type.equalsIgnoreCase("Date")) nom = "new Date(".concat(nom).concat(".getTime())");
+			if(type.equalsIgnoreCase("Date")) nom = "new java.sql.Date(".concat(nom).concat(".getTime())");
 			function += "\t statement.set";
 			function += StringUtil.firstUpper(type);
 			function += "("+ i + ", ";
@@ -173,7 +172,7 @@ public class DaoGenerateur {
 							&& attribut[0].equalsIgnoreCase("int")) 
 					nom = classe.getNonPrimitifMethode(nom);
 					nom = "model.get" + StringUtil.firstUpper(nom) + "()";
-					if(type.equalsIgnoreCase("Date")) nom = "new Date(".concat(nom).concat(".getTime())");
+					if(type.equalsIgnoreCase("Date")) nom = "new java.sql.Date(".concat(nom).concat(".getTime())");
 					function += "\t statement.set";
 					function += StringUtil.firstUpper(type);
 					function += "("+ i + ", " + nom;

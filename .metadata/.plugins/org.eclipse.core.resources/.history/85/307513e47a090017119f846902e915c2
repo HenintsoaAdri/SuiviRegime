@@ -93,7 +93,7 @@ public class DaoGenerateur {
 		String head =  "package " + packages + ";\n"
 				+ "import java.sql.*;\n"
 				+ "import java.util.List;\n"
-				+ "import java.util.Vector;\n"
+				+ "import java.util.Vector"
 				+ "import "	+ classe.getPackages() + ";\n"
 				+ "public class " + classe.getNomDao() + "{ \n\t";
 				return head;

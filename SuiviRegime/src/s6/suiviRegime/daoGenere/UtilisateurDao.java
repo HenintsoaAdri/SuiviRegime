@@ -1,6 +1,7 @@
 package s6.suiviRegime.daoGenere;
 import java.sql.*;
-import java.util.*;
+import java.util.List;
+import java.util.Vector;
 import s6.suiviRegime.modele.*;
 public class UtilisateurDao{ 
 	public  void save(Utilisateur model) throws Exception{

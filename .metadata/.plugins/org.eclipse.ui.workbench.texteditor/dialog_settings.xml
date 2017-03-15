@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="getConnexion" key="selection"/>
+		<item value="\t\t" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="\t \t"/>
+			<item value="\n \t"/>
 			<item value="getConnPostgre"/>
 			<item value="()"/>
 			<item value="nerate"/>
 			<item value="Date.valueOf(model.getDate())"/>
 			<item value="LocalDate"/>
 			<item value=".toLocalDate()"/>
-			<item value="toLocalDate()"/>
-			<item value="static"/>
 		</list>
 		<list key="replacehistory">
+			<item value="\t\t"/>
+			<item value="\n\t"/>
 			<item value="getConnexion"/>
 			<item value="getConnexionv"/>
 			<item value="Query()"/>
 			<item value="t"/>
 			<item value="new Date(model.getDate().getTime())"/>
 			<item value="Date"/>
-			<item value=""/>
-			<item value=");"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

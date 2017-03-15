@@ -1,6 +1,7 @@
 package s6.suiviRegime.daoGenere;
 import java.sql.*;
-import java.util.*;
+import java.util.List;
+import java.util.Vector;
 import s6.suiviRegime.modele.*;
 public class PoidsDao{ 
 	public  void save(Poids model) throws Exception{
@@ -12,7 +13,7 @@ public class PoidsDao{
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
 			 statement.setInt(1, model.getRegime().getId());
-			 statement.setDate(2, new java.sql.Date(model.getDate().getTime()));
+			 statement.setDate(2, new Date(model.getDate().getTime()));
 			 statement.setFloat(3, model.getPoids());
 			 statement.execute();
 			 con.commit();
@@ -35,7 +36,7 @@ public class PoidsDao{
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
 			 statement.setInt(1, model.getRegime().getId());
-			 statement.setDate(2, new java.sql.Date(model.getDate().getTime()));
+			 statement.setDate(2, new Date(model.getDate().getTime()));
 			 statement.setFloat(3, model.getPoids());
 			 statement.setInt(4, model.getId());
 			 statement.execute();

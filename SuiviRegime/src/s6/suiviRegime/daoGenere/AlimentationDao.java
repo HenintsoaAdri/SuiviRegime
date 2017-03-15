@@ -1,6 +1,7 @@
 package s6.suiviRegime.daoGenere;
 import java.sql.*;
-import java.util.*;
+import java.util.List;
+import java.util.Vector;
 import s6.suiviRegime.modele.*;
 public class AlimentationDao{ 
 	public  void save(Alimentation model) throws Exception{
@@ -15,7 +16,7 @@ public class AlimentationDao{
 			 statement.setString(2, model.getRepas());
 			 statement.setString(3, model.getBoisson());
 			 statement.setInt(4, model.getPeriode());
-			 statement.setDate(5, new java.sql.Date(model.getDate().getTime()));
+			 statement.setDate(5, new Date(model.getDate().getTime()));
 			 statement.execute();
 			 con.commit();
 		}catch(Exception e){
@@ -40,7 +41,7 @@ public class AlimentationDao{
 			 statement.setString(2, model.getRepas());
 			 statement.setString(3, model.getBoisson());
 			 statement.setInt(4, model.getPeriode());
-			 statement.setDate(5, new java.sql.Date(model.getDate().getTime()));
+			 statement.setDate(5, new Date(model.getDate().getTime()));
 			 statement.setInt(6, model.getId());
 			 statement.execute();
 			 con.commit();

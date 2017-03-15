@@ -1,6 +1,7 @@
 package s6.suiviRegime.daoGenere;
 import java.sql.*;
-import java.util.*;
+import java.util.List;
+import java.util.Vector;
 import s6.suiviRegime.modele.*;
 public class SportDao{ 
 	public  void save(Sport model) throws Exception{
