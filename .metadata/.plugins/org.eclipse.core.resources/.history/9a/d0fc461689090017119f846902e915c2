@@ -268,7 +268,7 @@ public class DaoGenerateur {
 		for(String[] attribut : classe.getAttribut()){
 			type = attribut[0];
 			nom = attribut[1];
-			boolean nonPrimitif = attribut[1].startsWith("id") && type.equalsIgnoreCase("int") && classe.containsAttributObject();
+			boolean nonPrimitif = attribut[1].startsWith("id") && type.equalsIgnoreCase("int");
 			if(nonPrimitif) 
 			nom = classe.getNonPrimitifNom(nom);
 			function += "model.set"+ StringUtil.firstUpper(nom) 

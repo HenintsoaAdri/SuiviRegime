@@ -151,7 +151,7 @@ public class SportConseilDao{
 
 		SportConseil model = new SportConseil();
 		model.setId(res.getInt("IDSPORTCONSEIL"));
-		model.setIdSport(new idSportDao().findById(res.getInt("IDSPORT")));
+		model.setIdSport(res.getInt("IDSPORT"));
 		model.setRythme(res.getFloat("RYTHME"));
 		model.setDetails(res.getString("DETAILS"));
 		return model;

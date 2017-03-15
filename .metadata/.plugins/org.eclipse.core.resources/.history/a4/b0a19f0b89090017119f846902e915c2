@@ -110,7 +110,4 @@ public class ClasseAGenerer {
 		if(containsAttributObject)return StringUtil.firstUpper(attribut.replace("id", ""));
 		else return attribut;
 	}
-	public boolean containsAttributObject() {
-		return containsAttributObject;
-	}
 }
