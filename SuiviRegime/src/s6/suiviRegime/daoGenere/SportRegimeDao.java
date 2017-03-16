@@ -93,7 +93,7 @@ public class SportRegimeDao{
 	}
 	public List<SportRegime> findAll(int offset) throws Exception{
 
-		String query = "SELECT * FROM SPORTREGIME";
+		String query = "SELECT * FROM SPORTREGIME LIMIT 10 OFFSET = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{

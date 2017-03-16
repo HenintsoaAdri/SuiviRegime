@@ -101,7 +101,7 @@ public class UtilisateurDao{
 	}
 	public List<Utilisateur> findAll(int offset) throws Exception{
 
-		String query = "SELECT * FROM UTILISATEUR";
+		String query = "SELECT * FROM UTILISATEUR LIMIT 10 OFFSET = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{

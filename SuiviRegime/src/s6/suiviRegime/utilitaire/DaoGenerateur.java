@@ -209,7 +209,7 @@ public class DaoGenerateur {
 				"public List<"
 				+ classe.getNomModele()
 				+ "> findAll(int offset) throws Exception{\n\n\t\t"
-				+ "String query = " + classe.getFindAllQuery() + ";\n\t\t"
+				+ "String query = " + classe.getFindAllOffsetQuery() + ";\n\t\t"
 				+ generateInitialisation(true)
 				+ "\t statement.setInt(1, offset);\n\t\t"
 				+ "\t return DBToModel(statement.executeQuery());\n\t\t"

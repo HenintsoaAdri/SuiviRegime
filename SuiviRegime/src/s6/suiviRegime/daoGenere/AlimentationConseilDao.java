@@ -95,7 +95,7 @@ public class AlimentationConseilDao{
 	}
 	public List<AlimentationConseil> findAll(int offset) throws Exception{
 
-		String query = "SELECT * FROM ALIMENTATIONCONSEIL";
+		String query = "SELECT * FROM ALIMENTATIONCONSEIL LIMIT 10 OFFSET = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{

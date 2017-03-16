@@ -2,7 +2,6 @@ package s6.suiviRegime.test;
 
 import static org.junit.Assert.*;
 
-import java.time.LocalDate;
 import java.sql.Date;
 
 import org.junit.After;
@@ -92,5 +91,7 @@ public class TestDAO {
 		ObjectDao dao = new ObjectDao();
 		String nom = dao.getNomClasse(new Alimentation());
 		assertEquals("Alimentation", nom);
+		String saveQuery = dao.getSaveQuery(new Alimentation());
+		System.out.println(saveQuery);
 	}
 }

@@ -95,7 +95,7 @@ public class RegimeDao{
 	}
 	public List<Regime> findAll(int offset) throws Exception{
 
-		String query = "SELECT * FROM REGIME";
+		String query = "SELECT * FROM REGIME LIMIT 10 OFFSET = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{

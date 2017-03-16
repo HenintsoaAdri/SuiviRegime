@@ -93,7 +93,7 @@ public class PoidsDao{
 	}
 	public List<Poids> findAll(int offset) throws Exception{
 
-		String query = "SELECT * FROM POIDS";
+		String query = "SELECT * FROM POIDS LIMIT 10 OFFSET = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
