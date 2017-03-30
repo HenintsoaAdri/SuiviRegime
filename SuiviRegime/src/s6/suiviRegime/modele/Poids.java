@@ -5,22 +5,20 @@ import java.util.Date;
 public class Poids extends BaseModele{
 	Regime regime;
 	Date date;
-	float poids;
+	float valeur;
 	
 	public Poids() {}
-	public Poids(int id, Regime regime, Date date, float poids) {
+	
+	public Poids(int id) {
+		super(id);
+	}
+
+	public Poids(int id, Regime regime, Date date, float valeur) {
 		super();
 		this.setId(id);
 		this.setRegime(regime);
 		this.setDate(date);
-		this.setPoids(poids);
-	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
+		this.setValeur(valeur);
 	}
 	
 	public Regime getRegime() {
@@ -36,12 +34,11 @@ public class Poids extends BaseModele{
 	public void setDate(Date date) {
 		this.date = date;
 	}
-	
-	public float getPoids() {
-		return poids;
+	public float getValeur() {
+		return valeur;
 	}
-	public void setPoids(float poids) {
-		this.poids = poids;
+	public void setValeur(float valeur) {
+		this.valeur = valeur;
 	}
 	
 }

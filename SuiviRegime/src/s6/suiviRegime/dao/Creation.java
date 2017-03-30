@@ -9,22 +9,22 @@ public class Creation {
 	public static Utilisateur creerUtilisateur(ResultSet res) throws Exception{
 		Utilisateur model = new Utilisateur(
 				res.getInt("IDUTILISATEUR"),
-				res.getString("NOM"), 
-				res.getString("PRENOM"),
-				res.getDate("DATENAISSANCE"),
-				res.getString("SEXE"),
-				res.getString("EMAIL"),
-				res.getString("IDENTIFIANT"),
-				res.getString("PASSWORD"),
-				res.getString("ADRESSE"));
+				res.getString("NOMUTILISATEUR"), 
+				res.getString("PRENOMUTILISATEUR"),
+				res.getDate("DATENAISSANCEUTILISATEUR"),
+				res.getString("SEXEUTILISATEUR"),
+				res.getString("EMAILUTILISATEUR"),
+				res.getString("IDENTIFIANTUTILISATEUR"),
+				res.getString("PASSWORDUTILISATEUR"),
+				res.getString("ADRESSEUTILISATEUR"));
 		return model;
 	}
 	
 	public static SportRegime creerSportRegime(ResultSet res, Regime regime) throws Exception {
 		SportRegime model = new SportRegime(
 				res.getInt("IDSPORT"),
-				res.getString("SPORT"),
-				res.getString("ACTIVITES"),
+				res.getString("LIBELLESPORT"),
+				res.getString("ACTIVITESSPORT"),
 				regime,
 				res.getDate("DATESPORT"),
 				res.getInt("RYTHMESPORT"));
@@ -37,8 +37,8 @@ public class Creation {
 	public static Sport creerSport(ResultSet res) throws Exception {
 		Sport model = new Sport(
 				res.getInt("IDSPORT"),
-				res.getString("SPORT"),
-				res.getString("ACTIVITES"));
+				res.getString("LIBELLESPORT"),
+				res.getString("ACTIVITESSPORT"));
 		return model;
 	}
 
@@ -47,7 +47,7 @@ public class Creation {
 				res.getInt("IDPOIDS"),
 				regime,
 				res.getDate("DATEPOIDS"),
-				res.getFloat("POIDS"));
+				res.getFloat("VALEURPOIDS"));
 		return model;
 	}
 	public static Poids creerPoids(ResultSet res) throws Exception {
@@ -58,9 +58,9 @@ public class Creation {
 		Alimentation model = new Alimentation(
 				res.getInt("IDALIMENTATION"),
 				regime,
-				res.getString("REPAS"),
-				res.getString("BOISSON"),
-				res.getInt("PERIODE"),
+				res.getString("REPASALIMENTATION"),
+				res.getString("BOISSONALIMENTATION"),
+				res.getInt("PERIODEALIMENTATION"),
 				res.getDate("DATEALIMENTATION"));
 		return model;
 	}
@@ -72,9 +72,9 @@ public class Creation {
 		Regime model = new Regime(
 				res.getInt("IDREGIME"),
 				utilisateur,
-				res.getDate("DATEDEBUT"),
-				res.getDate("DATEFIN"),
-				res.getFloat("POIDSOBJECTIF"));
+				res.getDate("DATEDEBUTREGIME"),
+				res.getDate("DATEFINREGIME"),
+				res.getFloat("POIDSOBJECTIFREGIME"));
 		return model;
 	}
 	public static Regime creerRegime(ResultSet res) throws Exception{
@@ -83,32 +83,30 @@ public class Creation {
 	
 	public static SportConseil creerSportConseil(ResultSet res) throws Exception{
 		SportConseil model = new SportConseil(
-				res.getInt("IDCONSEILSPORT"),
-				res.getString("SPORT"),
-				res.getString("ACTIVITES"),
+				res.getInt("IDSPORTCONSEIL"),
 				res.getInt("IDSPORT"),
-				res.getFloat("RYTHMECONSEIL"),
-				res.getString("DETAIL"));
+				res.getString("LIBELLESPORT"),
+				res.getString("ACTIVITESSPORT"),
+				res.getFloat("RYTHMESPORTCONSEIL"),
+				res.getString("DETAILSPORTCONSEIL"));
 		return model;
 	}
 	public static SportConseil creerSportConseil(ResultSet res, Sport sport) throws Exception{
 		SportConseil model = new SportConseil(
-				res.getInt("IDCONSEILSPORT"),
-				sport.getSport(),
-				sport.getActivite(),
-				sport.getId(),
-				res.getFloat("RYTHMECONSEIL"),
-				res.getString("DETAIL"));
+				res.getInt("IDSPORTCONSEIL"),
+				sport,
+				res.getFloat("RYTHMESPORTCONSEIL"),
+				res.getString("DETAILSPORTCONSEIL"));
 		return model;
 	}
 	
 	public static AlimentationConseil creerAlimentationConseil(ResultSet res) throws Exception{
 		AlimentationConseil model = new AlimentationConseil(
-				res.getInt("IDCONSEILALIMENTATION"),
-				res.getString("NOMCONSEILALIMENTATION"),
-				res.getString("MATIN"),
-				res.getString("MIDI"),
-				res.getString("SOIR"));
+				res.getInt("IDALIMENTATIONCONSEIL"),
+				res.getString("NOMALIMENTATIONCONSEIL"),
+				res.getString("MATINALIMENTATIONCONSEIL"),
+				res.getString("MIDIALIMENTATIONCONSEIL"),
+				res.getString("SOIRALIMENTATIONCONSEIL"));
 		return model;
 	}
 

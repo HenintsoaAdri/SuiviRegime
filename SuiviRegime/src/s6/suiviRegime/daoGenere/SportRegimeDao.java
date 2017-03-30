@@ -8,7 +8,7 @@ import s6.suiviRegime.modele.*;
 
 public class SportRegimeDao{ 
 	public  void save(SportRegime model) throws Exception{
- 		String query = "INSERT INTO SPORTREGIME (IDREGIME, DATE, RYTHME) VALUES(?, ?, ?)";
+ 		String query = "INSERT INTO SPORTREGIME (IDREGIME, IDSPORT, DATESPORTREGIME, RYTHMESPORTREGIME) VALUES(?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -16,8 +16,9 @@ public class SportRegimeDao{
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
 			 statement.setInt(1, model.getRegime().getId());
-			 statement.setDate(2, new Date(model.getDate().getTime()));
-			 statement.setFloat(3, model.getRythme());
+			 statement.setInt(2, model.getSport().getId());
+			 statement.setDate(3, new Date(model.getDate().getTime()));
+			 statement.setFloat(4, model.getRythme());
 			 statement.execute();
 			 con.commit();
 		}catch(Exception e){
@@ -31,17 +32,17 @@ public class SportRegimeDao{
 	}
 	public  void update(SportRegime model) throws Exception{
 
-		String query = "UPDATE SPORTREGIME SET IDREGIME= ?, DATE= ?, RYTHME= ? WHERE IDSPORTREGIME = ?";
+		String query = "UPDATE SPORTREGIME SET DATESPORTREGIME= ?, RYTHMESPORTREGIME= ? WHERE IDREGIME= ? AND IDSPORT= ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			 con = UtilDB.getConnexion();
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
+			 statement.setDate(3, new Date(model.getDate().getTime()));
+			 statement.setFloat(4, model.getRythme());
 			 statement.setInt(1, model.getRegime().getId());
-			 statement.setDate(2, new Date(model.getDate().getTime()));
-			 statement.setFloat(3, model.getRythme());
-			 statement.setInt(4, model.getId());
+			 statement.setInt(2, model.getSport().getId());
 			 statement.execute();
 			 con.commit();
 		}catch(Exception e){
@@ -55,14 +56,15 @@ public class SportRegimeDao{
 	}
 	public void delete(SportRegime model) throws Exception{
 
-		String query = "DELETE FROM SPORTREGIME WHERE IDSPORTREGIME = ?";
+		String query = "DELETE FROM SPORTREGIME WHERE IDREGIME= ? AND IDSPORT= ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			 con = UtilDB.getConnexion();
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
-			 statement.setInt(1, model.getId());
+			 statement.setInt(1, model.getRegime().getId());
+			 statement.setInt(2, model.getSport().getId());
 			 statement.execute();
 			 con.commit();
 		}catch(Exception e){
@@ -150,10 +152,10 @@ public class SportRegimeDao{
 	public SportRegime creer(ResultSet res) throws Exception{
 
 		SportRegime model = new SportRegime();
-		model.setId(res.getInt("IDSPORTREGIME"));
 		model.setRegime(new RegimeDao().findById(res.getInt("IDREGIME")));
-		model.setDate(res.getDate("DATE"));
-		model.setRythme(res.getFloat("RYTHME"));
+		model.setSport(new SportDao().findById(res.getInt("IDSPORT")));
+		model.setDate(res.getDate("DATESPORTREGIME"));
+		model.setRythme(res.getFloat("RYTHMESPORTREGIME"));
 		return model;
 	}
 }

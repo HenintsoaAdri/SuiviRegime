@@ -63,7 +63,10 @@ public class ClasseAGenerer {
 		String[] list = {"",""};
 		for(String[] s : getAttribut()){
 			if(s[1].compareToIgnoreCase("id")==0) continue;
-			list[0] += s[1].toUpperCase();
+			String nom = s[1].toUpperCase()+ getNomTable();
+			if(s[1].startsWith("id") 
+					&& s[0].equalsIgnoreCase("int")) nom = nom.replace(getNomTable(), "");
+			list[0] += nom;
 			list[0] += ", ";
 			list[1] += "?, ";
 		}
@@ -77,7 +80,10 @@ public class ClasseAGenerer {
 		String list = "";
 		for(String[] s : getAttribut()){
 			if(s[1].compareToIgnoreCase("id")==0) continue;
-			list += s[1].toUpperCase();
+			String nom = s[1].toUpperCase()+ getNomTable();
+			if(s[1].startsWith("id") 
+					&& s[0].equalsIgnoreCase("int")) nom = nom.replace(getNomTable(), "");
+			list += nom;
 			list += "= ?, ";
 		}
 		list = list.substring(0, list.lastIndexOf(','));

@@ -13,7 +13,7 @@ public class SportConseilDao {
 
 	public  void save(SportConseil model) throws Exception{
 		
-    	String query = "INSERT INTO CONSEILSPORT(IDSPORT, RYTHMECONSEIL, DETAIL) "
+    	String query = "INSERT INTO SPORTCONSEIL(IDSPORT, RYTHMESPORTCONSEIL, DETAILSPORTCONSEIL) "
     				+ "VALUES (?, ?, ?)";
 	    Connection con = null;
 		PreparedStatement statement = null;
@@ -22,7 +22,7 @@ public class SportConseilDao {
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	
-	    	statement.setInt(1, model.getIdSport());
+	    	statement.setInt(1, model.getSport().getId());
 	    	statement.setFloat(2, model.getRythme());
 	    	statement.setString(3, model.getDetails());
 			statement.execute();
@@ -39,11 +39,11 @@ public class SportConseilDao {
 
 	public  void update(SportConseil model) throws Exception {
 		
-		String query = "UPDATE CONSEILSPORT "
+		String query = "UPDATE SPORTCONSEIL "
 				+ "SET IDSPORT = ?, "
-				+ "RYTHMECONSEIL = ?, "
-				+ "DETAIL = ? "
-				+ "WHERE IDCONSEILSPORT = ?";
+				+ "RYTHMESPORTCONSEIL = ?, "
+				+ "DETAILSPORTCONSEIL = ? "
+				+ "WHERE IDSPORTCONSEIL = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -51,7 +51,7 @@ public class SportConseilDao {
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	
-	    	statement.setInt(1, model.getIdSport());
+	    	statement.setInt(1, model.getSport().getId());
 	    	statement.setFloat(2, model.getRythme());
 	    	statement.setString(3, model.getDetails());
 	    	statement.setInt(4, model.getId());
@@ -70,7 +70,7 @@ public class SportConseilDao {
 
 	public  void delete(SportConseil model) throws Exception {
 		
-		String query = "DELETE FROM CONSEILSPORT WHERE IDCONSEILSPORT = ?";
+		String query = "DELETE FROM SPORTCONSEIL WHERE IDSPORTCONSEIL = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -92,7 +92,7 @@ public class SportConseilDao {
 
 	public  List<SportConseil> findAll(int offset) throws Exception {
 		
-		String query = "SELECT * FROM CONSEIL_SPORT LIMIT 10 OFFSET ?";
+		String query = "SELECT * FROM SPORTCONSEIL LIMIT 10 OFFSET ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -110,7 +110,7 @@ public class SportConseilDao {
 	}
 	public  List<SportConseil> findBySport(Sport sport) throws Exception {
 		
-		String query = "SELECT * FROM CONSEIL_SPORT WHERE IDSPORT = ?";
+		String query = "SELECT * FROM SPORTCONSEIL WHERE IDSPORT = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -128,7 +128,7 @@ public class SportConseilDao {
 	}
 	public  SportConseil findById(int id) throws Exception {
 		
-		String query = "SELECT * FROM CONSEIL_SPORT WHERE IDCONSEILSPORT = ?";
+		String query = "SELECT * FROM SPORTCONSEIL WHERE IDSPORTCONSEIL = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;

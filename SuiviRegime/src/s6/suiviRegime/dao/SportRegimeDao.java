@@ -15,7 +15,7 @@ public class SportRegimeDao{
 
 	public  void save(SportRegime model) throws Exception{
 		
-    	String query = "INSERT INTO SPORT_REGIME("
+    	String query = "INSERT INTO SPORTREGIME("
     				+ "IDREGIME, IDSPORT, DATESPORT, RYTHMESPORT)"
     				+ "VALUES (?, ?, ?, ?)";
 	    Connection con = null;
@@ -25,7 +25,7 @@ public class SportRegimeDao{
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getRegime().getId());
-	    	statement.setInt(2, model.getId());
+	    	statement.setInt(2, model.getSport().getId());
 	    	statement.setDate(3, new Date(model.getDate().getTime()));
 	    	statement.setFloat(4, model.getRythme());
 			statement.execute();
@@ -42,7 +42,7 @@ public class SportRegimeDao{
 
 	public  void update(SportRegime model) throws Exception {
 		
-		String query = "UPDATE SPORT_REGIME "
+		String query = "UPDATE SPORTREGIME "
 				+ "SET DATESPORT = ?, "
 				+ "RYTHMESPORT = ?"
 				+ "WHERE IDREGIME = ? AND ID SPORT = ?";
@@ -55,7 +55,7 @@ public class SportRegimeDao{
 	    	statement.setDate(1, new Date(model.getDate().getTime()));
 	    	statement.setFloat(2, model.getRythme());
 	    	statement.setInt(3, model.getRegime().getId());
-	    	statement.setInt(4, model.getId());
+	    	statement.setInt(4, model.getSport().getId());
 			statement.execute();
 			con.commit();
 		}
@@ -71,14 +71,14 @@ public class SportRegimeDao{
 
 	public  void delete(SportRegime model) throws Exception {
 		
-		String query = "DELETE FROM SPORT_REGIME WHERE IDREGIME = ? AND IDSPORT= ?";
+		String query = "DELETE FROM SPORTREGIME WHERE IDREGIME = ? AND IDSPORT= ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 			statement.setInt(1, model.getRegime().getId());
-			statement.setInt(2, model.getId());
+			statement.setInt(2, model.getSport().getId());
 			statement.execute();
 			con.commit();
 		}
@@ -94,7 +94,7 @@ public class SportRegimeDao{
 
 	public  List<SportRegime> findAll(int offset) throws Exception {
 		
-		String query = "SELECT * FROM REGIME_SPORT LIMIT 10 OFFSET ?";
+		String query = "SELECT * FROM SPORTREGIME LIMIT 10 OFFSET ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -113,7 +113,7 @@ public class SportRegimeDao{
 	
 	public  List<SportRegime> findBySport(int id) throws Exception {
 		
-		String query = "SELECT * FROM REGIME_SPORT WHERE IDSPORT = ?";
+		String query = "SELECT * FROM SPORTREGIME WHERE IDSPORT = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -132,7 +132,7 @@ public class SportRegimeDao{
 	
 	public  List<SportRegime> findByRegime(Regime regime) throws Exception {
 		
-		String query = "SELECT * FROM REGIME_SPORT WHERE IDREGIME = ?";
+		String query = "SELECT * FROM SPORTREGIME WHERE IDREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -151,7 +151,7 @@ public class SportRegimeDao{
 	
 	public  SportRegime findBySportRegime(Sport sport, Regime regime) throws Exception {
 		
-		String query = "SELECT * FROM REGIME_SPORT WHERE IDREGIME = ? AND IDSPORT= ?";
+		String query = "SELECT * FROM SPORTREGIME WHERE IDREGIME = ? AND IDSPORT= ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;

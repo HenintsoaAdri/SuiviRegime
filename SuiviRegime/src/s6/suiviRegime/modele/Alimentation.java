@@ -10,6 +10,11 @@ public class Alimentation extends BaseModele{
 	Date date;
 	
 	public Alimentation() {}
+	
+	public Alimentation(int id) {
+		super(id);
+	}
+
 	public Alimentation(int id, Regime regime, String repas, String boisson, int periode, Date date) {
 		super();
 		this.setId(id);

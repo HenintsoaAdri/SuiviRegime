@@ -8,7 +8,7 @@ import s6.suiviRegime.modele.*;
 
 public class PoidsDao{ 
 	public  void save(Poids model) throws Exception{
- 		String query = "INSERT INTO POIDS (IDREGIME, DATE, POIDS) VALUES(?, ?, ?)";
+ 		String query = "INSERT INTO POIDS (IDREGIME, DATEPOIDS, VALEURPOIDS) VALUES(?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -17,7 +17,7 @@ public class PoidsDao{
 			 con.setAutoCommit(false);
 			 statement.setInt(1, model.getRegime().getId());
 			 statement.setDate(2, new Date(model.getDate().getTime()));
-			 statement.setFloat(3, model.getPoids());
+			 statement.setFloat(3, model.getValeur());
 			 statement.execute();
 			 con.commit();
 		}catch(Exception e){
@@ -31,7 +31,7 @@ public class PoidsDao{
 	}
 	public  void update(Poids model) throws Exception{
 
-		String query = "UPDATE POIDS SET IDREGIME= ?, DATE= ?, POIDS= ? WHERE IDPOIDS = ?";
+		String query = "UPDATE POIDS SET IDREGIME= ?, DATEPOIDS= ?, VALEURPOIDS= ? WHERE IDPOIDS = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -40,7 +40,7 @@ public class PoidsDao{
 			 con.setAutoCommit(false);
 			 statement.setInt(1, model.getRegime().getId());
 			 statement.setDate(2, new Date(model.getDate().getTime()));
-			 statement.setFloat(3, model.getPoids());
+			 statement.setFloat(3, model.getValeur());
 			 statement.setInt(4, model.getId());
 			 statement.execute();
 			 con.commit();
@@ -152,8 +152,8 @@ public class PoidsDao{
 		Poids model = new Poids();
 		model.setId(res.getInt("IDPOIDS"));
 		model.setRegime(new RegimeDao().findById(res.getInt("IDREGIME")));
-		model.setDate(res.getDate("DATE"));
-		model.setPoids(res.getFloat("POIDS"));
+		model.setDate(res.getDate("DATEPOIDS"));
+		model.setValeur(res.getFloat("VALEURPOIDS"));
 		return model;
 	}
 }

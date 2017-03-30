@@ -9,7 +9,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import s6.suiviRegime.dao.*;
-import s6.suiviRegime.daoGenere.ObjectDao;
 import s6.suiviRegime.modele.*;
 
 public class TestDAO {
@@ -42,7 +41,7 @@ public class TestDAO {
 		Poids p = dao.findById(1);
 		assertEquals("Henintsoa", p.getRegime().getUtilisateur().getNom());
 		assertEquals(50, p.getRegime().getPoidsObjectif(),0.1);
-		assertEquals(57, p.getPoids(),0.1);
+		assertEquals(57, p.getValeur(),0.1);
 	}
 	@Test
 	public void testRegimeFind() throws Exception {
@@ -56,7 +55,7 @@ public class TestDAO {
 	public void testSportFind() throws Exception {
 		SportDao dao = new SportDao();
 		Sport s = dao.findById(1);
-		assertEquals("Fitness", s.getSport());
+		assertEquals("Fitness", s.getLibelle());
 		assertEquals("Corde à sauter", s.getActivite());
 	}
 	@Test
@@ -67,15 +66,15 @@ public class TestDAO {
 		SportRegime s = dao.findBySportRegime(sport.findById(8),regime.findById(1));
 		assertEquals(Date.valueOf("2017-03-01"), s.getDate());
 		assertEquals(30, s.getRythme(),0.1);
-		assertEquals("Running",s.getSport());
-		assertEquals("Marche à pied",s.getActivite());
+		assertEquals("Running",s.getSport().getLibelle());
+		assertEquals("Marche à pied",s.getSport().getActivite());
 	}
 	@Test
 	public void testSportConseilFind() throws Exception {
 		SportConseilDao dao = new SportConseilDao();
 		SportConseil s = dao.findById(1);
-		assertEquals("Fitness", s.getSport());
-		assertEquals("Corde à sauter", s.getActivite());
+		assertEquals("Fitness", s.getSport().getLibelle());
+		assertEquals("Corde à sauter", s.getSport().getActivite());
 	}
 	@Test
 	public void testUtilisateurFind() throws Exception {
@@ -85,13 +84,5 @@ public class TestDAO {
 		assertEquals("Adri", u.getPrenom());
 		assertEquals("Femme", u.getSexeString());
 		assertEquals("20 août 1996", u.getDateNaissanceString());
-	}
-	@Test
-	public void testNomClasse() throws Exception {
-		ObjectDao dao = new ObjectDao();
-		String nom = dao.getNomClasse(new Alimentation());
-		assertEquals("Alimentation", nom);
-		String saveQuery = dao.getSaveQuery(new Alimentation());
-		System.out.println(saveQuery);
 	}
 }

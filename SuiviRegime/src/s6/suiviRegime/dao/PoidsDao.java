@@ -19,7 +19,7 @@ public class PoidsDao {
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getRegime().getId());
-	    	statement.setFloat(2, model.getPoids());
+	    	statement.setFloat(2, model.getValeur());
 	    	statement.setDate(3, new Date(model.getDate().getTime()));
 			statement.execute();
 			con.commit();
@@ -44,7 +44,7 @@ public class PoidsDao {
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
 	    	statement.setInt(1, model.getRegime().getId());
-	    	statement.setFloat(2, model.getPoids());
+	    	statement.setFloat(2, model.getValeur());
 	    	statement.setDate(3, new Date(model.getDate().getTime()));
 	    	statement.setInt(4, model.getId());
 			statement.execute();

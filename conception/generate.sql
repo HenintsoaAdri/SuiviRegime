@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     05/03/2017 08:43:47                          */
+/* Created on:     16/03/2017 09:40:47                          */
 /*==============================================================*/
 
 
@@ -12,13 +12,7 @@ drop table ALIMENTATION;
 
 drop index CONSEILALIMENTATION_PK;
 
-drop table CONSEILALIMENTATION;
-
-drop index CONSEIL_SPORT_FK;
-
-drop index CONSEILSPORT_PK;
-
-drop table CONSEILSPORT;
+drop table ALIMENTATIONCONSEIL;
 
 drop index POIDS_REGIME_FK;
 
@@ -36,13 +30,19 @@ drop index SPORT_PK;
 
 drop table SPORT;
 
+drop index CONSEIL_SPORT_FK;
+
+drop index CONSEILSPORT_PK;
+
+drop table SPORTCONSEIL;
+
 drop index SPORT_REGIME2_FK;
 
 drop index SPORT_REGIME_FK;
 
 drop index SPORT_REGIME_PK;
 
-drop table SPORT_REGIME;
+drop table SPORTREGIME;
 
 drop index UTILISATEUR_PK;
 
@@ -54,9 +54,9 @@ drop table UTILISATEUR;
 create table ALIMENTATION (
    IDALIMENTATION       SERIAL               not null,
    IDREGIME             INT4                 not null,
-   REPAS                VARCHAR(300)         not null,
-   BOISSON              VARCHAR(100)         null,
-   PERIODE              INT2                 not null,
+   REPASALIMENTATION    VARCHAR(300)         not null,
+   BOISSONALIMENTATION  VARCHAR(100)         null,
+   PERIODEALIMENTATION  INT2                 not null,
    DATEALIMENTATION     DATE                 not null,
    constraint PK_ALIMENTATION primary key (IDALIMENTATION)
 );
@@ -76,47 +76,22 @@ IDREGIME
 );
 
 /*==============================================================*/
-/* Table: CONSEILALIMENTATION                                   */
+/* Table: ALIMENTATIONCONSEIL                                   */
 /*==============================================================*/
-create table CONSEILALIMENTATION (
-   IDCONSEILALIMENTATION SERIAL               not null,
-   NOMCONSEILALIMENTATION VARCHAR(300)         not null,
-   MATIN                VARCHAR(500)         not null,
-   MIDI                 VARCHAR(500)         not null,
-   SOIR                 VARCHAR(500)         not null,
-   constraint PK_CONSEILALIMENTATION primary key (IDCONSEILALIMENTATION)
+create table ALIMENTATIONCONSEIL (
+   IDALIMENTATIONCONSEIL SERIAL               not null,
+   NOMALIMENTATIONCONSEIL VARCHAR(300)         not null,
+   MATINALIMENTATIONCONSEIL VARCHAR(500)         not null,
+   MIDIALIMENTATIONCONSEIL VARCHAR(500)         not null,
+   SOIRALIMENTATIONCONSEIL VARCHAR(500)         not null,
+   constraint PK_ALIMENTATIONCONSEIL primary key (IDALIMENTATIONCONSEIL)
 );
 
 /*==============================================================*/
 /* Index: CONSEILALIMENTATION_PK                                */
 /*==============================================================*/
-create unique index CONSEILALIMENTATION_PK on CONSEILALIMENTATION (
-IDCONSEILALIMENTATION
-);
-
-/*==============================================================*/
-/* Table: CONSEILSPORT                                          */
-/*==============================================================*/
-create table CONSEILSPORT (
-   IDCONSEILSPORT       SERIAL               not null,
-   IDSPORT              INT4                 not null,
-   RYTHMECONSEIL        INT2                 not null,
-   DETAIL               TEXT                 null,
-   constraint PK_CONSEILSPORT primary key (IDCONSEILSPORT)
-);
-
-/*==============================================================*/
-/* Index: CONSEILSPORT_PK                                       */
-/*==============================================================*/
-create unique index CONSEILSPORT_PK on CONSEILSPORT (
-IDCONSEILSPORT
-);
-
-/*==============================================================*/
-/* Index: CONSEIL_SPORT_FK                                      */
-/*==============================================================*/
-create  index CONSEIL_SPORT_FK on CONSEILSPORT (
-IDSPORT
+create unique index CONSEILALIMENTATION_PK on ALIMENTATIONCONSEIL (
+IDALIMENTATIONCONSEIL
 );
 
 /*==============================================================*/
@@ -125,7 +100,7 @@ IDSPORT
 create table POIDS (
    IDPOIDS              SERIAL               not null,
    IDREGIME             INT4                 not null,
-   POIDS                INT2                 not null,
+   VALEURPOIDS          INT2                 not null,
    DATEPOIDS            DATE                 not null,
    constraint PK_POIDS primary key (IDPOIDS)
 );
@@ -150,9 +125,9 @@ IDREGIME
 create table REGIME (
    IDREGIME             SERIAL               not null,
    IDUTILISATEUR        INT4                 not null,
-   DATEDEBUT            DATE                 not null,
-   DATEFIN              DATE                 null,
-   POIDSOBJECTIF        INT2                 null,
+   DEBUTREGIME          DATE                 not null,
+   FINREGIME            DATE                 null,
+   POIDSOBJECTIFREGIME  INT2                 null,
    constraint PK_REGIME primary key (IDREGIME)
 );
 
@@ -175,8 +150,8 @@ IDUTILISATEUR
 /*==============================================================*/
 create table SPORT (
    IDSPORT              SERIAL               not null,
-   SPORT                VARCHAR(200)         not null,
-   ACTIVITES            VARCHAR(200)         not null,
+   LIBELLESPORT         VARCHAR(200)         not null,
+   ACTIVITESSPORT       VARCHAR(200)         not null,
    constraint PK_SPORT primary key (IDSPORT)
 );
 
@@ -188,20 +163,45 @@ IDSPORT
 );
 
 /*==============================================================*/
-/* Table: SPORT_REGIME                                          */
+/* Table: SPORTCONSEIL                                          */
 /*==============================================================*/
-create table SPORT_REGIME (
+create table SPORTCONSEIL (
+   IDSPORTCONSEIL       SERIAL               not null,
+   IDSPORT              INT4                 not null,
+   RYTHMESPORTCONSEIL   INT2                 not null,
+   DETAILSPORTCONSEIL   TEXT                 null,
+   constraint PK_SPORTCONSEIL primary key (IDSPORTCONSEIL)
+);
+
+/*==============================================================*/
+/* Index: CONSEILSPORT_PK                                       */
+/*==============================================================*/
+create unique index CONSEILSPORT_PK on SPORTCONSEIL (
+IDSPORTCONSEIL
+);
+
+/*==============================================================*/
+/* Index: CONSEIL_SPORT_FK                                      */
+/*==============================================================*/
+create  index CONSEIL_SPORT_FK on SPORTCONSEIL (
+IDSPORT
+);
+
+/*==============================================================*/
+/* Table: SPORTREGIME                                           */
+/*==============================================================*/
+create table SPORTREGIME (
    IDREGIME             INT4                 not null,
    IDSPORT              INT4                 not null,
-   DATESPORT            DATE                 null,
-   RYTHMESPORT          INT2                 null,
-   constraint PK_SPORT_REGIME primary key (IDREGIME, IDSPORT)
+   DATESPORTREGIME      DATE                 null,
+   RYTHMESPORTREGIME    INT2                 null,
+   constraint PK_SPORTREGIME primary key (IDREGIME, IDSPORT)
 );
 
 /*==============================================================*/
 /* Index: SPORT_REGIME_PK                                       */
 /*==============================================================*/
-create unique index SPORT_REGIME_PK on SPORT_REGIME (
+create unique index SPORT_REGIME_PK on SPORTREGIME (
 IDREGIME,
 IDSPORT
 );
@@ -209,14 +209,14 @@ IDSPORT
 /*==============================================================*/
 /* Index: SPORT_REGIME_FK                                       */
 /*==============================================================*/
-create  index SPORT_REGIME_FK on SPORT_REGIME (
+create  index SPORT_REGIME_FK on SPORTREGIME (
 IDREGIME
 );
 
 /*==============================================================*/
 /* Index: SPORT_REGIME2_FK                                      */
 /*==============================================================*/
-create  index SPORT_REGIME2_FK on SPORT_REGIME (
+create  index SPORT_REGIME2_FK on SPORTREGIME (
 IDSPORT
 );
 
@@ -225,14 +225,14 @@ IDSPORT
 /*==============================================================*/
 create table UTILISATEUR (
    IDUTILISATEUR        SERIAL               not null,
-   NOM                  VARCHAR(100)         not null,
-   PRENOM               VARCHAR(100)         null,
-   DATENAISSANCE        DATE                 not null,
-   SEXE                 VARCHAR(8)           not null,
-   IDENTIFIANT          VARCHAR(25)          not null,
-   PASSWORD             VARCHAR(25)          not null,
-   ADRESSE              VARCHAR(200)         null,
-   EMAIL                VARCHAR(50)          not null,
+   NOMUTILISATEUR       VARCHAR(100)         not null,
+   PRENOMUTILISATEUR    VARCHAR(100)         null,
+   DATENAISSANCEUTILISATEUR DATE                 not null,
+   SEXEUTILISATEUR      VARCHAR(8)           not null,
+   IDENTIFIANTUTILISATEUR VARCHAR(25)          not null,
+   PASSWORDUTILISATEUR  VARCHAR(25)          not null,
+   ADRESSEUTILISATEUR   VARCHAR(200)         null,
+   EMAILUTILISATEUR     VARCHAR(50)          not null,
    constraint PK_UTILISATEUR primary key (IDUTILISATEUR)
 );
 
@@ -248,11 +248,6 @@ alter table ALIMENTATION
       references REGIME (IDREGIME)
       on delete restrict on update restrict;
 
-alter table CONSEILSPORT
-   add constraint FK_CONSEILS_CONSEIL_S_SPORT foreign key (IDSPORT)
-      references SPORT (IDSPORT)
-      on delete restrict on update restrict;
-
 alter table POIDS
    add constraint FK_POIDS_POIDS_REG_REGIME foreign key (IDREGIME)
       references REGIME (IDREGIME)
@@ -263,13 +258,18 @@ alter table REGIME
       references UTILISATEUR (IDUTILISATEUR)
       on delete restrict on update restrict;
 
-alter table SPORT_REGIME
-   add constraint FK_SPORT_RE_SPORT_REG_REGIME foreign key (IDREGIME)
+alter table SPORTCONSEIL
+   add constraint FK_SPORTCON_CONSEIL_S_SPORT foreign key (IDSPORT)
+      references SPORT (IDSPORT)
+      on delete restrict on update restrict;
+
+alter table SPORTREGIME
+   add constraint FK_SPORTREG_SPORTREGI_REGIME foreign key (IDREGIME)
       references REGIME (IDREGIME)
       on delete restrict on update restrict;
 
-alter table SPORT_REGIME
-   add constraint FK_SPORT_RE_SPORT_REG_SPORT foreign key (IDSPORT)
+alter table SPORTREGIME
+   add constraint FK_SPORTREG_SPORTREGI_SPORT foreign key (IDSPORT)
       references SPORT (IDSPORT)
       on delete restrict on update restrict;
 

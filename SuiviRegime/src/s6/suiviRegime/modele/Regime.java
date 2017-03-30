@@ -13,6 +13,11 @@ public class Regime extends BaseModele{
 	List<SportRegime> sport;
 	
 	public Regime(){}
+	
+	public Regime(int id) {
+		super(id);
+	}
+
 	public Regime(int id, Utilisateur utilisateur, Date debut, Date fin, float poidsObjectif) {
 		super();
 		this.setId(id);
@@ -51,6 +56,30 @@ public class Regime extends BaseModele{
 	}
 	public void setPoidsObjectif(float poidsObjectif) {
 		this.poidsObjectif = poidsObjectif;
+	}
+
+	public List<Poids> getPoids() {
+		return poids;
+	}
+
+	public void setPoids(List<Poids> poids) {
+		this.poids = poids;
+	}
+
+	public List<Alimentation> getAlimentation() {
+		return alimentation;
+	}
+
+	public void setAlimentation(List<Alimentation> alimentation) {
+		this.alimentation = alimentation;
+	}
+
+	public List<SportRegime> getSport() {
+		return sport;
+	}
+
+	public void setSport(List<SportRegime> sport) {
+		this.sport = sport;
 	}
 	
 }

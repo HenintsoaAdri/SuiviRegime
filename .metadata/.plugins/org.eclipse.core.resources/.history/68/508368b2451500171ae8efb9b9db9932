@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="s6.suiviRegime.modele.Alimentation" table="alimentation">
+        <meta attribute="class-description">
+            This class contains the matiere detail.
+        </meta>
+        <id name="id" type="int" column="idalimentation">
+            <generator class="native"/>
+        </id>
+        <many-to-one name="regime" class="s6.suiviRegime.modele.Regime" column="idpatient" lazy="false" not-null="true" fetch="select"/>
+        <property name="repas" column="repasalimentation" type="string"/>
+        <property name="boisson" column="boissonalimentation" type="string"/>
+        <property name="periode" column=periodealimentation type="int"/>
+        <property name="date" column=datealimentation type="date"/>
+    </class>
+</hibernate-mapping>

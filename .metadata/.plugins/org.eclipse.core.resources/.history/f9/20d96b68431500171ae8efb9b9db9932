@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="s6.suiviRegime.modele.Sport" table="sport">
+        <meta attribute="class-description">
+            This class contains the matiere detail.
+        </meta>
+        <id name="id" type="int" column="idregime">
+            <generator class="native"/>
+        </id>>
+        <property name="date" column="debutregime" type="date"/>
+        <property name="date" column="finregime" type="date"/>
+        <property name="valeur" column=poidsobjectifregime type="int"/
+    </class>
+</hibernate-mapping>

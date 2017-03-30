@@ -60,9 +60,6 @@ public class DaoGenerateur {
 				if(bufferedReader != null) bufferedReader.close();
 			}
 		}
-		else if(file.isDirectory()){
-			generateDao(file,packages);
-		}
 	}
 	public void writeDao(ClasseAGenerer classe, String packages) throws Exception{
 		FileWriter writer = null;
@@ -269,17 +266,16 @@ public class DaoGenerateur {
 			type = attribut[0];
 			nom = attribut[1];
 			boolean nonPrimitif = attribut[1].startsWith("id") && type.equalsIgnoreCase("int") && classe.containsAttributObject();
-			if(nonPrimitif) 
-			nom = classe.getNonPrimitifNom(nom);
+			if(nonPrimitif) nom = classe.getNonPrimitifNom(nom);
 			function += "model.set"+ StringUtil.firstUpper(nom) 
 				+ "(";
+			nom = nom + classe.getNomTable();
 			if(nonPrimitif){
-				function += "new ".concat(nom.concat("Dao().findById("));
+				function += "new ".concat(nom.replace(classe.getNomTable(), "").concat("Dao().findById("));
 				nom = attribut[1];
 			}
 			function += "res.get" + StringUtil.firstUpper(type) + "(\""
-				+ nom.toUpperCase()
-				+ "\")";
+				+ nom.toUpperCase() + "\")";
 			if(nonPrimitif)
 			function+= ")";
 			function += ");\n\t\t";

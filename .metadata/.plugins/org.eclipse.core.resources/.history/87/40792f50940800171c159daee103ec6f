@@ -1,5 +1,0 @@
-package s6.suiviRegime.utilitaire;
-
-public class TypePrimitif extends Enum<E> {
-
-}

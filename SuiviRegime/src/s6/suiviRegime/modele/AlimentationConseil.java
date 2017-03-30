@@ -8,6 +8,11 @@ public class AlimentationConseil extends BaseModele{
 	
 	
 	public AlimentationConseil() {}
+	
+	public AlimentationConseil(int id) {
+		super(id);
+	}
+
 	public AlimentationConseil(int id, String nom, String matin, String midi, String soir) {
 		super();
 		this.setId(id);

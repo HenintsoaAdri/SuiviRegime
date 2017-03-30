@@ -1,14 +1,19 @@
 package s6.suiviRegime.modele;
 
 public class Sport extends BaseModele{
-	String sport;
+	String libelle;
 	String activite;
 	
 	public Sport() {}
-	public Sport(int id, String sport, String activite) {
+	
+	public Sport(int id) {
+		super(id);
+	}
+
+	public Sport(int id, String libelle, String activite) {
 		super();
 		this.setId(id);
-		this.setSport(sport);
+		this.setLibelle(libelle);
 		this.setActivite(activite);
 	}
 	public int getId() {
@@ -17,11 +22,11 @@ public class Sport extends BaseModele{
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getSport() {
-		return sport;
+	public String getLibelle() {
+		return libelle;
 	}
-	public void setSport(String sport) {
-		this.sport = sport;
+	public void setLibelle(String libelle) {
+		this.libelle = libelle;
 	}
 	public String getActivite() {
 		return activite;

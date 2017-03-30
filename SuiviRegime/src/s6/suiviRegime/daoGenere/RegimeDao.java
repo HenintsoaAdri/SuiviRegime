@@ -8,7 +8,7 @@ import s6.suiviRegime.modele.*;
 
 public class RegimeDao{ 
 	public  void save(Regime model) throws Exception{
- 		String query = "INSERT INTO REGIME (IDUTILISATEUR, DEBUT, FIN, POIDSOBJECTIF) VALUES(?, ?, ?, ?)";
+ 		String query = "INSERT INTO REGIME (IDUTILISATEUR, DEBUTREGIME, FINREGIME, POIDSOBJECTIFREGIME) VALUES(?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -32,7 +32,7 @@ public class RegimeDao{
 	}
 	public  void update(Regime model) throws Exception{
 
-		String query = "UPDATE REGIME SET IDUTILISATEUR= ?, DEBUT= ?, FIN= ?, POIDSOBJECTIF= ? WHERE IDREGIME = ?";
+		String query = "UPDATE REGIME SET IDUTILISATEUR= ?, DEBUTREGIME= ?, FINREGIME= ?, POIDSOBJECTIFREGIME= ? WHERE IDREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -154,9 +154,9 @@ public class RegimeDao{
 		Regime model = new Regime();
 		model.setId(res.getInt("IDREGIME"));
 		model.setUtilisateur(new UtilisateurDao().findById(res.getInt("IDUTILISATEUR")));
-		model.setDebut(res.getDate("DEBUT"));
-		model.setFin(res.getDate("FIN"));
-		model.setPoidsObjectif(res.getFloat("POIDSOBJECTIF"));
+		model.setDebut(res.getDate("DEBUTREGIME"));
+		model.setFin(res.getDate("FINREGIME"));
+		model.setPoidsObjectif(res.getFloat("POIDSOBJECTIFREGIME"));
 		return model;
 	}
 }

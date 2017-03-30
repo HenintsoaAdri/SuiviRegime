@@ -1,5 +1,0 @@
-		Connection con = null;
-		PreparedStatement statement = null;
-		try{
-			con = UtilDB.getConnPostgre();
-			statement = con.prepareStatement(query);

@@ -1,5 +1,0 @@
-package s6.suiviRegime.utilitaire;
-
-public enum TypePrimitif {
-	INT,DOUBLE,FLOAT,DATE,STRING
-}

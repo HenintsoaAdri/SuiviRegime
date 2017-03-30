@@ -20,7 +20,7 @@ public class SportDao {
 			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
-	    	statement.setString(1, model.getSport());
+	    	statement.setString(1, model.getLibelle());
 	    	statement.setString(2, model.getActivite());
 			statement.execute();
 			con.commit();
@@ -44,7 +44,7 @@ public class SportDao {
 			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
-	    	statement.setString(2, model.getSport());
+	    	statement.setString(2, model.getLibelle());
 	    	statement.setString(3, model.getActivite());
 	    	statement.setInt(1, model.getId());
 			statement.execute();

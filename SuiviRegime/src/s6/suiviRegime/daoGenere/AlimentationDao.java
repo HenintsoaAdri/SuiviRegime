@@ -8,7 +8,7 @@ import s6.suiviRegime.modele.*;
 
 public class AlimentationDao{ 
 	public  void save(Alimentation model) throws Exception{
- 		String query = "INSERT INTO ALIMENTATION (IDREGIME, REPAS, BOISSON, PERIODE, DATE) VALUES(?, ?, ?, ?, ?)";
+ 		String query = "INSERT INTO ALIMENTATION (IDREGIME, REPASALIMENTATION, BOISSONALIMENTATION, PERIODEALIMENTATION, DATEALIMENTATION) VALUES(?, ?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -33,7 +33,7 @@ public class AlimentationDao{
 	}
 	public  void update(Alimentation model) throws Exception{
 
-		String query = "UPDATE ALIMENTATION SET IDREGIME= ?, REPAS= ?, BOISSON= ?, PERIODE= ?, DATE= ? WHERE IDALIMENTATION = ?";
+		String query = "UPDATE ALIMENTATION SET IDREGIME= ?, REPASALIMENTATION= ?, BOISSONALIMENTATION= ?, PERIODEALIMENTATION= ?, DATEALIMENTATION= ? WHERE IDALIMENTATION = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -156,10 +156,10 @@ public class AlimentationDao{
 		Alimentation model = new Alimentation();
 		model.setId(res.getInt("IDALIMENTATION"));
 		model.setRegime(new RegimeDao().findById(res.getInt("IDREGIME")));
-		model.setRepas(res.getString("REPAS"));
-		model.setBoisson(res.getString("BOISSON"));
-		model.setPeriode(res.getInt("PERIODE"));
-		model.setDate(res.getDate("DATE"));
+		model.setRepas(res.getString("REPASALIMENTATION"));
+		model.setBoisson(res.getString("BOISSONALIMENTATION"));
+		model.setPeriode(res.getInt("PERIODEALIMENTATION"));
+		model.setDate(res.getDate("DATEALIMENTATION"));
 		return model;
 	}
 }

@@ -1107,8 +1107,8 @@ Shadow=0</a:DisplayPreferences>
 <o:AssociationLinkSymbol Id="o6">
 <a:CreationDate>1488349411</a:CreationDate>
 <a:ModificationDate>1488396396</a:ModificationDate>
-<a:Rect>((-17267,-322), (-14084,9057))</a:Rect>
-<a:ListOfPoints>((-14084,9057),(-17267,-322))</a:ListOfPoints>
+<a:Rect>((-17267,-322), (-13007,9057))</a:Rect>
+<a:ListOfPoints>((-13007,9057),(-17267,-322))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1126,9 +1126,9 @@ CARD 0 Arial,8,N</a:FontList>
 </o:AssociationLinkSymbol>
 <o:AssociationLinkSymbol Id="o10">
 <a:CreationDate>1488349411</a:CreationDate>
-<a:ModificationDate>1488396396</a:ModificationDate>
-<a:Rect>((-22427,-8477), (-17267,-322))</a:Rect>
-<a:ListOfPoints>((-22427,-8477),(-17267,-322))</a:ListOfPoints>
+<a:ModificationDate>1489646315</a:ModificationDate>
+<a:Rect>((-21731,-8552), (-17267,-322))</a:Rect>
+<a:ListOfPoints>((-21731,-8552),(-17267,-322))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1147,8 +1147,8 @@ CARD 0 Arial,8,N</a:FontList>
 <o:AssociationLinkSymbol Id="o13">
 <a:CreationDate>1488361763</a:CreationDate>
 <a:ModificationDate>1488396335</a:ModificationDate>
-<a:Rect>((-55958,-8922), (-50926,1240))</a:Rect>
-<a:ListOfPoints>((-50926,1240),(-55958,-8922))</a:ListOfPoints>
+<a:Rect>((-55958,-8922), (-51031,1240))</a:Rect>
+<a:ListOfPoints>((-51031,1240),(-55958,-8922))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1167,8 +1167,8 @@ CARD 0 Arial,8,N</a:FontList>
 <o:AssociationLinkSymbol Id="o17">
 <a:CreationDate>1488361763</a:CreationDate>
 <a:ModificationDate>1488396336</a:ModificationDate>
-<a:Rect>((-58172,-15866), (-55958,-8922))</a:Rect>
-<a:ListOfPoints>((-57246,-15866),(-55958,-8922))</a:ListOfPoints>
+<a:Rect>((-58130,-15866), (-55958,-8922))</a:Rect>
+<a:ListOfPoints>((-57059,-15866),(-55958,-8922))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1187,8 +1187,8 @@ CARD 0 Arial,8,N</a:FontList>
 <o:AssociationLinkSymbol Id="o20">
 <a:CreationDate>1488395202</a:CreationDate>
 <a:ModificationDate>1488396401</a:ModificationDate>
-<a:Rect>((-17116,-22499), (13185,-18560))</a:Rect>
-<a:ListOfPoints>((13185,-22499),(-17116,-18560))</a:ListOfPoints>
+<a:Rect>((-17116,-22499), (13678,-18560))</a:Rect>
+<a:ListOfPoints>((13678,-22499),(-17116,-18560))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1206,9 +1206,9 @@ CARD 0 Arial,8,N</a:FontList>
 </o:AssociationLinkSymbol>
 <o:AssociationLinkSymbol Id="o24">
 <a:CreationDate>1488395202</a:CreationDate>
-<a:ModificationDate>1488396216</a:ModificationDate>
-<a:Rect>((-20870,-18560), (-17116,-9827))</a:Rect>
-<a:ListOfPoints>((-20870,-9827),(-17116,-18560))</a:ListOfPoints>
+<a:ModificationDate>1489646315</a:ModificationDate>
+<a:Rect>((-19887,-18560), (-16778,-9902))</a:Rect>
+<a:ListOfPoints>((-19887,-9902),(-17116,-18560))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1226,9 +1226,9 @@ CARD 0 Arial,8,N</a:FontList>
 </o:AssociationLinkSymbol>
 <o:AssociationLinkSymbol Id="o26">
 <a:CreationDate>1488395236</a:CreationDate>
-<a:ModificationDate>1488396333</a:ModificationDate>
-<a:Rect>((-36232,-9967), (-12770,-8386))</a:Rect>
-<a:ListOfPoints>((-12770,-9452),(-36232,-8386))</a:ListOfPoints>
+<a:ModificationDate>1489646317</a:ModificationDate>
+<a:Rect>((-38632,-9527), (-10294,-7561))</a:Rect>
+<a:ListOfPoints>((-10294,-9527),(-38632,-7561))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1246,9 +1246,9 @@ CARD 0 Arial,8,N</a:FontList>
 </o:AssociationLinkSymbol>
 <o:AssociationLinkSymbol Id="o29">
 <a:CreationDate>1488395236</a:CreationDate>
-<a:ModificationDate>1488396333</a:ModificationDate>
-<a:Rect>((-46575,-8386), (-36232,2824))</a:Rect>
-<a:ListOfPoints>((-46575,2824),(-36232,-8386))</a:ListOfPoints>
+<a:ModificationDate>1489646317</a:ModificationDate>
+<a:Rect>((-46219,-7561), (-38632,2824))</a:Rect>
+<a:ListOfPoints>((-46219,2824),(-38632,-7561))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1266,9 +1266,9 @@ CARD 0 Arial,8,N</a:FontList>
 </o:AssociationLinkSymbol>
 <o:AssociationLinkSymbol Id="o31">
 <a:CreationDate>1488396030</a:CreationDate>
-<a:ModificationDate>1488396844</a:ModificationDate>
-<a:Rect>((-2991,-5174), (8677,2313))</a:Rect>
-<a:ListOfPoints>((8677,2313),(-2991,-5174))</a:ListOfPoints>
+<a:ModificationDate>1489646314</a:ModificationDate>
+<a:Rect>((-1116,-5174), (8590,2313))</a:Rect>
+<a:ListOfPoints>((8590,2313),(-1116,-5174))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1286,9 +1286,9 @@ CARD 0 Arial,8,N</a:FontList>
 </o:AssociationLinkSymbol>
 <o:AssociationLinkSymbol Id="o35">
 <a:CreationDate>1488396030</a:CreationDate>
-<a:ModificationDate>1488396841</a:ModificationDate>
-<a:Rect>((-16220,-7577), (-2991,-5174))</a:Rect>
-<a:ListOfPoints>((-16220,-7577),(-2991,-5174))</a:ListOfPoints>
+<a:ModificationDate>1489646315</a:ModificationDate>
+<a:Rect>((-14380,-7652), (-1116,-5086))</a:Rect>
+<a:ListOfPoints>((-14380,-7652),(-1116,-5174))</a:ListOfPoints>
 <a:ArrowStyle>0</a:ArrowStyle>
 <a:LineColor>16744576</a:LineColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1307,7 +1307,7 @@ CARD 0 Arial,8,N</a:FontList>
 <o:EntitySymbol Id="o7">
 <a:CreationDate>1488346907</a:CreationDate>
 <a:ModificationDate>1488396217</a:ModificationDate>
-<a:Rect>((-29794,5176), (-10072,17137))</a:Rect>
+<a:Rect>((-31610,5176), (-8256,17137))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1327,7 +1327,7 @@ EntityComment 0 Arial,8,N</a:FontList>
 <o:EntitySymbol Id="o32">
 <a:CreationDate>1488347658</a:CreationDate>
 <a:ModificationDate>1488396844</a:ModificationDate>
-<a:Rect>((3701,-446), (17553,5671))</a:Rect>
+<a:Rect>((3392,-446), (17862,5671))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1347,7 +1347,7 @@ EntityComment 0 Arial,8,N</a:FontList>
 <o:EntitySymbol Id="o21">
 <a:CreationDate>1488349021</a:CreationDate>
 <a:ModificationDate>1488396401</a:ModificationDate>
-<a:Rect>((-6066,-25857), (14738,-17792))</a:Rect>
+<a:Rect>((-6645,-25857), (15317,-17792))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1366,8 +1366,8 @@ EntityComment 0 Arial,8,N</a:FontList>
 </o:EntitySymbol>
 <o:EntitySymbol Id="o11">
 <a:CreationDate>1488349295</a:CreationDate>
-<a:ModificationDate>1488396216</a:ModificationDate>
-<a:Rect>((-26015,-12773), (-10927,-5682))</a:Rect>
+<a:ModificationDate>1489646315</a:ModificationDate>
+<a:Rect>((-25981,-12848), (-8111,-5757))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1405,7 +1405,7 @@ AssociationComment 0 Arial,8,N</a:FontList>
 <o:EntitySymbol Id="o14">
 <a:CreationDate>1488349755</a:CreationDate>
 <a:ModificationDate>1488396319</a:ModificationDate>
-<a:Rect>((-58682,-666), (-41198,5451))</a:Rect>
+<a:Rect>((-59609,-666), (-40271,5451))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1425,7 +1425,7 @@ EntityComment 0 Arial,8,N</a:FontList>
 <o:EntitySymbol Id="o18">
 <a:CreationDate>1488349900</a:CreationDate>
 <a:ModificationDate>1488396336</a:ModificationDate>
-<a:Rect>((-66662,-20352), (-51110,-14235))</a:Rect>
+<a:Rect>((-67550,-20352), (-50222,-14235))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1445,7 +1445,7 @@ EntityComment 0 Arial,8,N</a:FontList>
 <o:EntitySymbol Id="o44">
 <a:CreationDate>1488350614</a:CreationDate>
 <a:ModificationDate>1488396354</a:ModificationDate>
-<a:Rect>((-59044,13737), (-35536,21802))</a:Rect>
+<a:Rect>((-59276,13737), (-35304,21802))</a:Rect>
 <a:LineColor>11184640</a:LineColor>
 <a:FillColor>16777136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1500,8 +1500,8 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:AssociationSymbol>
 <o:AssociationSymbol Id="o27">
 <a:CreationDate>1488395236</a:CreationDate>
-<a:ModificationDate>1488396333</a:ModificationDate>
-<a:Rect>((-42961,-10322), (-29503,-6452))</a:Rect>
+<a:ModificationDate>1489646317</a:ModificationDate>
+<a:Rect>((-46790,-9497), (-30474,-5627))</a:Rect>
 <a:LineColor>16744576</a:LineColor>
 <a:FillColor>16765136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1518,8 +1518,8 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:AssociationSymbol>
 <o:AssociationSymbol Id="o33">
 <a:CreationDate>1488396030</a:CreationDate>
-<a:ModificationDate>1488396841</a:ModificationDate>
-<a:Rect>((-6780,-7075), (798,-3274))</a:Rect>
+<a:ModificationDate>1489646314</a:ModificationDate>
+<a:Rect>((-4905,-7075), (2673,-3274))</a:Rect>
 <a:LineColor>16744576</a:LineColor>
 <a:FillColor>16765136</a:FillColor>
 <a:ShadowColor>12632256</a:ShadowColor>
@@ -1942,11 +1942,11 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:Entity>
 <o:Entity Id="o43">
 <a:ObjectID>DFA6B1B2-A8B3-4AA0-BB19-12DAD62C65DF</a:ObjectID>
-<a:Name>ConseilSport</a:Name>
-<a:Code>CONSEILSPORT</a:Code>
+<a:Name>SportConseil</a:Name>
+<a:Code>SPORTCONSEIL</a:Code>
 <a:CreationDate>1488349900</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488361809</a:ModificationDate>
+<a:ModificationDate>1489645976</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <c:Identifiers>
 <o:Identifier Id="o103">
@@ -2002,11 +2002,11 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:Entity>
 <o:Entity Id="o45">
 <a:ObjectID>8A2F150A-A637-434D-8F45-BB781FD1B18A</a:ObjectID>
-<a:Name>ConseilAlimentation</a:Name>
-<a:Code>CONSEILALIMENTATION</a:Code>
+<a:Name>AlimentationConseil</a:Name>
+<a:Code>ALIMENTATIONCONSEIL</a:Code>
 <a:CreationDate>1488350614</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488398470</a:ModificationDate>
+<a:ModificationDate>1489645617</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <c:Identifiers>
 <o:Identifier Id="o110">
@@ -2097,87 +2097,87 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:DataItem>
 <o:DataItem Id="o54">
 <a:ObjectID>04D25BF6-0BBB-45F4-817F-CE2FF1BBCBA8</a:ObjectID>
-<a:Name>nom</a:Name>
-<a:Code>NOM</a:Code>
+<a:Name>nomUtilisateur</a:Name>
+<a:Code>NOMUTILISATEUR</a:Code>
 <a:CreationDate>1488347632</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488347632</a:ModificationDate>
+<a:ModificationDate>1489645682</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA100</a:DataType>
 <a:Length>100</a:Length>
 </o:DataItem>
 <o:DataItem Id="o56">
 <a:ObjectID>81CE8E77-8A8F-42C4-A40A-D8FE98EA8503</a:ObjectID>
-<a:Name>prenom</a:Name>
-<a:Code>PRENOM</a:Code>
+<a:Name>prenomUtilisateur</a:Name>
+<a:Code>PRENOMUTILISATEUR</a:Code>
 <a:CreationDate>1488347632</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488347632</a:ModificationDate>
+<a:ModificationDate>1489645682</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA100</a:DataType>
 <a:Length>100</a:Length>
 </o:DataItem>
 <o:DataItem Id="o58">
 <a:ObjectID>E42FA644-A72B-48B9-81B7-DBD19925A215</a:ObjectID>
-<a:Name>dateNaissance</a:Name>
-<a:Code>DATENAISSANCE</a:Code>
+<a:Name>dateNaissanceUtilisateur</a:Name>
+<a:Code>DATENAISSANCEUTILISATEUR</a:Code>
 <a:CreationDate>1488347632</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488347632</a:ModificationDate>
+<a:ModificationDate>1489645682</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>D</a:DataType>
 </o:DataItem>
 <o:DataItem Id="o60">
 <a:ObjectID>DE6B8809-D115-4553-9C04-A20A12FC31B7</a:ObjectID>
-<a:Name>sexe</a:Name>
-<a:Code>SEXE</a:Code>
+<a:Name>sexeUtilisateur</a:Name>
+<a:Code>SEXEUTILISATEUR</a:Code>
 <a:CreationDate>1488347632</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488347632</a:ModificationDate>
+<a:ModificationDate>1489645682</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA8</a:DataType>
 <a:Length>8</a:Length>
 </o:DataItem>
 <o:DataItem Id="o62">
 <a:ObjectID>D405C7B3-1EFD-4FC2-8397-7F4B5FB3E664</a:ObjectID>
-<a:Name>identifiant</a:Name>
-<a:Code>IDENTIFIANT</a:Code>
+<a:Name>identifiantUtilisateur</a:Name>
+<a:Code>IDENTIFIANTUTILISATEUR</a:Code>
 <a:CreationDate>1488347632</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488347632</a:ModificationDate>
+<a:ModificationDate>1489645682</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA25</a:DataType>
 <a:Length>25</a:Length>
 </o:DataItem>
 <o:DataItem Id="o64">
 <a:ObjectID>A911A07B-4FDE-4F1B-8DA7-B69FC6C67E91</a:ObjectID>
-<a:Name>password</a:Name>
-<a:Code>PASSWORD</a:Code>
+<a:Name>passwordUtilisateur</a:Name>
+<a:Code>PASSWORDUTILISATEUR</a:Code>
 <a:CreationDate>1488347632</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488347632</a:ModificationDate>
+<a:ModificationDate>1489645682</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA25</a:DataType>
 <a:Length>25</a:Length>
 </o:DataItem>
 <o:DataItem Id="o66">
 <a:ObjectID>391C99E3-D5E4-4D4E-A0E3-6536685615F1</a:ObjectID>
-<a:Name>adresse</a:Name>
-<a:Code>ADRESSE</a:Code>
+<a:Name>adresseUtilisateur</a:Name>
+<a:Code>ADRESSEUTILISATEUR</a:Code>
 <a:CreationDate>1488347632</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488347632</a:ModificationDate>
+<a:ModificationDate>1489645682</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA200</a:DataType>
 <a:Length>200</a:Length>
 </o:DataItem>
 <o:DataItem Id="o68">
 <a:ObjectID>D780BEF5-5D56-4E58-B718-94FDB1AA3397</a:ObjectID>
-<a:Name>email</a:Name>
-<a:Code>EMAIL</a:Code>
+<a:Name>emailUtilisateur</a:Name>
+<a:Code>EMAILUTILISATEUR</a:Code>
 <a:CreationDate>1488347632</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488347632</a:ModificationDate>
+<a:ModificationDate>1489645682</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA50</a:DataType>
 <a:Length>50</a:Length>
@@ -2194,11 +2194,11 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:DataItem>
 <o:DataItem Id="o73">
 <a:ObjectID>0308F1F4-F00B-484C-A41A-BE4A873D8475</a:ObjectID>
-<a:Name>poids</a:Name>
-<a:Code>POIDS</a:Code>
+<a:Name>valeurPoids</a:Name>
+<a:Code>VALEURPOIDS</a:Code>
 <a:CreationDate>1488348886</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488362787</a:ModificationDate>
+<a:ModificationDate>1489646026</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>SI</a:DataType>
 </o:DataItem>
@@ -2224,33 +2224,33 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:DataItem>
 <o:DataItem Id="o80">
 <a:ObjectID>F309494E-2D6F-42E0-B43B-23CB79E4876D</a:ObjectID>
-<a:Name>repas</a:Name>
-<a:Code>REPAS</a:Code>
+<a:Name>repasAlimentation</a:Name>
+<a:Code>REPASALIMENTATION</a:Code>
 <a:CreationDate>1488349248</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488349248</a:ModificationDate>
+<a:ModificationDate>1489645533</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA300</a:DataType>
 <a:Length>300</a:Length>
 </o:DataItem>
 <o:DataItem Id="o82">
 <a:ObjectID>63FE3FB1-CB96-45A4-AA29-EC7FF1783C43</a:ObjectID>
-<a:Name>boisson</a:Name>
-<a:Code>BOISSON</a:Code>
+<a:Name>boissonAlimentation</a:Name>
+<a:Code>BOISSONALIMENTATION</a:Code>
 <a:CreationDate>1488349248</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488349248</a:ModificationDate>
+<a:ModificationDate>1489645533</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA100</a:DataType>
 <a:Length>100</a:Length>
 </o:DataItem>
 <o:DataItem Id="o84">
 <a:ObjectID>FE4F7098-7C35-4BC9-8D4F-B220DD12FB8B</a:ObjectID>
-<a:Name>periode</a:Name>
-<a:Code>PERIODE</a:Code>
+<a:Name>periodeAlimentation</a:Name>
+<a:Code>PERIODEALIMENTATION</a:Code>
 <a:CreationDate>1488349248</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488349248</a:ModificationDate>
+<a:ModificationDate>1489645533</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>SI</a:DataType>
 </o:DataItem>
@@ -2266,31 +2266,31 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:DataItem>
 <o:DataItem Id="o91">
 <a:ObjectID>C78FEDAF-BEF7-46EC-8BC2-D403DB6625E6</a:ObjectID>
-<a:Name>dateDebut</a:Name>
-<a:Code>DATEDEBUT</a:Code>
+<a:Name>debutRegime</a:Name>
+<a:Code>DEBUTREGIME</a:Code>
 <a:CreationDate>1488349402</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488349402</a:ModificationDate>
+<a:ModificationDate>1489646308</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>D</a:DataType>
 </o:DataItem>
 <o:DataItem Id="o93">
 <a:ObjectID>C8E48AD4-052C-499D-93E8-BC87888DA6FD</a:ObjectID>
-<a:Name>dateFin</a:Name>
-<a:Code>DATEFIN</a:Code>
+<a:Name>finRegime</a:Name>
+<a:Code>FINREGIME</a:Code>
 <a:CreationDate>1488349402</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488349402</a:ModificationDate>
+<a:ModificationDate>1489646308</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>D</a:DataType>
 </o:DataItem>
 <o:DataItem Id="o95">
 <a:ObjectID>089D22DC-B8AE-4244-9D07-CF7AC2866483</a:ObjectID>
-<a:Name>PoidsObjectif</a:Name>
-<a:Code>POIDSOBJECTIF</a:Code>
+<a:Name>poidsObjectifRegime</a:Name>
+<a:Code>POIDSOBJECTIFREGIME</a:Code>
 <a:CreationDate>1488349402</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488362802</a:ModificationDate>
+<a:ModificationDate>1489646331</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>SI</a:DataType>
 </o:DataItem>
@@ -2306,64 +2306,64 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:DataItem>
 <o:DataItem Id="o100">
 <a:ObjectID>D38C245C-FA54-41AF-A0E3-441FEB34F6F0</a:ObjectID>
-<a:Name>Sport</a:Name>
-<a:Code>SPORT</a:Code>
+<a:Name>libelleSport</a:Name>
+<a:Code>LIBELLESPORT</a:Code>
 <a:CreationDate>1488349878</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488349878</a:ModificationDate>
+<a:ModificationDate>1489646233</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA200</a:DataType>
 <a:Length>200</a:Length>
 </o:DataItem>
 <o:DataItem Id="o102">
 <a:ObjectID>27F522E6-D20D-4496-9131-50F3B0A9783C</a:ObjectID>
-<a:Name>Activités</a:Name>
-<a:Code>ACTIVITES</a:Code>
+<a:Name>activitesSport</a:Name>
+<a:Code>ACTIVITESSPORT</a:Code>
 <a:CreationDate>1488349878</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488349878</a:ModificationDate>
+<a:ModificationDate>1489646233</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA200</a:DataType>
 <a:Length>200</a:Length>
 </o:DataItem>
 <o:DataItem Id="o105">
 <a:ObjectID>3634925F-A5A8-4D15-AB3C-C374B0C4D86F</a:ObjectID>
-<a:Name>idConseilSport</a:Name>
-<a:Code>IDCONSEILSPORT</a:Code>
+<a:Name>idSportConseil</a:Name>
+<a:Code>IDSPORTCONSEIL</a:Code>
 <a:CreationDate>1488349997</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488349997</a:ModificationDate>
+<a:ModificationDate>1489645976</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>NO</a:DataType>
 </o:DataItem>
 <o:DataItem Id="o107">
 <a:ObjectID>43378E6F-79C8-431F-9FBC-E2C5911D1871</a:ObjectID>
-<a:Name>rythmeConseil</a:Name>
-<a:Code>RYTHMECONSEIL</a:Code>
+<a:Name>rythmeSportConseil</a:Name>
+<a:Code>RYTHMESPORTCONSEIL</a:Code>
 <a:CreationDate>1488349997</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488362814</a:ModificationDate>
+<a:ModificationDate>1489645976</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>SI</a:DataType>
 </o:DataItem>
 <o:DataItem Id="o109">
 <a:ObjectID>5FF25412-804E-4686-8E1B-7431A7E12207</a:ObjectID>
-<a:Name>detail</a:Name>
-<a:Code>DETAIL</a:Code>
+<a:Name>detailSportConseil</a:Name>
+<a:Code>DETAILSPORTCONSEIL</a:Code>
 <a:CreationDate>1488350019</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488398236</a:ModificationDate>
+<a:ModificationDate>1489645976</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>TXT1000</a:DataType>
 <a:Length>1000</a:Length>
 </o:DataItem>
 <o:DataItem Id="o121">
 <a:ObjectID>85B8B596-F509-4332-BB55-CBD1FDDC184B</a:ObjectID>
-<a:Name>dateSport</a:Name>
-<a:Code>DATESPORT</a:Code>
+<a:Name>dateSportRegime</a:Name>
+<a:Code>DATESPORTREGIME</a:Code>
 <a:CreationDate>1488350442</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488396308</a:ModificationDate>
+<a:ModificationDate>1489645876</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>D</a:DataType>
 </o:DataItem>
@@ -2381,43 +2381,43 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:DataItem>
 <o:DataItem Id="o112">
 <a:ObjectID>173ADCC0-58CC-481A-A08F-363E717B8F0C</a:ObjectID>
-<a:Name>idConseilAlimentation</a:Name>
-<a:Code>IDCONSEILALIMENTATION</a:Code>
+<a:Name>idAlimentationConseil</a:Name>
+<a:Code>IDALIMENTATIONCONSEIL</a:Code>
 <a:CreationDate>1488360519</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488360519</a:ModificationDate>
+<a:ModificationDate>1489645647</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>NO</a:DataType>
 </o:DataItem>
 <o:DataItem Id="o116">
 <a:ObjectID>95DF0DDF-59E1-40FA-9AE3-F46170477A2A</a:ObjectID>
-<a:Name>matin</a:Name>
-<a:Code>MATIN</a:Code>
+<a:Name>matinAlimentationConseil</a:Name>
+<a:Code>MATINALIMENTATIONCONSEIL</a:Code>
 <a:CreationDate>1488360519</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488360519</a:ModificationDate>
+<a:ModificationDate>1489645647</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA500</a:DataType>
 <a:Length>500</a:Length>
 </o:DataItem>
 <o:DataItem Id="o118">
 <a:ObjectID>CBB0DED2-29CE-46F4-91C9-C310501B54E3</a:ObjectID>
-<a:Name>midi</a:Name>
-<a:Code>MIDI</a:Code>
+<a:Name>midiAlimentationConseil</a:Name>
+<a:Code>MIDIALIMENTATIONCONSEIL</a:Code>
 <a:CreationDate>1488360519</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488360519</a:ModificationDate>
+<a:ModificationDate>1489645647</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA500</a:DataType>
 <a:Length>500</a:Length>
 </o:DataItem>
 <o:DataItem Id="o120">
 <a:ObjectID>00471DBB-DC7D-4071-A1AC-10C6095FB104</a:ObjectID>
-<a:Name>soir</a:Name>
-<a:Code>SOIR</a:Code>
+<a:Name>soirAlimentationConseil</a:Name>
+<a:Code>SOIRALIMENTATIONCONSEIL</a:Code>
 <a:CreationDate>1488360519</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488360519</a:ModificationDate>
+<a:ModificationDate>1489645647</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA500</a:DataType>
 <a:Length>500</a:Length>
@@ -2434,21 +2434,21 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:DataItem>
 <o:DataItem Id="o123">
 <a:ObjectID>7D6C9C09-57AA-4D84-AEA8-A3962A193F6E</a:ObjectID>
-<a:Name>rythmeSport</a:Name>
-<a:Code>RYTHMESPORT</a:Code>
+<a:Name>rythmeSportRegime</a:Name>
+<a:Code>RYTHMESPORTREGIME</a:Code>
 <a:CreationDate>1488396308</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488396308</a:ModificationDate>
+<a:ModificationDate>1489645876</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>SI</a:DataType>
 </o:DataItem>
 <o:DataItem Id="o114">
 <a:ObjectID>D7EF5F55-F216-438F-82DE-14952098B1E5</a:ObjectID>
-<a:Name>nomConseilAlimentation</a:Name>
-<a:Code>NOMCONSEILALIMENTATION</a:Code>
+<a:Name>nomAlimentationConseil</a:Name>
+<a:Code>NOMALIMENTATIONCONSEIL</a:Code>
 <a:CreationDate>1488398470</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488692570</a:ModificationDate>
+<a:ModificationDate>1489645647</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <a:DataType>VA300</a:DataType>
 <a:Length>300</a:Length>
@@ -2484,11 +2484,11 @@ AssociationComment 0 Arial,8,N</a:FontList>
 </o:Association>
 <o:Association Id="o48">
 <a:ObjectID>00B3488B-5BE2-4307-A01F-59257762217D</a:ObjectID>
-<a:Name>Sport_Regime</a:Name>
-<a:Code>SPORT_REGIME</a:Code>
+<a:Name>SportRegime</a:Name>
+<a:Code>SPORTREGIME</a:Code>
 <a:CreationDate>1488395236</a:CreationDate>
 <a:Creator>RASOAMANARIVO</a:Creator>
-<a:ModificationDate>1488396329</a:ModificationDate>
+<a:ModificationDate>1489645504</a:ModificationDate>
 <a:Modifier>RASOAMANARIVO</a:Modifier>
 <c:Attributes>
 <o:AssociationAttribute Id="o124">

@@ -18,6 +18,11 @@ public class Utilisateur extends BaseModele{
 	List<Regime> regime;
 
 	public Utilisateur() {}
+	
+	public Utilisateur(int id) {
+		super(id);
+	}
+
 	public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String sexe, String email, String identifiant, String password, String adresse) throws Exception {
 		super();
 		this.setId(id);

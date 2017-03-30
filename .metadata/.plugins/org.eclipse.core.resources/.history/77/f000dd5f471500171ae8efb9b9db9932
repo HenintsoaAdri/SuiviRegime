@@ -1,0 +1,47 @@
+package s6.suiviRegime.modele;
+
+public class SportConseil extends BaseModele{
+	
+	int idConseil;
+	Sport sport;
+	float rythme;
+	String details;
+	
+	
+	public SportConseil() {}
+	
+	public SportConseil(int id) {
+		super(id);
+	}
+
+	public SportConseil(int id, int idSport, String libelle, String activite, float rythme, String details) {
+		
+		this.setId(id);
+		this.setRythme(rythme);
+		this.setDetails(details);
+	}
+
+	public int getIdSport() {
+		return idSport;
+	}
+
+	public void setIdSport(int idSport) {
+		this.idSport = idSport;
+	}
+
+	public float getRythme() {
+		return rythme;
+	}
+
+	public void setRythme(float rythme) {
+		this.rythme = rythme;
+	}
+
+	public String getDetails() {
+		return details;
+	}
+
+	public void setDetails(String details) {
+		this.details = details;
+	}
+}

@@ -8,7 +8,7 @@ import s6.suiviRegime.modele.*;
 
 public class UtilisateurDao{ 
 	public  void save(Utilisateur model) throws Exception{
- 		String query = "INSERT INTO UTILISATEUR (NOM, PRENOM, SEXE, IDENTIFIANT, PASSWORD, ADRESSE, EMAIL) VALUES(?, ?, ?, ?, ?, ?, ?)";
+ 		String query = "INSERT INTO UTILISATEUR (NOMUTILISATEUR, PRENOMUTILISATEUR, SEXEUTILISATEUR, IDENTIFIANTUTILISATEUR, PASSWORDUTILISATEUR, ADRESSEUTILISATEUR, EMAILUTILISATEUR) VALUES(?, ?, ?, ?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -35,7 +35,7 @@ public class UtilisateurDao{
 	}
 	public  void update(Utilisateur model) throws Exception{
 
-		String query = "UPDATE UTILISATEUR SET NOM= ?, PRENOM= ?, SEXE= ?, IDENTIFIANT= ?, PASSWORD= ?, ADRESSE= ?, EMAIL= ? WHERE IDUTILISATEUR = ?";
+		String query = "UPDATE UTILISATEUR SET NOMUTILISATEUR= ?, PRENOMUTILISATEUR= ?, SEXEUTILISATEUR= ?, IDENTIFIANTUTILISATEUR= ?, PASSWORDUTILISATEUR= ?, ADRESSEUTILISATEUR= ?, EMAILUTILISATEUR= ? WHERE IDUTILISATEUR = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -159,13 +159,13 @@ public class UtilisateurDao{
 
 		Utilisateur model = new Utilisateur();
 		model.setId(res.getInt("IDUTILISATEUR"));
-		model.setNom(res.getString("NOM"));
-		model.setPrenom(res.getString("PRENOM"));
-		model.setSexe(res.getString("SEXE"));
-		model.setIdentifiant(res.getString("IDENTIFIANT"));
-		model.setPassword(res.getString("PASSWORD"));
-		model.setAdresse(res.getString("ADRESSE"));
-		model.setEmail(res.getString("EMAIL"));
+		model.setNom(res.getString("NOMUTILISATEUR"));
+		model.setPrenom(res.getString("PRENOMUTILISATEUR"));
+		model.setSexe(res.getString("SEXEUTILISATEUR"));
+		model.setIdentifiant(res.getString("IDENTIFIANTUTILISATEUR"));
+		model.setPassword(res.getString("PASSWORDUTILISATEUR"));
+		model.setAdresse(res.getString("ADRESSEUTILISATEUR"));
+		model.setEmail(res.getString("EMAILUTILISATEUR"));
 		return model;
 	}
 }

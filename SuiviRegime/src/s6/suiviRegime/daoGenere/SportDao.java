@@ -8,14 +8,14 @@ import s6.suiviRegime.modele.*;
 
 public class SportDao{ 
 	public  void save(Sport model) throws Exception{
- 		String query = "INSERT INTO SPORT (SPORT, ACTIVITE) VALUES(?, ?)";
+ 		String query = "INSERT INTO SPORT (LIBELLESPORT, ACTIVITESPORT) VALUES(?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			 con = UtilDB.getConnexion();
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
-			 statement.setString(1, model.getSport());
+			 statement.setString(1, model.getLibelle());
 			 statement.setString(2, model.getActivite());
 			 statement.execute();
 			 con.commit();
@@ -30,14 +30,14 @@ public class SportDao{
 	}
 	public  void update(Sport model) throws Exception{
 
-		String query = "UPDATE SPORT SET SPORT= ?, ACTIVITE= ? WHERE IDSPORT = ?";
+		String query = "UPDATE SPORT SET LIBELLESPORT= ?, ACTIVITESPORT= ? WHERE IDSPORT = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			 con = UtilDB.getConnexion();
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
-			 statement.setString(1, model.getSport());
+			 statement.setString(1, model.getLibelle());
 			 statement.setString(2, model.getActivite());
 			 statement.setInt(3, model.getId());
 			 statement.execute();
@@ -149,8 +149,8 @@ public class SportDao{
 
 		Sport model = new Sport();
 		model.setId(res.getInt("IDSPORT"));
-		model.setSport(res.getString("SPORT"));
-		model.setActivite(res.getString("ACTIVITE"));
+		model.setLibelle(res.getString("LIBELLESPORT"));
+		model.setActivite(res.getString("ACTIVITESPORT"));
 		return model;
 	}
 }

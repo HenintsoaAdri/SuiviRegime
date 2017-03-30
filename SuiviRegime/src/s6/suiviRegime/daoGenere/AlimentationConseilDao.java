@@ -8,7 +8,7 @@ import s6.suiviRegime.modele.*;
 
 public class AlimentationConseilDao{ 
 	public  void save(AlimentationConseil model) throws Exception{
- 		String query = "INSERT INTO ALIMENTATIONCONSEIL (NOM, MATIN, MIDI, SOIR) VALUES(?, ?, ?, ?)";
+ 		String query = "INSERT INTO ALIMENTATIONCONSEIL (NOMALIMENTATIONCONSEIL, MATINALIMENTATIONCONSEIL, MIDIALIMENTATIONCONSEIL, SOIRALIMENTATIONCONSEIL) VALUES(?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -32,7 +32,7 @@ public class AlimentationConseilDao{
 	}
 	public  void update(AlimentationConseil model) throws Exception{
 
-		String query = "UPDATE ALIMENTATIONCONSEIL SET NOM= ?, MATIN= ?, MIDI= ?, SOIR= ? WHERE IDALIMENTATIONCONSEIL = ?";
+		String query = "UPDATE ALIMENTATIONCONSEIL SET NOMALIMENTATIONCONSEIL= ?, MATINALIMENTATIONCONSEIL= ?, MIDIALIMENTATIONCONSEIL= ?, SOIRALIMENTATIONCONSEIL= ? WHERE IDALIMENTATIONCONSEIL = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -153,10 +153,10 @@ public class AlimentationConseilDao{
 
 		AlimentationConseil model = new AlimentationConseil();
 		model.setId(res.getInt("IDALIMENTATIONCONSEIL"));
-		model.setNom(res.getString("NOM"));
-		model.setMatin(res.getString("MATIN"));
-		model.setMidi(res.getString("MIDI"));
-		model.setSoir(res.getString("SOIR"));
+		model.setNom(res.getString("NOMALIMENTATIONCONSEIL"));
+		model.setMatin(res.getString("MATINALIMENTATIONCONSEIL"));
+		model.setMidi(res.getString("MIDIALIMENTATIONCONSEIL"));
+		model.setSoir(res.getString("SOIRALIMENTATIONCONSEIL"));
 		return model;
 	}
 }

@@ -8,14 +8,14 @@ import s6.suiviRegime.modele.*;
 
 public class SportConseilDao{ 
 	public  void save(SportConseil model) throws Exception{
- 		String query = "INSERT INTO SPORTCONSEIL (IDSPORT, RYTHME, DETAILS) VALUES(?, ?, ?)";
+ 		String query = "INSERT INTO SPORTCONSEIL (IDSPORT, RYTHMESPORTCONSEIL, DETAILSSPORTCONSEIL) VALUES(?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			 con = UtilDB.getConnexion();
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
-			 statement.setInt(1, model.getIdSport());
+			 statement.setInt(1, model.getSport().getId());
 			 statement.setFloat(2, model.getRythme());
 			 statement.setString(3, model.getDetails());
 			 statement.execute();
@@ -31,14 +31,14 @@ public class SportConseilDao{
 	}
 	public  void update(SportConseil model) throws Exception{
 
-		String query = "UPDATE SPORTCONSEIL SET IDSPORT= ?, RYTHME= ?, DETAILS= ? WHERE IDSPORTCONSEIL = ?";
+		String query = "UPDATE SPORTCONSEIL SET IDSPORT= ?, RYTHMESPORTCONSEIL= ?, DETAILSSPORTCONSEIL= ? WHERE IDSPORTCONSEIL = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			 con = UtilDB.getConnexion();
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
-			 statement.setInt(1, model.getIdSport());
+			 statement.setInt(1, model.getSport().getId());
 			 statement.setFloat(2, model.getRythme());
 			 statement.setString(3, model.getDetails());
 			 statement.setInt(4, model.getId());
@@ -151,9 +151,9 @@ public class SportConseilDao{
 
 		SportConseil model = new SportConseil();
 		model.setId(res.getInt("IDSPORTCONSEIL"));
-		model.setIdSport(res.getInt("IDSPORT"));
-		model.setRythme(res.getFloat("RYTHME"));
-		model.setDetails(res.getString("DETAILS"));
+		model.setSport(new SportDao().findById(res.getInt("IDSPORT")));
+		model.setRythme(res.getFloat("RYTHMESPORTCONSEIL"));
+		model.setDetails(res.getString("DETAILSSPORTCONSEIL"));
 		return model;
 	}
 }
