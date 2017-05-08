@@ -137,10 +137,10 @@ public class DaoGenerateur {
 			if(nom.startsWith("id") 
 					&& type.equalsIgnoreCase("int")) 
 			nom = classe.getNonPrimitifMethod(nom);
-			nom = "model.get" + StringUtil.firstUpper(nom) + "()";
+			nom = "model.get" + StringUtil.getInstance().firstUpper(nom) + "()";
 			if(type.equalsIgnoreCase("Date")) nom = "new Date(".concat(nom).concat(".getTime())");
 			function += "\t statement.set";
-			function += StringUtil.firstUpper(type);
+			function += StringUtil.getInstance().firstUpper(type);
 			function += "("+ i + ", ";
 			function += nom;
 			function += ");\n\t\t";
@@ -167,10 +167,10 @@ public class DaoGenerateur {
 					if(nom.startsWith("id") 
 							&& attribut[0].equalsIgnoreCase("int")) 
 					nom = classe.getNonPrimitifMethod(nom);
-					nom = "model.get" + StringUtil.firstUpper(nom) + "()";
+					nom = "model.get" + StringUtil.getInstance().firstUpper(nom) + "()";
 					if(type.equalsIgnoreCase("Date")) nom = "new Date(".concat(nom).concat(".getTime())");
 					function += "\t statement.set";
-					function += StringUtil.firstUpper(type);
+					function += StringUtil.getInstance().firstUpper(type);
 					function += "("+ i + ", " + nom;
 					function += ");\n\t\t";
 					i++;
@@ -267,14 +267,14 @@ public class DaoGenerateur {
 			nom = attribut[1];
 			boolean nonPrimitif = attribut[1].startsWith("id") && type.equalsIgnoreCase("int") && classe.containsAttributObject();
 			if(nonPrimitif) nom = classe.getNonPrimitifNom(nom);
-			function += "model.set"+ StringUtil.firstUpper(nom) 
+			function += "model.set"+ StringUtil.getInstance().firstUpper(nom) 
 				+ "(";
 			nom = nom + classe.getNomTable();
 			if(nonPrimitif){
 				function += "new ".concat(nom.replace(classe.getNomTable(), "").concat("Dao().findById("));
 				nom = attribut[1];
 			}
-			function += "res.get" + StringUtil.firstUpper(type) + "(\""
+			function += "res.get" + StringUtil.getInstance().firstUpper(type) + "(\""
 				+ nom.toUpperCase() + "\")";
 			if(nonPrimitif)
 			function+= ")";

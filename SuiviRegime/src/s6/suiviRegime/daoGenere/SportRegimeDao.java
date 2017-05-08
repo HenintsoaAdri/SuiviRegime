@@ -32,17 +32,18 @@ public class SportRegimeDao{
 	}
 	public  void update(SportRegime model) throws Exception{
 
-		String query = "UPDATE SPORTREGIME SET DATESPORTREGIME= ?, RYTHMESPORTREGIME= ? WHERE IDREGIME= ? AND IDSPORT= ?";
+		String query = "UPDATE SPORTREGIME SET IDREGIME= ?, IDSPORT= ?, DATESPORTREGIME= ?, RYTHMESPORTREGIME= ? WHERE IDSPORTREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			 con = UtilDB.getConnexion();
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
-			 statement.setDate(3, new Date(model.getDate().getTime()));
-			 statement.setFloat(4, model.getRythme());
 			 statement.setInt(1, model.getRegime().getId());
 			 statement.setInt(2, model.getSport().getId());
+			 statement.setDate(3, new Date(model.getDate().getTime()));
+			 statement.setFloat(4, model.getRythme());
+			 statement.setInt(5, model.getId());
 			 statement.execute();
 			 con.commit();
 		}catch(Exception e){
@@ -56,15 +57,14 @@ public class SportRegimeDao{
 	}
 	public void delete(SportRegime model) throws Exception{
 
-		String query = "DELETE FROM SPORTREGIME WHERE IDREGIME= ? AND IDSPORT= ?";
+		String query = "DELETE FROM SPORTREGIME WHERE IDSPORTREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			 con = UtilDB.getConnexion();
 			 statement = con.prepareStatement(query);
 			 con.setAutoCommit(false);
-			 statement.setInt(1, model.getRegime().getId());
-			 statement.setInt(2, model.getSport().getId());
+			 statement.setInt(1, model.getId());
 			 statement.execute();
 			 con.commit();
 		}catch(Exception e){
@@ -152,10 +152,11 @@ public class SportRegimeDao{
 	public SportRegime creer(ResultSet res) throws Exception{
 
 		SportRegime model = new SportRegime();
+		model.setId(res.getInt("IDSPORTREGIME"));
 		model.setRegime(new RegimeDao().findById(res.getInt("IDREGIME")));
 		model.setSport(new SportDao().findById(res.getInt("IDSPORT")));
 		model.setDate(res.getDate("DATESPORTREGIME"));
-		model.setRythme(res.getFloat("RYTHMESPORTREGIME"));
+		model.setRythme(res.getInt("RYTHMESPORTREGIME"));
 		return model;
 	}
 }

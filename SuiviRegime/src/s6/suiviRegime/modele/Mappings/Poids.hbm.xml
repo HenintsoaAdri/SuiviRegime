@@ -8,10 +8,12 @@
             This class contains the matiere detail.
         </meta>
         <id name="id" type="int" column="idpoids">
-            <generator class="native"/>
+            <generator class="sequence">
+            	<param name="sequence_name">poids_idpoids_seq</param>
+            </generator>
         </id>
-        <many-to-one name="regime" class="s6.suiviRegime.modele.Regime" column="idregime" lazy="false" not-null="true" fetch="select"/>
-        <property name="valeur" column="valeurpoids" type="int"/>
+        <many-to-one name="regime" class="s6.suiviRegime.modele.Regime" column="idregime" lazy="proxy" not-null="true" fetch="select"/>
+        <property name="valeur" column="valeurpoids" type="float"/>
         <property name="date" column="datepoids" type="date"/>
     </class>
 </hibernate-mapping>

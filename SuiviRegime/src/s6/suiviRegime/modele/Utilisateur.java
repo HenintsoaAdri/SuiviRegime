@@ -7,15 +7,14 @@ import java.util.List;
 import s6.suiviRegime.utilitaire.StringUtil;
 
 public class Utilisateur extends BaseModele{
-	String nom;
-	String prenom;
-	Date dateNaissance; 
-	String sexe;
-	String identifiant="";
-	String password;
-	String adresse;
-	String email;
-	List<Regime> regime;
+	private String nom;
+	private String prenom;
+	private Date dateNaissance; 
+	private String sexe;
+	private String password;
+	private String adresse;
+	private String email;
+	private List<Regime> regime;
 
 	public Utilisateur() {}
 	
@@ -23,7 +22,7 @@ public class Utilisateur extends BaseModele{
 		super(id);
 	}
 
-	public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String sexe, String email, String identifiant, String password, String adresse) throws Exception {
+	public Utilisateur(int id, String nom, String prenom, Date dateNaissance, String sexe, String email, String password, String adresse) throws Exception {
 		super();
 		this.setId(id);
 		this.setNom(nom);
@@ -31,17 +30,8 @@ public class Utilisateur extends BaseModele{
 		this.setDateNaissance(dateNaissance);
 		this.setSexe(sexe);
 		this.setEmail(email);
-		this.setIdentifiant(identifiant);
 		this.setPassword(password);
 		this.setAdresse(adresse);
-	}
-
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 	public String getNom() {
@@ -49,7 +39,7 @@ public class Utilisateur extends BaseModele{
 	}
 
 	public void setNom(String nom) throws Exception{
-		if(!StringUtil.fullLetter(nom)) throw new Exception("Votre nom contient des caract\u00e8res sp\u00e9ciaux");
+		if(!StringUtil.getInstance().fullLetter(nom)) throw new Exception("Votre nom contient des caract\u00e8res sp\u00e9ciaux");
 		else if(nom.isEmpty()) throw new Exception("Veuillez ins\u00e9rer un nom");
 		this.nom = nom;
 	}
@@ -59,7 +49,7 @@ public class Utilisateur extends BaseModele{
 	}
 
 	public void setPrenom(String prenom) throws Exception {
-		if(!StringUtil.fullLetter(prenom)) throw new Exception("Votre pr\u00e9nom contient des caract\u00e8res sp\u00e9ciaux");
+		if(!StringUtil.getInstance().fullLetter(prenom)) throw new Exception("Votre pr\u00e9nom contient des caract\u00e8res sp\u00e9ciaux");
 		this.prenom = prenom;
 	}
 	public String getFullName() {
@@ -80,19 +70,9 @@ public class Utilisateur extends BaseModele{
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
-//	public void setDateNaissance(String dateNaissance) throws Exception{
-//		try{
-//			setDateNaissance(new Date(dateNaissance));
-//		} catch (DateTimeParseException e) {
-//			try{
-//				DateTimeFormatter format = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("d MMMM, uuuu").toFormatter(Locale.FRANCE);
-//				setDateNaissance(Date.parse(dateNaissance, format));
-//			}catch(Exception e1){
-//				e1.printStackTrace();
-//				throw new Exception("Format de date non support\u00e9");				
-//			}
-//		}
-//	}
+	public void setDateNaissance(String dateNaissance) throws Exception{
+		setDateNaissance(StringUtil.getInstance().stringToDate(dateNaissance));
+	}
 	public String getSexe() {
 		return sexe;
 	}
@@ -105,12 +85,13 @@ public class Utilisateur extends BaseModele{
 		}
 	}
 
-	public void setSexe(String sexe) {
-		if(sexe.startsWith("F")||sexe.startsWith("f")) {
-			this.sexe = "FEMININ";
-		}else{
-			this.sexe = "MASCULIN";
+	public void setSexe(String sexe) throws Exception {
+		if(sexe.toUpperCase().startsWith("F")) {
+			this.sexe = "F";
+		}else if(sexe.toUpperCase().startsWith("M")||sexe.toUpperCase().startsWith("H")){
+			this.sexe = "M";
 		}
+		else throw new Exception("Sexe incorrect");
 	}
 	public boolean isFemme(){
 		return getSexe().startsWith("F");
@@ -123,20 +104,10 @@ public class Utilisateur extends BaseModele{
 	}
 
 	public void setEmail(String email) throws Exception {
-		if(!StringUtil.isEmail(email))throw new Exception("Votre email est invalide");
+		if(!StringUtil.getInstance().isEmail(email))throw new Exception("Votre email est invalide");
 		this.email = email;
 	}
 	
-	public String getIdentifiant() {
-		if(identifiant.isEmpty()) return getDefaultIdentifiant();
-		return identifiant;
-	}
-	public String getIdentifiantString(){
-		return "@"+getIdentifiant();
-	}
-	public void setIdentifiant(String identifiant) {
-		this.identifiant = identifiant;
-	}
 	String getDefaultIdentifiant(){
 		return getNom().toLowerCase().concat(getPrenom().toLowerCase()).replaceAll(" ", "");
 	}
@@ -150,7 +121,7 @@ public class Utilisateur extends BaseModele{
 	}
 	
 	public void setPassword(String password, String confirmpassword) throws Exception {
-		if(password.compareTo(confirmpassword)!=0){
+		if(!password.equals(confirmpassword)){
 			throw new Exception("Veuillez reconfirmer votre mot de passe. Ils ne correspondent pas.");
 		}
 		setPassword(password);

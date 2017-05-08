@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     16/03/2017 09:40:47                          */
+/* Created on:     07/05/2017 18:22:24                          */
 /*==============================================================*/
 
 
@@ -43,6 +43,8 @@ drop index SPORT_REGIME_FK;
 drop index SPORT_REGIME_PK;
 
 drop table SPORTREGIME;
+
+drop index UTILISATEUR_UI;
 
 drop index UTILISATEUR_PK;
 
@@ -127,7 +129,7 @@ create table REGIME (
    IDUTILISATEUR        INT4                 not null,
    DEBUTREGIME          DATE                 not null,
    FINREGIME            DATE                 null,
-   POIDSOBJECTIFREGIME  INT2                 null,
+   POIDSOBJECTIFREGIME  FLOAT4               null,
    constraint PK_REGIME primary key (IDREGIME)
 );
 
@@ -191,19 +193,19 @@ IDSPORT
 /* Table: SPORTREGIME                                           */
 /*==============================================================*/
 create table SPORTREGIME (
+   IDSPORTREGIME        SERIAL               not null,
    IDREGIME             INT4                 not null,
    IDSPORT              INT4                 not null,
-   DATESPORTREGIME      DATE                 null,
+   DATESPORTREGIME      DATE                 not null,
    RYTHMESPORTREGIME    INT2                 null,
-   constraint PK_SPORTREGIME primary key (IDREGIME, IDSPORT)
+   constraint PK_SPORTREGIME primary key (IDSPORTREGIME)
 );
 
 /*==============================================================*/
 /* Index: SPORT_REGIME_PK                                       */
 /*==============================================================*/
 create unique index SPORT_REGIME_PK on SPORTREGIME (
-IDREGIME,
-IDSPORT
+IDSPORTREGIME
 );
 
 /*==============================================================*/
@@ -228,11 +230,10 @@ create table UTILISATEUR (
    NOMUTILISATEUR       VARCHAR(100)         not null,
    PRENOMUTILISATEUR    VARCHAR(100)         null,
    DATENAISSANCEUTILISATEUR DATE                 not null,
-   SEXEUTILISATEUR      VARCHAR(8)           not null,
-   IDENTIFIANTUTILISATEUR VARCHAR(25)          not null,
+   EMAILUTILISATEUR     VARCHAR(50)          not null,
+   SEXEUTILISATEUR      VARCHAR(1)           not null,
    PASSWORDUTILISATEUR  VARCHAR(25)          not null,
    ADRESSEUTILISATEUR   VARCHAR(200)         null,
-   EMAILUTILISATEUR     VARCHAR(50)          not null,
    constraint PK_UTILISATEUR primary key (IDUTILISATEUR)
 );
 
@@ -241,6 +242,13 @@ create table UTILISATEUR (
 /*==============================================================*/
 create unique index UTILISATEUR_PK on UTILISATEUR (
 IDUTILISATEUR
+);
+
+/*==============================================================*/
+/* Index: UTILISATEUR_UI                                        */
+/*==============================================================*/
+create unique index UTILISATEUR_UI on UTILISATEUR (
+EMAILUTILISATEUR
 );
 
 alter table ALIMENTATION
@@ -264,12 +272,12 @@ alter table SPORTCONSEIL
       on delete restrict on update restrict;
 
 alter table SPORTREGIME
-   add constraint FK_SPORTREG_SPORTREGI_REGIME foreign key (IDREGIME)
+   add constraint FK_SPORTREG_REGIME_SP_REGIME foreign key (IDREGIME)
       references REGIME (IDREGIME)
       on delete restrict on update restrict;
 
 alter table SPORTREGIME
-   add constraint FK_SPORTREG_SPORTREGI_SPORT foreign key (IDSPORT)
+   add constraint FK_SPORTREG_SPORT_REG_SPORT foreign key (IDSPORT)
       references SPORT (IDSPORT)
       on delete restrict on update restrict;
 

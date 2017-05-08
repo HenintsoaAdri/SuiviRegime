@@ -5,15 +5,17 @@
 <hibernate-mapping>
     <class name="s6.suiviRegime.modele.Alimentation" table="alimentation">
         <meta attribute="class-description">
-            This class contains the matiere detail.
+            This class contains the alimentation detail.
         </meta>
         <id name="id" type="int" column="idalimentation">
-            <generator class="native"/>
+            <generator class="sequence">
+            	<param name="sequence_name">alimentation_idalimentation_seq</param>
+            </generator>
         </id>
-        <many-to-one name="regime" class="s6.suiviRegime.modele.Regime" column="idregime" lazy="false" not-null="true" fetch="select"/>
+        <many-to-one name="Regime" class="s6.suiviRegime.modele.Regime" column="idregime" lazy="proxy" not-null="true" fetch="select"/>
         <property name="repas" column="repasalimentation" type="string"/>
         <property name="boisson" column="boissonalimentation" type="string"/>
-        <property name="periode" column=periodealimentation type="int"/>
-        <property name="date" column=datealimentation type="date"/>
+        <property name="periode" column="periodealimentation" type="int"/>
+        <property name="date" column="datealimentation" type="date"/>
     </class>
 </hibernate-mapping>

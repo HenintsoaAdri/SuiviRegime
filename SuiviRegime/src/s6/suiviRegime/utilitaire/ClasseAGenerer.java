@@ -38,7 +38,7 @@ public class ClasseAGenerer {
 	public void addAttribut(String type, String nom) {
 		type = type.trim();
 		nom = nom.trim();
-		if(!StringUtil.isPrimitif(type)){
+		if(!StringUtil.getInstance().isPrimitif(type)){
 			nom = "id".concat(type.toLowerCase());
 			type = "int";
 			containsAttributObject = true;
@@ -109,11 +109,11 @@ public class ClasseAGenerer {
 		this.packages = packages.replace(";", ".*");
 	}
 	public String getNonPrimitifMethod(String attribut){
-		if(containsAttributObject)return StringUtil.firstUpper(attribut.replace("id", "")).concat("().getId");
+		if(containsAttributObject)return StringUtil.getInstance().firstUpper(attribut.replace("id", "")).concat("().getId");
 		else return attribut;
 	}
 	public String getNonPrimitifNom(String attribut){
-		if(containsAttributObject)return StringUtil.firstUpper(attribut.replace("id", ""));
+		if(containsAttributObject)return StringUtil.getInstance().firstUpper(attribut.replace("id", ""));
 		else return attribut;
 	}
 	public boolean containsAttributObject() {

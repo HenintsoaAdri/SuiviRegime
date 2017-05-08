@@ -1,8 +1,12 @@
 package s6.suiviRegime.modele;
 
+import java.util.List;
+
 public class Sport extends BaseModele{
-	String libelle;
-	String activite;
+	private String libelle;
+	private String activite;
+	private List<SportConseil> conseils;
+	private List<SportRegime> regime;
 	
 	public Sport() {}
 	
@@ -16,12 +20,7 @@ public class Sport extends BaseModele{
 		this.setLibelle(libelle);
 		this.setActivite(activite);
 	}
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+
 	public String getLibelle() {
 		return libelle;
 	}
@@ -34,4 +33,24 @@ public class Sport extends BaseModele{
 	public void setActivite(String activite) {
 		this.activite = activite;
 	}
+	
+	public List<SportConseil> getConseils() {
+		return conseils;
+	}
+	public void setConseils(List<SportConseil> conseils) {
+		this.conseils = conseils;
+	}
+	
+	public List<SportRegime> getRegime() {
+		return regime;
+	}
+	public void setRegime(List<SportRegime> regime) {
+		this.regime = regime;
+	}
+
+	@Override
+	public String toString() {
+		return "[" + libelle + ", " + activite + "]";
+	}
+	
 }

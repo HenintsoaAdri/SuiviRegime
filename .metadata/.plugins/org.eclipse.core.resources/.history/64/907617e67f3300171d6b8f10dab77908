@@ -1,0 +1,27 @@
+package s6.suiviRegime.service;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import s6.suiviRegime.dao.HibernateDao;
+
+public class SportServiceTest {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testAddNewSport() throws Exception {
+		SportService.getInstance().addNewSport("Fitness", "Stretching");
+		HibernateDao dao = new HibernateDao();
+	}
+
+}

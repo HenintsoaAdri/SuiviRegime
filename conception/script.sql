@@ -7,7 +7,7 @@ CREATE OR REPLACE VIEW REGIME_ALIMENTATION AS
 	FROM ALIMENTATION A
 	JOIN REGIME_UTILISATEUR R ON A.IDREGIME = R.IDREGIME;
 CREATE OR REPLACE VIEW REGIME_SPORT AS
-	SELECT R.*, RS.IDSPORT, DATESPORTREGIME, RYTHMESPORTREGIME, LIBELLESPORT, ACTIVITESSPORT
+	SELECT R.*, RS.IDSPORTREGIME, RS.IDSPORT, DATESPORTREGIME, RYTHMESPORTREGIME, LIBELLESPORT, ACTIVITESSPORT
 	FROM SPORTREGIME RS
 	JOIN REGIME_UTILISATEUR R ON RS.IDREGIME = R.IDREGIME
 	JOIN SPORT S ON RS.IDSPORT = S.IDSPORT;
@@ -20,7 +20,7 @@ CREATE OR REPLACE VIEW CONSEIL_SPORT AS
 	FROM SPORTCONSEIL CS
 	JOIN SPORT S ON CS.IDSPORT = S.IDSPORT;
   
-INSERT INTO utilisateur (idutilisateur, nomutilisateur, prenomutilisateur, datenaissanceutilisateur, sexeutilisateur, identifiantutilisateur, passwordutilisateur, adresseutilisateur, emailutilisateur) VALUES (1, 'Henintsoa', 'Adri', '1996-08-20', 'FEMININ', 'adri', 'adri', 'Lot VB 83 Ambatoroka', 'adri@hotmail.com');
+INSERT INTO utilisateur (idutilisateur, nomutilisateur, prenomutilisateur, datenaissanceutilisateur, sexeutilisateur, passwordutilisateur, adresseutilisateur, emailutilisateur) VALUES (1, 'Henintsoa', 'Adri', '1996-08-20', 'F', 'adri', 'Lot VB 83 Ambatoroka', 'adri@hotmail.com');
 
 INSERT INTO regime (idregime, idutilisateur, debutregime, finregime, poidsobjectifregime) VALUES (1, 1, '2017-03-01', '2017-06-01', 50);
 

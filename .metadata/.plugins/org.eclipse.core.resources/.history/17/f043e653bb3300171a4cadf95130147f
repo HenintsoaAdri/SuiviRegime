@@ -1,0 +1,44 @@
+package s6.suiviRegime.service;
+import s6.suiviRegime.dao.HibernateDao;
+import s6.suiviRegime.modele.AlimentationConseil;
+import s6.suiviRegime.modele.Alimentation;
+import s6.suiviRegime.modele.AlimentationConseil;
+
+public class MultiService {
+	private HibernateDao dao;
+	private MultiService(){
+		if(dao == null) dao = new HibernateDao();
+	}
+	private static class Holder
+	{		
+		private final static MultiService instance = new MultiService();
+	}
+	public static MultiService getInstance(){
+		return Holder.instance;
+	}
+	
+	public AlimentationConseil getAlimentationConseil(String alimentation) throws Exception{
+		try{
+			int id = Integer.parseInt(alimentation.trim());
+			AlimentationConseil model = new AlimentationConseil(id);
+			dao.findById(s);
+			return s;
+		}catch(NumberFormatException e){
+			throw new Exception("Conseil d'alimentation introuvable, valeur incorrecte");
+		}
+	}
+	
+	public void updateAlimentationConseil(String id, String sport, String details, String rythme) throws Exception{
+		AlimentationConseil model = getAlimentationConseil(id);
+		dao.save(s);
+	}
+	
+	public void deleteAlimentationConseil(String id) throws Exception{
+		dao.delete(getAlimentationConseil(id));
+	}
+	
+	public AlimentationConseil getRandomTips(){
+		AlimentationConseil conseil = new AlimentationConseil();
+		return (AlimentationConseil)dao.getRandom(conseil);
+	}
+}

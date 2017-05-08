@@ -2,10 +2,12 @@ package s6.suiviRegime.modele;
 
 import java.util.Date;
 
+import s6.suiviRegime.utilitaire.StringUtil;
+
 public class Poids extends BaseModele{
-	Regime regime;
-	Date date;
-	float valeur;
+	private Regime regime;
+	private Date date;
+	private float valeur;
 	
 	public Poids() {}
 	
@@ -34,11 +36,26 @@ public class Poids extends BaseModele{
 	public void setDate(Date date) {
 		this.date = date;
 	}
+	public void setDate(String date) throws Exception {
+		if(date == null || date.isEmpty()) setDate(new Date());
+		else setDate(StringUtil.getInstance().stringToDate(date));
+	}
+	
 	public float getValeur() {
 		return valeur;
 	}
 	public void setValeur(float valeur) {
 		this.valeur = valeur;
+	}
+	public void setValeur(String valeur) throws Exception{
+		try{
+			valeur = valeur.replace(',', '.');
+			float poidsO = Float.parseFloat(valeur.trim());
+			setValeur(poidsO);
+			
+		}catch(NumberFormatException e){
+			throw new Exception("Valeur de poids incorrect");
+		}
 	}
 	
 }

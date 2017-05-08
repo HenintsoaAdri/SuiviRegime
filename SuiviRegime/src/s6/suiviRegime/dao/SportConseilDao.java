@@ -128,7 +128,7 @@ public class SportConseilDao {
 	}
 	public  SportConseil findById(int id) throws Exception {
 		
-		String query = "SELECT * FROM SPORTCONSEIL WHERE IDSPORTCONSEIL = ?";
+		String query = "SELECT * FROM CONSEIL_SPORT WHERE IDSPORTCONSEIL = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;

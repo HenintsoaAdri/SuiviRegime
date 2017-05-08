@@ -1,11 +1,10 @@
 package s6.suiviRegime.modele;
 
 public class AlimentationConseil extends BaseModele{
-	String nom;
-	String matin;
-	String midi;
-	String soir;
-	
+	private String nom;
+	private String matin;
+	private String midi;
+	private String soir;
 	
 	public AlimentationConseil() {}
 	
@@ -20,13 +19,6 @@ public class AlimentationConseil extends BaseModele{
 		this.setMatin(matin);
 		this.setMidi(midi);
 		this.setSoir(soir);
-	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
 	}
 	
 	public String getNom() {

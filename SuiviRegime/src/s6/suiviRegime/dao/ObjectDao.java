@@ -188,7 +188,7 @@ public class ObjectDao {
 		model.setId(res.getInt("ID".concat(nomClass).toUpperCase()));
 		for(Field f : getFields(model)){
 			String fieldTable = f.getName().toUpperCase().concat(getNomClasse(model).toUpperCase());
-			String setter = "set".concat(StringUtil.firstUpper(f.getName()));
+			String setter = "set".concat(StringUtil.getInstance().firstUpper(f.getName()));
 			Method set = model.getClass().getMethod(setter, f.getType());
 			if(f.getType() == List.class){
 				if(next)
@@ -203,7 +203,7 @@ public class ObjectDao {
 			else if(f.getType().isPrimitive()
 			 ||f.getType() == String.class
 			 ||f.getType() == Date.class){
-				String getMethod = "get".concat(StringUtil.firstUpper(f.getType().getSimpleName()));
+				String getMethod = "get".concat(StringUtil.getInstance().firstUpper(f.getType().getSimpleName()));
 				Method get = ResultSet.class.getMethod(getMethod, String.class);
 				set.invoke(model, get.invoke(res, fieldTable));
 			}
@@ -286,13 +286,13 @@ public class ObjectDao {
 		int i = 1;
 		 try {
 			 for(Field f : field){
-				 String getter = "get".concat(StringUtil.firstUpper(f.getName()));
+				 String getter = "get".concat(StringUtil.getInstance().firstUpper(f.getName()));
 				 Method get = model.getClass().getMethod(getter);
 				 Object objGet = get.invoke(model);
 				 if(f.getType().isPrimitive()
 						 ||f.getType() == String.class
 						 ||f.getType() == Date.class){
-					 String setMethod = "set".concat(StringUtil.firstUpper(f.getType().getSimpleName()));
+					 String setMethod = "set".concat(StringUtil.getInstance().firstUpper(f.getType().getSimpleName()));
 					 Method set = null;
 					 if(f.getType() == Date.class){
 						 objGet = new java.sql.Date(((Date)objGet).getTime());

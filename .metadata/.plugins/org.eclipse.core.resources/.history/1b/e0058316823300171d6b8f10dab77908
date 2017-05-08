@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="s6.suiviRegime.modele.Utilisateur" table="utilisateur">
+        <meta attribute="class-description">
+            This class contains the matiere detail.
+        </meta>
+        <id name="id" type="int" column="idutilisateur">
+            <generator class="sequence">
+            	<param name="sequence_name">utilisateur_idutilisateur_seq</param>
+            </generator>
+        </id>
+        <property name="nom" column="nomutilisateur" type="string"/>
+        <property name="prenom" column="prenomutilisateur" type="string"/>
+        <property name="dateNaissance" column="datenaissanceutilisateur" type="date"/>
+        <property name="sexe" column="sexeutilisateur" type="string"/>
+        <property name="password" column="passwordutilisateur" type="string"/>
+        <property name="adresse" column="adresseutilisateur" type="string"/>
+        <property name="email" column="emailutilisateur" type="string"/>
+    </class>
+</hibernate-mapping>

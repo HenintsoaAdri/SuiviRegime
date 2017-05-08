@@ -43,19 +43,22 @@ public class SportRegimeDao{
 	public  void update(SportRegime model) throws Exception {
 		
 		String query = "UPDATE SPORTREGIME "
-				+ "SET DATESPORT = ?, "
+				+ "SET IDSPORT = ?,"
+				+ "IDREGIME = ?,"
+				+ "DATESPORT = ?, "
 				+ "RYTHMESPORT = ?"
-				+ "WHERE IDREGIME = ? AND ID SPORT = ?";
+				+ "WHERE IDSPORTREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
 			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
-	    	statement.setDate(1, new Date(model.getDate().getTime()));
-	    	statement.setFloat(2, model.getRythme());
-	    	statement.setInt(3, model.getRegime().getId());
-	    	statement.setInt(4, model.getSport().getId());
+	    	statement.setInt(1, model.getRegime().getId());
+	    	statement.setInt(2, model.getSport().getId());
+	    	statement.setDate(3, new Date(model.getDate().getTime()));
+	    	statement.setFloat(4, model.getRythme());
+	    	statement.setFloat(5, model.getId());
 			statement.execute();
 			con.commit();
 		}
@@ -71,7 +74,7 @@ public class SportRegimeDao{
 
 	public  void delete(SportRegime model) throws Exception {
 		
-		String query = "DELETE FROM SPORTREGIME WHERE IDREGIME = ? AND IDSPORT= ?";
+		String query = "DELETE FROM SPORTREGIME WHERE IDSPORTREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -94,7 +97,7 @@ public class SportRegimeDao{
 
 	public  List<SportRegime> findAll(int offset) throws Exception {
 		
-		String query = "SELECT * FROM SPORTREGIME LIMIT 10 OFFSET ?";
+		String query = "SELECT * FROM REGIME_SPORT LIMIT 10 OFFSET ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -113,7 +116,7 @@ public class SportRegimeDao{
 	
 	public  List<SportRegime> findBySport(int id) throws Exception {
 		
-		String query = "SELECT * FROM SPORTREGIME WHERE IDSPORT = ?";
+		String query = "SELECT * FROM REGIME_SPORT WHERE IDSPORT = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -132,7 +135,7 @@ public class SportRegimeDao{
 	
 	public  List<SportRegime> findByRegime(Regime regime) throws Exception {
 		
-		String query = "SELECT * FROM SPORTREGIME WHERE IDREGIME = ?";
+		String query = "SELECT * FROM REGIME_SPORT WHERE IDREGIME = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -149,9 +152,34 @@ public class SportRegimeDao{
 		}
 	}
 	
+	public  SportRegime findById(int id) throws Exception {
+		
+		String query = "SELECT * FROM REGIME_SPORT WHERE IDREGIME = ? AND IDSPORT= ?";
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet res = null;
+		try{
+			con = UtilDB.getConnexion();
+			statement = con.prepareStatement(query);
+			statement.setInt(1, id);
+			res = statement.executeQuery();
+			if(res.next()){
+				return Creation.creerSportRegime(res);
+			}
+			throw new Exception("Ce SportRegime est introuvable ou a \u00e9t\u00e9 retir\u00e9");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally {
+			if(res != null)res.close();
+			if(statement != null) statement.close();
+			if(con != null)	con.close();
+		}
+	}
+	
 	public  SportRegime findBySportRegime(Sport sport, Regime regime) throws Exception {
 		
-		String query = "SELECT * FROM SPORTREGIME WHERE IDREGIME = ? AND IDSPORT= ?";
+		String query = "SELECT * FROM REGIME_SPORT WHERE IDREGIME = ? AND IDSPORT= ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;
@@ -174,7 +202,7 @@ public class SportRegimeDao{
 			if(con != null)	con.close();
 		}
 	}
-
+	
 	 List<SportRegime> DBToModel(ResultSet res, Regime regime) throws Exception {
 		try{
 			List<SportRegime> model = new Vector<SportRegime>();

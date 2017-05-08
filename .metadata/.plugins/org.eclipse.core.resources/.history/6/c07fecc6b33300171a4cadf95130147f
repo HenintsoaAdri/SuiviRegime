@@ -1,0 +1,48 @@
+package s6.suiviRegime.service;
+import s6.suiviRegime.dao.HibernateDao;
+import s6.suiviRegime.modele.Sport;
+import s6.suiviRegime.modele.SportConseil;
+
+public class SportService {
+	private HibernateDao dao;
+	private SportService(){
+		if(dao == null) dao = new HibernateDao();
+	}
+	private static class Holder
+	{		
+		private final static SportService instance = new SportService();
+	}
+	public static SportService getInstance(){
+		return Holder.instance;
+	}
+	
+	public Sport getSport(String sport) throws Exception{
+		try{
+			int id = Integer.parseInt(sport.trim());
+			Sport u = new Sport(id);
+			dao.findById(u);
+			return u;
+		}catch(NumberFormatException e){
+			throw new Exception("Utilisateur introuvable, valeur incorrecte");
+		}
+	}
+	public void addNewSport(String libelle, String activite) throws Exception{
+		Sport s = new Sport();
+		s.setLibelle(libelle);
+		s.setActivite(activite);
+		dao.save(s);
+	}
+	public SportConseil getRandomTips(){
+		SportConseil conseil = new SportConseil();
+		return (SportConseil)dao.getRandom(conseil);
+	}
+	public void addSportConseil(String sport, String details, String rythme){
+		
+	}
+	public void updateSport(String id, String libelle, String activite) throws Exception{
+		Sport s = getSport(id);
+		s.setLibelle(libelle);
+		s.setActivite(activite);
+		dao.update(s);
+	}
+}

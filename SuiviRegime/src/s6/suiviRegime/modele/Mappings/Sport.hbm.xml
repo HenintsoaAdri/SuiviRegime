@@ -8,9 +8,19 @@
             This class contains the matiere detail.
         </meta>
         <id name="id" type="int" column="idsport">
-            <generator class="native"/>
+            <generator class="sequence">
+            	<param name="sequence_name">sport_idsport_seq</param>
+            </generator>
         </id>
         <property name="libelle" column="libellesport" type="string"/>
         <property name="activite" column="activitessport" type="string"/>
+        <bag name="conseils" cascade="delete-orphan" fetch="select" inverse="true" lazy="true">
+	         <key column="idsport" not-null="true"/>
+	         <one-to-many class="s6.suiviRegime.modele.SportConseil"/>
+        </bag>
+        <bag name="regime" cascade="delete-orphan" fetch="select" inverse="true" lazy="true">
+	         <key column="idsport" not-null="true"/>
+	         <one-to-many class="s6.suiviRegime.modele.SportRegime"/>
+        </bag>
     </class>
 </hibernate-mapping>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="s6.suiviRegime.modele.SportConseil" table="sportconseil">
+        <meta attribute="class-description">
+            This class contains the matiere detail.
+        </meta>
+        <id name="id" type="int" column="idsportconseil">
+            <generator class="sequence">
+            	<param name="sequence_name">sportconseil_idsportconseil_seq</param>
+            </generator>
+        </id>
+        <many-to-one name="sport" class="s6.suiviRegime.modele.Sport" column="idsport" lazy="false" not-null="true" fetch="select"/>
+        <property name="rythme" column="rythmesportconseil" type="string"/>
+        <property name="details" column="detailsportconseil" type="string"/>
+    </class>
+</hibernate-mapping>

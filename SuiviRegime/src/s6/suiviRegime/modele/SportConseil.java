@@ -2,10 +2,9 @@ package s6.suiviRegime.modele;
 
 public class SportConseil extends BaseModele{
 	
-	Sport sport;
-	float rythme;
-	String details;
-	
+	private Sport sport;
+	private float rythme;
+	private String details;
 	
 	public SportConseil() {}
 	
@@ -29,7 +28,6 @@ public class SportConseil extends BaseModele{
 	public Sport getSport() {
 		return sport;
 	}
-
 	public void setSport(Sport sport) {
 		this.sport = sport;
 	}
@@ -37,15 +35,20 @@ public class SportConseil extends BaseModele{
 	public float getRythme() {
 		return rythme;
 	}
-
 	public void setRythme(float rythme) {
 		this.rythme = rythme;
+	}
+	public void setRythme(String rythme)throws Exception{
+		try {
+			setRythme(Integer.parseInt(rythme));
+		} catch (NumberFormatException e) {
+			throw new Exception("Valeur de rythme invalide");
+		} 
 	}
 
 	public String getDetails() {
 		return details;
 	}
-
 	public void setDetails(String details) {
 		this.details = details;
 	}

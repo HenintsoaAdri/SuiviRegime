@@ -3,14 +3,16 @@ package s6.suiviRegime.modele;
 import java.util.Date;
 import java.util.List;
 
+import s6.suiviRegime.utilitaire.StringUtil;
+
 public class Regime extends BaseModele{
-	Utilisateur utilisateur;
-	Date debut;
-	Date fin;
-	float poidsObjectif;
-	List<Poids> poids;
-	List<Alimentation> alimentation;
-	List<SportRegime> sport;
+	private Utilisateur utilisateur;
+	private Date debut;
+	private Date fin;
+	private float poidsObjectif;
+	private List<Poids> poids;
+	private List<Alimentation> alimentation;
+	private List<SportRegime> sport;
 	
 	public Regime(){}
 	
@@ -27,12 +29,6 @@ public class Regime extends BaseModele{
 		this.setPoidsObjectif(poidsObjectif);
 	}
 	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}
@@ -45,17 +41,35 @@ public class Regime extends BaseModele{
 	public void setDebut(Date debut) {
 		this.debut = debut;
 	}
+	public void setDebut(String date) throws Exception {
+		setDebut(StringUtil.getInstance().stringToDate(date));
+	}
+	
 	public Date getFin() {
 		return fin;
 	}
 	public void setFin(Date fin) {
 		this.fin = fin;
 	}
+	public void setFin(String date) throws Exception {
+		setFin(StringUtil.getInstance().stringToDate(date));
+	}
+	
 	public float getPoidsObjectif() {
 		return poidsObjectif;
 	}
 	public void setPoidsObjectif(float poidsObjectif) {
 		this.poidsObjectif = poidsObjectif;
+	}
+	public void setPoidsObjectif(String poidsObjectif) throws Exception{
+		try{
+			poidsObjectif = poidsObjectif.replace(',', '.');
+			float poidsO = Float.parseFloat(poidsObjectif.trim());
+			setPoidsObjectif(poidsO);
+			
+		}catch(NumberFormatException e){
+			throw new Exception("Poids objectif incorrect");
+		}
 	}
 
 	public List<Poids> getPoids() {

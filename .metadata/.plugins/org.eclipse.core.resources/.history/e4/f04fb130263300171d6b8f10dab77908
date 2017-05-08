@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="s6.suiviRegime.modele.Regime" table="regime">
+        <meta attribute="class-description">
+            This class contains the matiere detail.
+        </meta>
+        <id name="id" type="int" column="idregime">
+            <generator class="identity"/>
+        </id>
+        <many-to-one name="utilisateur" class="s6.suiviRegime.modele.Utilisateur" column="idutilisateur" lazy="false" not-null="true" fetch="select"/>
+        <property name="debut" column="debutregime" type="date"/>
+        <property name="fin" column="finregime" type="date"/>
+        <property name="poidsObjectif" column="poidsobjectifregime" type="int"/>
+        <list name="alimentation" cascade="delete-orphan" table="alimentation" fetch="select">
+	         <key column="idregime"/>
+	         <list-index column="idregime"/>
+	         <one-to-many class="s6.suiviRegime.modele.Alimentation"/>
+        </list>
+        <list name="sport" cascade="delete-orphan" table="sport" fetch="select">
+	         <key column="idregime"/>
+	         <list-index column="idregime"/>
+	         <one-to-many class="s6.suiviRegime.modele.SportRegime"/>
+        </list>
+    </class>
+</hibernate-mapping>

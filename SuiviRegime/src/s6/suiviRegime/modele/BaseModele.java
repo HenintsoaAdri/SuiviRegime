@@ -1,12 +1,13 @@
 package s6.suiviRegime.modele;
 
 public class BaseModele {
-	int id;
+	private int id;
 	
 	public BaseModele() {}
 	public BaseModele(int id) {
 		this.setId(id);
 	}
+	
 	public int getId() {
 		return id;
 	}

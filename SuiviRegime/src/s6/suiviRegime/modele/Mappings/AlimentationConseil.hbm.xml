@@ -8,11 +8,13 @@
             This class contains the matiere detail.
         </meta>
         <id name="id" type="int" column="idalimentationconseil">
-            <generator class="native"/>
+            <generator class="sequence">
+            	<param name="sequence_name">alimentationconseil_idalimentationconseil_seq</param>
+            </generator>
         </id>
         <property name="nom" column="nomalimentationconseil" type="string"/>
         <property name="matin" column="matinalimentationconseil" type="string"/>
-        <property name="midi" column=midialimentationconseil type="int"/>
-        <property name="soir" column=soiralimentationconseil type="int"/>
+        <property name="midi" column="midialimentationconseil" type="string"/>
+        <property name="soir" column="soiralimentationconseil" type="string"/>
     </class>
 </hibernate-mapping>

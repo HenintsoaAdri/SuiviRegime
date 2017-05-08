@@ -2,9 +2,9 @@ package s6.suiviRegime.dao;
 
 
 import org.hibernate.SessionFactory;
-import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
+//import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.service.ServiceRegistry;
+//import org.hibernate.service.ServiceRegistry;
 
 
 public class HibernateUtil {
@@ -13,16 +13,11 @@ public class HibernateUtil {
 
     private static SessionFactory buildSessionFactory() {
         try {
-
-            Configuration configuration = new Configuration();
-            configuration.configure("hibernate.cfg.xml");
-            ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(
-                    configuration.getProperties()).build();
-            return configuration.buildSessionFactory(serviceRegistry);
+            return new Configuration().configure().buildSessionFactory();
         }
         catch (Throwable ex) {
-            // Make sure you log the exception, as it might be swallowed
             System.err.println("Initial SessionFactory creation failed." + ex);
+            ex.printStackTrace();
             throw new ExceptionInInitializerError(ex);
         }
     }

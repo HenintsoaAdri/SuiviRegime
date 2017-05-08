@@ -15,7 +15,7 @@ public class UtilisateurDao {
 	public void save(Utilisateur model) throws Exception{
 		
     	String query = "INSERT INTO UTILISATEUR (NOM,PRENOM,DATENAISSANCE,SEXE,"
-    			+ "EMAIL,IDENTIFIANT,PASSWORD,ADRESSE) "
+    			+ "EMAIL,PASSWORD,ADRESSE) "
     			+ "VALUES (?,?,?,?,?,?,?,?)";
 	    Connection con = null;
 		PreparedStatement statement = null;
@@ -23,14 +23,13 @@ public class UtilisateurDao {
 			con = UtilDB.getConnexion();
 			statement = con.prepareStatement(query);
 	    	con.setAutoCommit(false);
-			statement.setString(2, model.getNom());
-			statement.setString(3, model.getPrenom());
-			statement.setDate(4, new Date(model.getDateNaissance().getTime()));
-			statement.setString(5, model.getSexe());
-			statement.setString(6, model.getEmail());
-			statement.setString(7, model.getIdentifiant());
-			statement.setString(8, model.getPassword());
-			statement.setString(9, model.getAdresse());
+			statement.setString(1, model.getNom());
+			statement.setString(2, model.getPrenom());
+			statement.setDate(3, new Date(model.getDateNaissance().getTime()));
+			statement.setString(4, model.getSexe());
+			statement.setString(5, model.getEmail());
+			statement.setString(6, model.getPassword());
+			statement.setString(7, model.getAdresse());
 			statement.execute();
 			con.commit();
 		}
@@ -56,7 +55,6 @@ public class UtilisateurDao {
 					+ "PRENOM = ?, "
 					+ "DATENAISSANCE = ?, "
 					+ "SEXE=?, "
-					+ "IDENTIFIANT = ?," 
 					+ "PASSWORD = ?, "
 					+ "ADRESSE = ?, "
 					+ "EMAIL = ?"
@@ -70,11 +68,10 @@ public class UtilisateurDao {
 			statement.setString(2, model.getPrenom());
 			statement.setDate(3, new Date(model.getDateNaissance().getTime()));
 			statement.setString(4, model.getSexe());
-			statement.setString(5, model.getIdentifiant());
-			statement.setString(6, model.getPassword());
-			statement.setString(7, model.getAdresse());
-			statement.setString(8, model.getEmail());
-			statement.setInt(9, model.getId());
+			statement.setString(5, model.getPassword());
+			statement.setString(6, model.getAdresse());
+			statement.setString(7, model.getEmail());
+			statement.setInt(8, model.getId());
 			statement.execute();
 			con.commit();
 		}
@@ -179,29 +176,31 @@ public class UtilisateurDao {
 	}
 	
 	
-//		public static Utilisateur connexion(String email, String password) throws Exception {
-//	
-//		String query = "SELECT * FROM UTILISATEUR WHERE IDENTIFIANT = ? AND PASSWORD = ?";
-//		Connection con = null;
-//		PreparedStatement statement = null;
-//		ResultSet res = null;
-//		try {
-//			statement.setString(1, email);
-//			statement.setString(2, password);
-//			res = statement.executeQuery();
-//			if(res.next()){
-//				return Creation.creerUtilisateur(res);
-//			}
-//			throw new Exception("Vos identifiants sont incorrects ou nous ne vous connaissons pas encore");
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//			throw e;
-//		} finally {
-//			if(res!=null)res.close();
-//			if(statement != null)statement.close();
-//			if(con != null)con.close();
-//		}
-//	}
+		public static Utilisateur connexion(String email, String password) throws Exception {
+	
+		String query = "SELECT * FROM UTILISATEUR WHERE IDENTIFIANT = ? AND PASSWORD = ?";
+		Connection con = null;
+		PreparedStatement statement = null;
+		ResultSet res = null;
+		try {
+			con = UtilDB.getConnexion();
+			statement = con.prepareStatement(query);
+			statement.setString(1, email);
+			statement.setString(2, password);
+			res = statement.executeQuery();
+			if(res.next()){
+				return Creation.creerUtilisateur(res);
+			}
+			throw new Exception("Vos identifiants sont incorrects ou nous ne vous connaissons pas encore");
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		} finally {
+			if(res!=null)res.close();
+			if(statement != null)statement.close();
+			if(con != null)con.close();
+		}
+	}
 	static List<Utilisateur> DBToModel(ResultSet res)throws Exception{
 		try{
 			List<Utilisateur> model = new Vector<Utilisateur>();

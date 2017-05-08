@@ -1,0 +1,28 @@
+package s6.suiviRegime.test;
+
+import static org.junit.Assert.*;
+
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Test;
+
+import s6.suiviRegime.modele.Utilisateur;
+
+public class UtilisateurServiceTest {
+
+	@Before
+	public void setUp() throws Exception {
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void testInscription() {
+		Utilisateur u = new Utilisateur();
+		
+		fail("Not yet implemented");
+	}
+
+}

@@ -12,7 +12,7 @@ public class AlimentationConseilDao {
 
 	public  void save(AlimentationConseil model) throws Exception{
 		
-    	String query = "INSERT INTO CONSEILALIMENTATION(NOMCONSEILALIMENTATION, MATIN, MIDI, SOIR) "
+    	String query = "INSERT INTO ALIMENTATIONCONSEIL(NOMALIMENTATIONCONSEIL, MATINALIMENTATIONCONSEIL, MIDIALIMENTATIONCONSEIL, SOIRALIMENTATIONCONSEIL) "
     			+ "VALUES (?, ?, ?, ?)";
 	    Connection con = null;
 		PreparedStatement statement = null;
@@ -39,12 +39,12 @@ public class AlimentationConseilDao {
 
 	public  void update(AlimentationConseil model) throws Exception {
 		
-		String query = "UPDATE CONSEILALIMENTATION "
-				+ "SET NOMCONSEILALIMENTATION = ?, "
+		String query = "UPDATE ALIMENTATIONCONSEIL "
+				+ "SET NOMALIMENTATIONCONSEIL = ?, "
 				+ "MATIN = ?, "
 				+ "MIDI = ?, "
 				+ "SOIR = ? "
-				+ "WHERE IDCONSEILALIMENTATION = ?";
+				+ "WHERE IDALIMENTATIONCONSEIL = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -72,7 +72,7 @@ public class AlimentationConseilDao {
 
 	public  void delete(AlimentationConseil model) throws Exception {
 		
-		String query = "DELETE FROM CONSEILALIMENTATION WHERE IDCONSEILALIMENTATION = ?";
+		String query = "DELETE FROM ALIMENTATIONCONSEIL WHERE IDALIMENTATIONCONSEIL = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -94,7 +94,7 @@ public class AlimentationConseilDao {
 
 	public  List<AlimentationConseil> findAll(int offset) throws Exception {
 		
-		String query = "SELECT * FROM CONSEILALIMENTATION LIMIT 10 OFFSET ?";
+		String query = "SELECT * FROM ALIMENTATIONCONSEIL LIMIT 10 OFFSET ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -113,7 +113,7 @@ public class AlimentationConseilDao {
 
 	public  List<AlimentationConseil> findAll() throws Exception {
 		
-		String query = "SELECT * FROM CONSEILALIMENTATION";
+		String query = "SELECT * FROM ALIMENTATIONCONSEIL";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -131,7 +131,7 @@ public class AlimentationConseilDao {
 	
 	public  AlimentationConseil findById(int id) throws Exception {
 		
-		String query = "SELECT * FROM CONSEILALIMENTATION WHERE IDCONSEILALIMENTATION = ?";
+		String query = "SELECT * FROM ALIMENTATIONCONSEIL WHERE IDALIMENTATIONCONSEIL = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		ResultSet res = null;

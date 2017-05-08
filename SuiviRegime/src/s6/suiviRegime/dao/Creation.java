@@ -14,7 +14,6 @@ public class Creation {
 				res.getDate("DATENAISSANCEUTILISATEUR"),
 				res.getString("SEXEUTILISATEUR"),
 				res.getString("EMAILUTILISATEUR"),
-				res.getString("IDENTIFIANTUTILISATEUR"),
 				res.getString("PASSWORDUTILISATEUR"),
 				res.getString("ADRESSEUTILISATEUR"));
 		return model;
@@ -22,12 +21,13 @@ public class Creation {
 	
 	public static SportRegime creerSportRegime(ResultSet res, Regime regime) throws Exception {
 		SportRegime model = new SportRegime(
+				res.getInt("IDSPORTREGIME"),
 				res.getInt("IDSPORT"),
 				res.getString("LIBELLESPORT"),
 				res.getString("ACTIVITESSPORT"),
 				regime,
-				res.getDate("DATESPORT"),
-				res.getInt("RYTHMESPORT"));
+				res.getDate("DATESPORTREGIME"),
+				res.getInt("RYTHMESPORTREGIME"));
 		return model;
 	}
 	public static SportRegime creerSportRegime(ResultSet res) throws Exception {
@@ -72,8 +72,8 @@ public class Creation {
 		Regime model = new Regime(
 				res.getInt("IDREGIME"),
 				utilisateur,
-				res.getDate("DATEDEBUTREGIME"),
-				res.getDate("DATEFINREGIME"),
+				res.getDate("DEBUTREGIME"),
+				res.getDate("FINREGIME"),
 				res.getFloat("POIDSOBJECTIFREGIME"));
 		return model;
 	}

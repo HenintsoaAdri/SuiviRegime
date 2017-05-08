@@ -8,7 +8,7 @@ import s6.suiviRegime.modele.*;
 
 public class UtilisateurDao{ 
 	public  void save(Utilisateur model) throws Exception{
- 		String query = "INSERT INTO UTILISATEUR (NOMUTILISATEUR, PRENOMUTILISATEUR, SEXEUTILISATEUR, IDENTIFIANTUTILISATEUR, PASSWORDUTILISATEUR, ADRESSEUTILISATEUR, EMAILUTILISATEUR) VALUES(?, ?, ?, ?, ?, ?, ?)";
+ 		String query = "INSERT INTO UTILISATEUR (NOMUTILISATEUR, PRENOMUTILISATEUR, SEXEUTILISATEUR, PASSWORDUTILISATEUR, ADRESSEUTILISATEUR, EMAILUTILISATEUR) VALUES(?, ?, ?, ?, ?, ?, ?)";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -18,7 +18,6 @@ public class UtilisateurDao{
 			 statement.setString(1, model.getNom());
 			 statement.setString(2, model.getPrenom());
 			 statement.setString(3, model.getSexe());
-			 statement.setString(4, model.getIdentifiant());
 			 statement.setString(5, model.getPassword());
 			 statement.setString(6, model.getAdresse());
 			 statement.setString(7, model.getEmail());
@@ -35,7 +34,7 @@ public class UtilisateurDao{
 	}
 	public  void update(Utilisateur model) throws Exception{
 
-		String query = "UPDATE UTILISATEUR SET NOMUTILISATEUR= ?, PRENOMUTILISATEUR= ?, SEXEUTILISATEUR= ?, IDENTIFIANTUTILISATEUR= ?, PASSWORDUTILISATEUR= ?, ADRESSEUTILISATEUR= ?, EMAILUTILISATEUR= ? WHERE IDUTILISATEUR = ?";
+		String query = "UPDATE UTILISATEUR SET NOMUTILISATEUR= ?, PRENOMUTILISATEUR= ?, SEXEUTILISATEUR= ?, PASSWORDUTILISATEUR= ?, ADRESSEUTILISATEUR= ?, EMAILUTILISATEUR= ? WHERE IDUTILISATEUR = ?";
 		Connection con = null;
 		PreparedStatement statement = null;
 		try{
@@ -45,7 +44,6 @@ public class UtilisateurDao{
 			 statement.setString(1, model.getNom());
 			 statement.setString(2, model.getPrenom());
 			 statement.setString(3, model.getSexe());
-			 statement.setString(4, model.getIdentifiant());
 			 statement.setString(5, model.getPassword());
 			 statement.setString(6, model.getAdresse());
 			 statement.setString(7, model.getEmail());
@@ -162,7 +160,6 @@ public class UtilisateurDao{
 		model.setNom(res.getString("NOMUTILISATEUR"));
 		model.setPrenom(res.getString("PRENOMUTILISATEUR"));
 		model.setSexe(res.getString("SEXEUTILISATEUR"));
-		model.setIdentifiant(res.getString("IDENTIFIANTUTILISATEUR"));
 		model.setPassword(res.getString("PASSWORDUTILISATEUR"));
 		model.setAdresse(res.getString("ADRESSEUTILISATEUR"));
 		model.setEmail(res.getString("EMAILUTILISATEUR"));
