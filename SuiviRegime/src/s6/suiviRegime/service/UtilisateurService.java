@@ -1,11 +1,9 @@
 package s6.suiviRegime.service;
-import s6.suiviRegime.dao.HibernateDao;
 import s6.suiviRegime.modele.Utilisateur;
 
 public class UtilisateurService {
-	private HibernateDao dao;
+	private BaseService service;
 	private UtilisateurService(){
-		if(dao == null) dao = new HibernateDao();
 	}
 	private static class Holder
 	{		
@@ -14,6 +12,14 @@ public class UtilisateurService {
 	public static UtilisateurService getInstance(){
 		return Holder.instance;
 	}
+	
+	public BaseService getService() {
+		return service;
+	}
+	public void setService(BaseService service) {
+		this.service = service;
+	}
+
 	public void inscription(String nom, String prenom, String dateNaissance, String sexe, 
 			String email, String password, String confirmPassword, String adresse) throws Exception{
 		Utilisateur u = new Utilisateur();
@@ -24,32 +30,38 @@ public class UtilisateurService {
 		u.setEmail(email);
 		u.setPassword(password, confirmPassword);
 		u.setAdresse(adresse);
-		HibernateDao dao = new HibernateDao();
-		dao.save(u);
+		service.save(u);
 	}
 	public Utilisateur login(String email, String password) throws Exception{
+		if(email == null || email.isEmpty()) throw new Exception("Votre adresse email est requise !");
 		Utilisateur u = new Utilisateur();
-		u.setEmail(email);
+		u.setEmail(email.trim());
 		u.setPassword(password);
-		Utilisateur user = dao.login(u);
+		Utilisateur user = service.getDao().login(u);
 		if(user == null) throw new Exception("Vos identifiants sont incorrectes ou on ne vous connait pas encore !");
 		return (Utilisateur)user;
 	}
 	public Utilisateur getUtilisateur(String utilisateur) throws Exception{
 		try{
-			int id = Integer.parseInt(utilisateur.trim());
-			Utilisateur u = new Utilisateur(id);
-			dao.findById(u);
-			return u;
-		}catch(NumberFormatException e){
+			return (Utilisateur)service.get(utilisateur, new Utilisateur());
+		}catch(Exception e){
 			throw new Exception("Utilisateur introuvable, valeur incorrecte");
 		}
 	}
 	public void deleteUtilisateur(String utilisateur) throws Exception{
-		Utilisateur u = getUtilisateur(utilisateur);
-		dao.delete(u);
+		service.delete(utilisateur, new Utilisateur());
 	}
-	public void updateUtilisateur(Utilisateur utilisateur) throws Exception{
-		dao.update(utilisateur);
+	public void updateUtilisateur(String id, String nom, String prenom, String dateNaissance, String sexe, 
+			String email, String password, String confirmPassword, String adresse) throws Exception{
+		Utilisateur u = (Utilisateur)service.get(id, new Utilisateur());
+		u.setNom(nom);
+		u.setPrenom(prenom);
+		u.setDateNaissance(dateNaissance);
+		u.setSexe(sexe);
+		u.setEmail(email);
+		u.setPassword(password, confirmPassword);
+		u.setAdresse(adresse);
+		service.update(u);
+		
 	}
 }

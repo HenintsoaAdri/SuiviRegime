@@ -1,7 +1,0 @@
-package s6.suiviRegime.modele;
-
-public class BaseModele {
-	int id;
-	
-	public BaseModele() {}
-}

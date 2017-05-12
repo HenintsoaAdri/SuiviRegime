@@ -1,5 +1,6 @@
 package s6.suiviRegime.dao;
 
+import s6.suiviRegime.modele.AnalyseRegime;
 import s6.suiviRegime.modele.BaseModele;
 import s6.suiviRegime.modele.Utilisateur;
 import org.hibernate.Criteria;
@@ -15,7 +16,6 @@ public class HibernateDao {
     private SessionFactory sessionFactory; // = HibernateUtil.getSessionFactory();
     
     public HibernateDao(){
-    	setSessionFactory(HibernateUtil.getSessionFactory());
     }
     public SessionFactory getSessionFactory() {
         return sessionFactory;
@@ -131,4 +131,18 @@ public class HibernateDao {
                 session.close();
         }
     }
+	public AnalyseRegime findUnclosedRegime(Utilisateur model) {
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	return (AnalyseRegime)(session.createQuery("FROM AnalyseRegime "
+            		+ "WHERE utilisateur.id = :idutilisateur AND closed = FALSE", AnalyseRegime.class)
+            		.setParameter("idutilisateur", model.getId()).uniqueResult());
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
 }

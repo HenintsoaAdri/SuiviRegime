@@ -1,28 +1,8 @@
-CREATE OR REPLACE VIEW REGIME_UTILISATEUR AS
-	SELECT U.*, R.IDREGIME, R.DEBUTREGIME, R.FINREGIME, R.POIDSOBJECTIFREGIME
-	FROM REGIME R
-    JOIN UTILISATEUR U ON R.IDUTILISATEUR = U.IDUTILISATEUR;
-CREATE OR REPLACE VIEW REGIME_ALIMENTATION AS
-	SELECT R.*, A.IDALIMENTATION, REPASALIMENTATION, BOISSONALIMENTATION, PERIODEALIMENTATION, DATEALIMENTATION
-	FROM ALIMENTATION A
-	JOIN REGIME_UTILISATEUR R ON A.IDREGIME = R.IDREGIME;
-CREATE OR REPLACE VIEW REGIME_SPORT AS
-	SELECT R.*, RS.IDSPORTREGIME, RS.IDSPORT, DATESPORTREGIME, RYTHMESPORTREGIME, LIBELLESPORT, ACTIVITESSPORT
-	FROM SPORTREGIME RS
-	JOIN REGIME_UTILISATEUR R ON RS.IDREGIME = R.IDREGIME
-	JOIN SPORT S ON RS.IDSPORT = S.IDSPORT;
-CREATE OR REPLACE VIEW REGIME_POIDS AS
-	SELECT R.*, IDPOIDS, VALEURPOIDS, DATEPOIDS
-	FROM POIDS P
-	JOIN REGIME_UTILISATEUR R ON P.IDREGIME = R.IDREGIME;
-CREATE OR REPLACE VIEW CONSEIL_SPORT AS
-	SELECT CS.*, LIBELLESPORT, ACTIVITESSPORT
-	FROM SPORTCONSEIL CS
-	JOIN SPORT S ON CS.IDSPORT = S.IDSPORT;
-  
+INSERT INTO admin(identifiantadmin, passwordadmin) VALUES ('admin','adminpass');
+
 INSERT INTO utilisateur (idutilisateur, nomutilisateur, prenomutilisateur, datenaissanceutilisateur, sexeutilisateur, passwordutilisateur, adresseutilisateur, emailutilisateur) VALUES (1, 'Henintsoa', 'Adri', '1996-08-20', 'F', 'adri', 'Lot VB 83 Ambatoroka', 'adri@hotmail.com');
 
-INSERT INTO regime (idregime, idutilisateur, debutregime, finregime, poidsobjectifregime) VALUES (1, 1, '2017-03-01', '2017-06-01', 50);
+INSERT INTO regime (idregime, idutilisateur, debutregime, finregime, poidsobjectifregime, poidsinitialregime) VALUES (1, 1, '2017-03-01', '2017-06-01', 50, 59);
 
 INSERT INTO alimentation (idalimentation, idregime, repasalimentation, boissonalimentation, periodealimentation, datealimentation) VALUES (1, 1, 'Yaourt - Pain beurré', 'Jus de fruit', 1, '2017-03-01');
 INSERT INTO alimentation (idalimentation, idregime, repasalimentation, boissonalimentation, periodealimentation, datealimentation) VALUES (2, 1, 'Riz - Porc aux légume', 'Jus de fruit', 2, '2017-03-01');

@@ -1,12 +1,10 @@
 package s6.suiviRegime.service;
-import s6.suiviRegime.dao.HibernateDao;
 import s6.suiviRegime.modele.AlimentationConseil;
 
 public class MultiService {
-	private HibernateDao dao;
-	private MultiService(){
-		if(dao == null) dao = new HibernateDao();
-	}
+	private BaseService service;
+	
+	private MultiService(){}
 	private static class Holder
 	{		
 		private final static MultiService instance = new MultiService();
@@ -14,21 +12,26 @@ public class MultiService {
 	public static MultiService getInstance(){
 		return Holder.instance;
 	}
+	
+	public BaseService getService() {
+		return service;
+	}
+	public void setService(BaseService service) {
+		this.service = service;
+	}
+
 	public void addAlimentationConseil(String nom, String matin, String midi, String soir) throws Exception{
 		AlimentationConseil model = new AlimentationConseil();
 		model.setNom(nom);
 		model.setMatin(matin);
 		model.setMidi(midi);
 		model.setSoir(soir);
-		dao.save(model);
+		service.save(model);
 	}
 	public AlimentationConseil getAlimentationConseil(String alimentation) throws Exception{
 		try{
-			int id = Integer.parseInt(alimentation.trim());
-			AlimentationConseil model = new AlimentationConseil(id);
-			dao.findById(model);
-			return model;
-		}catch(NumberFormatException e){
+			return (AlimentationConseil)service.get(alimentation, new AlimentationConseil());
+		}catch(Exception e){
 			throw new Exception("Conseil d'alimentation introuvable, valeur incorrecte");
 		}
 	}
@@ -38,13 +41,13 @@ public class MultiService {
 		model.setMatin(matin);
 		model.setMidi(midi);
 		model.setSoir(soir);
-		dao.update(model);
+		service.update(model);
 	}	
 	public void deleteAlimentationConseil(String id) throws Exception{
-		dao.delete(getAlimentationConseil(id));
+		service.delete(id, new AlimentationConseil());
 	}
 	
 	public AlimentationConseil getRandomTips(){
-		return (AlimentationConseil)dao.getRandom(new AlimentationConseil());
+		return (AlimentationConseil)service.getRandom(new AlimentationConseil());
 	}
 }

@@ -2,7 +2,7 @@ package s6.suiviRegime.modele;
 
 import java.util.Date;
 
-import s6.suiviRegime.utilitaire.StringUtil;
+import s6.suiviRegime.utilitaire.DateUtil;
 
 public class SportRegime extends BaseModele{
 	
@@ -54,7 +54,7 @@ public class SportRegime extends BaseModele{
 	}
 	public void setDate(String date) throws Exception {
 		if(date == null || date.isEmpty()) setDate(new Date());
-		else setDate(StringUtil.getInstance().stringToDate(date));
+		else setDate(DateUtil.getInstance().stringToDate(date));
 	}
 	
 	public int getRythme() {

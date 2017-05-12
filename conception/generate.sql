@@ -1,8 +1,12 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     07/05/2017 18:22:24                          */
+/* Created on:     12/05/2017 11:15:11                          */
 /*==============================================================*/
 
+
+drop index ADMIN_PK;
+
+drop table ADMIN;
 
 drop index ALIMENTATION_REGIME_FK;
 
@@ -49,6 +53,24 @@ drop index UTILISATEUR_UI;
 drop index UTILISATEUR_PK;
 
 drop table UTILISATEUR;
+
+/*==============================================================*/
+/* Table: ADMIN                                                 */
+/*==============================================================*/
+create table ADMIN (
+   IDADMIN              SERIAL               not null,
+   IDENTIFIANTADMIN     VARCHAR(15)          not null,
+   PASSWORDADMIN        VARCHAR(25)          not null,
+   LASTLOGINADMIN       TIME WITH TIME ZONE  null,
+   constraint PK_ADMIN primary key (IDADMIN)
+);
+
+/*==============================================================*/
+/* Index: ADMIN_PK                                              */
+/*==============================================================*/
+create unique index ADMIN_PK on ADMIN (
+IDADMIN
+);
 
 /*==============================================================*/
 /* Table: ALIMENTATION                                          */
@@ -130,6 +152,7 @@ create table REGIME (
    DEBUTREGIME          DATE                 not null,
    FINREGIME            DATE                 null,
    POIDSOBJECTIFREGIME  FLOAT4               null,
+   POIDSINITIALREGIME   FLOAT4               null,
    constraint PK_REGIME primary key (IDREGIME)
 );
 

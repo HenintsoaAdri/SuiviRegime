@@ -1,0 +1,70 @@
+<%@page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<%@page import="s6.suiviRegime.modele.*" %>
+<%@page import="java.time.format.DateTimeFormatter"%>
+<%@page import="java.time.LocalDate"%>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+      <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Following You !</title>
+	<!-- BOOTSTRAP STYLES-->
+    <link href="css/bootstrap.css" rel="stylesheet" />
+     <!-- FONTAWESOME STYLES-->
+    <link href="css/font-awesome.css" rel="stylesheet" />
+     <!-- MORRIS CHART STYLES-->
+    <link href="js/morris/morris-0.4.3.min.css" rel="stylesheet" />
+        <!-- CUSTOM STYLES-->
+    <link href="css/custom.css" rel="stylesheet" />
+</head>
+<body>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-cls-top " role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".sidebar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html">Following You !</a> 
+            </div>
+  <div style="color: white;
+padding: 15px 50px 5px 50px;
+float: right;
+font-size: 16px;"> Bonjour, <% out.print(((Utilisateur)session.getAttribute("user")).getFullName()); %>! &nbsp; <a href="Deconnexion" class="btn btn-danger square-btn-adjust">Deconnexion</a> </div>
+        </nav>   
+           <!-- /. NAV TOP  -->
+                <nav class="navbar-default navbar-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav" id="main-menu">
+					<li class="text-center">
+                    	<!-- <img src="img/find_user.png" class="user-image img-responsive"/> -->
+                    	<i class="fa fa-id-card-o fa-9x" aria-hidden="true"></i>
+					</li>
+                    <li>
+                        <a class="active-menu"  href="Utilisateur"><i class="fa fa-dashboard fa-3x"></i> Tableau de bord</a>
+                    </li>
+                     <li>
+                        <a  href="Utilisateur/Regime"><i class="fa fa-calendar fa-3x"></i> R&eacute;gimes</a>
+                    </li>
+                    <li>
+                        <a  href="Utilisateur/Poids"><i class="fa fa-line-chart fa-3x"></i> Poids et &Eacute;volution</a>
+                    </li>
+						   <li  >
+                        <a   href="Utilisateur/Alimentation"><i class="fa fa-cutlery fa-3x"></i> Alimentation quotidienne</a>
+                    </li>	
+                      <li  >
+                        <a  href="Utilisateur/Sport"><i class="fa fa-heartbeat fa-3x"></i> Sports</a>
+                    </li>
+                    <li  >
+                        <a  href="Utilisateur/Conseil"><i class="fa fa-bullhorn fa-3x"></i> Conseils pratiques</a>
+                    </li>				
+                </ul>
+               
+            </div>
+            
+        </nav>  
+        <!-- /. NAV SIDE  -->
+        <div id="page-wrapper" >

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="s6.suiviRegime.modele.Admin" table="admin">
+        <meta attribute="class-description">
+            This class contains the admin detail.
+        </meta>
+        <id name="id" type="int" column="idadmin">
+            <generator class="sequence">
+            	<param name="sequence_name">admin_idadmin_seq</param>
+            </generator>
+        </id>
+        <property name="identifiant" column="identifiantadmin" type="string"/>
+        <property name="password" column="passwordadmin" type="string"/>
+        <property name="lastLogin" column="lastloginadmin" type="timestamp"/>
+    </class>
+</hibernate-mapping>

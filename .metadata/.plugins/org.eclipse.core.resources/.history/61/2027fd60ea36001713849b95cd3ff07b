@@ -1,0 +1,6 @@
+package s6.suiviRegime.modele;
+
+public class Admin extends BaseModele {
+	String identifiant;
+	String password;
+}

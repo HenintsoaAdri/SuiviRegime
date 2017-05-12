@@ -1,0 +1,47 @@
+package s6.suiviRegime.service;
+import s6.suiviRegime.dao.HibernateDao;
+import s6.suiviRegime.modele.AlimentationConseil;
+import s6.suiviRegime.modele.BaseModele;
+
+public class BaseService {
+	private HibernateDao dao;
+	private BaseService(){
+		if(dao == null) dao = new HibernateDao();
+	}
+	private static class Holder
+	{		
+		private final static BaseService instance = new BaseService();
+	}
+	public static BaseService getInstance(){
+		return Holder.instance;
+	}
+	public void addAlimentationConseil(String nom, String matin, String midi, String soir) throws Exception{
+		AlimentationConseil model = new AlimentationConseil();
+		model.setNom(nom);
+		model.setMatin(matin);
+		model.setMidi(midi);
+		model.setSoir(soir);
+		dao.save(model);
+	}
+	public BaseModele get(String idBase, BaseModele model) throws Exception{
+		try{
+			int id = Integer.parseInt(idBase.trim());
+			model.setId(id);
+			dao.findById(model);
+			return model;
+		}catch(NumberFormatException e){
+			throw new Exception("Element introuvable, valeur incorrecte");
+		}
+	}
+	public void updateAlimentationConseil(String id, String nom, String matin, String midi, String soir) throws Exception{
+		AlimentationConseil model = getAlimentationConseil(id);
+		model.setNom(nom);
+		model.setMatin(matin);
+		model.setMidi(midi);
+		model.setSoir(soir);
+		dao.update(model);
+	}	
+	public void delete(String idBase, BaseModele base) throws Exception{
+		dao.delete(get(idBase, base));
+	}
+}

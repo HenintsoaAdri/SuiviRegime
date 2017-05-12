@@ -1,14 +1,6 @@
 package s6.suiviRegime.utilitaire;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeFormatterBuilder;
-import java.time.format.DateTimeParseException;
-import java.time.format.FormatStyle;
-import java.util.Date;
-import java.util.Locale;
+import java.text.NumberFormat;
 
 public class StringUtil {
 	private StringUtil(){}
@@ -78,17 +70,7 @@ public class StringUtil {
 		}
 		return compteurMaj>0&&compteurDigit>0&&compteurSpec>0&&string.length()>=8;
 	}
-	
-    public LocalTime stringToTime(String heure, String minute){
-    	return LocalTime.of(Integer.valueOf(heure), Integer.valueOf(minute));
-    }
-    public String formatISO(String iso){
-    	return formatDateTime(LocalDateTime.parse(iso, DateTimeFormatter.RFC_1123_DATE_TIME));
-    }
-    public String formatDateTime(LocalDateTime local){
-    	return DateTimeFormatter.ofLocalizedDate(FormatStyle.FULL).format(local.toLocalDate())+" \u00e0 "+
-    			DateTimeFormatter.ofLocalizedTime(FormatStyle.MEDIUM).format(local.toLocalTime());
-    }
+
     public String firstUpper(String string){
     	return string.replaceFirst(String.valueOf(string.charAt(0)), String.valueOf(string.charAt(0)).toUpperCase());
     }
@@ -102,18 +84,9 @@ public class StringUtil {
 		}
 		return false;
 	}
-    public Date stringToDate(String date) throws Exception{
-    	DateTimeFormatter format = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("uuuu-MM-d").toFormatter(Locale.FRANCE);
-    	try{
-			return java.sql.Date.valueOf(LocalDate.parse(date, format));
-		} catch (DateTimeParseException e) {
-			try{
-				format = new DateTimeFormatterBuilder().parseCaseInsensitive().appendPattern("d-MM-uuuu").toFormatter(Locale.FRANCE);
-				return java.sql.Date.valueOf(LocalDate.parse(date, format));
-			}catch(Exception e1){
-				e1.printStackTrace();
-				throw new Exception("Format de date non support\u00e9");				
-			}
-		}
+    public String formatFloat(float nombre){
+    	NumberFormat format = NumberFormat.getInstance();
+    	format.setMaximumFractionDigits(2);
+    	return format.format(nombre);
     }
 }

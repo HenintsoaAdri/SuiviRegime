@@ -4,6 +4,7 @@ import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
+import s6.suiviRegime.utilitaire.DateUtil;
 import s6.suiviRegime.utilitaire.StringUtil;
 
 public class Utilisateur extends BaseModele{
@@ -71,7 +72,7 @@ public class Utilisateur extends BaseModele{
 		this.dateNaissance = dateNaissance;
 	}
 	public void setDateNaissance(String dateNaissance) throws Exception{
-		setDateNaissance(StringUtil.getInstance().stringToDate(dateNaissance));
+		setDateNaissance(DateUtil.getInstance().stringToDate(dateNaissance));
 	}
 	public String getSexe() {
 		return sexe;

@@ -1,7 +1,5 @@
 package s6.suiviRegime.test;
 
-import static org.junit.Assert.*;
-
 import java.io.File;
 
 import org.junit.After;

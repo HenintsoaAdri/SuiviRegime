@@ -1,14 +1,11 @@
 package s6.suiviRegime.service;
 
-import s6.suiviRegime.dao.HibernateDao;
 import s6.suiviRegime.modele.Sport;
 import s6.suiviRegime.modele.SportConseil;
 
 public class SportService {
-	private HibernateDao dao;
-	private SportService(){
-		if(dao == null) dao = new HibernateDao();
-	}
+	private BaseService service;
+	private SportService(){}
 	private static class Holder
 	{		
 		private final static SportService instance = new SportService();
@@ -17,23 +14,24 @@ public class SportService {
 		return Holder.instance;
 	}
 	
+	public BaseService getService() {
+		return service;
+	}
+	public void setService(BaseService service) {
+		this.service = service;
+	}
+
 	public Sport getSport(String sport) throws Exception{
 		try{
-			int id = Integer.parseInt(sport.trim());
-			Sport s = new Sport(id);
-			dao.findById(s);
-			return s;
-		}catch(NumberFormatException e){
+			return (Sport)service.get(sport, new Sport());
+		}catch(Exception e){
 			throw new Exception("Sport introuvable, valeur incorrecte");
 		}
 	}
 	public SportConseil getSportConseil(String sportConseil) throws Exception{
 		try{
-			int id = Integer.parseInt(sportConseil.trim());
-			SportConseil s = new SportConseil(id);
-			dao.findById(s);
-			return s;
-		}catch(NumberFormatException e){
+			return (SportConseil)service.get(sportConseil, new Sport());
+		}catch(Exception e){
 			throw new Exception("Conseil sport introuvable, valeur incorrecte");
 		}
 	}
@@ -41,35 +39,35 @@ public class SportService {
 		Sport s = new Sport();
 		s.setLibelle(libelle);
 		s.setActivite(activite);
-		dao.save(s);
+		service.save(s);
 	}
 	public void addSportConseil(String sport, String details, String rythme) throws Exception{
 		SportConseil s = new SportConseil();
 		s.setSport(getSport(sport));
 		s.setDetails(details);
 		s.setRythme(rythme);
-		dao.save(s);
+		service.save(s);
 	}
 	
 	public void updateSport(String id, String libelle, String activite) throws Exception{
 		Sport s = getSport(id);
 		s.setLibelle(libelle);
 		s.setActivite(activite);
-		dao.update(s);
+		service.update(s);
 	}
 	public void updateSportConseil(String id, String sport, String details, String rythme) throws Exception{
 		SportConseil s = getSportConseil(id);
 		s.setSport(getSport(sport));
 		s.setDetails(details);
 		s.setRythme(rythme);
-		dao.update(s);
+		service.update(s);
 	}
 	
 	public void deleteSport(String id) throws Exception{
-		dao.delete(getSport(id));
+		service.delete(id, new Sport());
 	}
 	public void deleteSportConseil(String id) throws Exception{
-		dao.delete(getSportConseil(id));
+		service.delete(id, new SportConseil());
 	}
 	
 	public SportConseil getRandomTips(String id){
@@ -79,6 +77,6 @@ public class SportService {
 		}catch(Exception e){
 			conseil = new SportConseil();
 		}
-		return (SportConseil)dao.getRandom(conseil);
+		return (SportConseil)service.getRandom(conseil);
 	}
 }
