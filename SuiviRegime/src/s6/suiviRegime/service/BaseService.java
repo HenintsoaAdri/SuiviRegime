@@ -2,7 +2,9 @@ package s6.suiviRegime.service;
 import java.util.List;
 
 import s6.suiviRegime.dao.HibernateDao;
+import s6.suiviRegime.modele.Admin;
 import s6.suiviRegime.modele.BaseModele;
+import s6.suiviRegime.modele.BaseModelePagination;
 
 public class BaseService {
 	private HibernateDao dao;
@@ -36,9 +38,15 @@ public class BaseService {
 		}catch(NumberFormatException e){
 			throw new Exception("Element introuvable, valeur incorrecte");
 		}
-	}	
+	}
+	public void get(BaseModele model)throws Exception{
+		dao.findById(model);
+	}
 	public void delete(String idBase, BaseModele base) throws Exception{
-		dao.delete(get(idBase, base));
+		delete(get(idBase, base));
+	}
+	public void delete(BaseModele model)throws Exception{
+		dao.delete(model);
 	}
 	public void update(BaseModele model) throws Exception{
 		dao.update(model);
@@ -48,5 +56,11 @@ public class BaseService {
 	}
 	public List<BaseModele> findAll(BaseModele model) throws Exception{
 		return dao.findAll(model);
+	}
+	public void findAll(BaseModelePagination pagination) throws Exception{
+		dao.findAll(pagination);
+	}
+	public Admin loginAdmin(Admin admin) throws Exception{
+		return dao.loginAdmin(admin);
 	}
 }

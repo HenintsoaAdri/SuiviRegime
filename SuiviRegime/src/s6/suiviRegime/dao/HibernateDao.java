@@ -1,7 +1,11 @@
 package s6.suiviRegime.dao;
 
+import s6.suiviRegime.modele.Admin;
 import s6.suiviRegime.modele.AnalyseRegime;
+import s6.suiviRegime.modele.Regime;
 import s6.suiviRegime.modele.BaseModele;
+import s6.suiviRegime.modele.BaseModelePagination;
+import s6.suiviRegime.modele.Poids;
 import s6.suiviRegime.modele.Utilisateur;
 import org.hibernate.Criteria;
 import org.hibernate.ObjectNotFoundException;
@@ -9,8 +13,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.exception.ConstraintViolationException;
 
 import java.util.List;
+
+import javax.persistence.PersistenceException;
 
 public class HibernateDao {
     private SessionFactory sessionFactory; // = HibernateUtil.getSessionFactory();
@@ -33,7 +40,25 @@ public class HibernateDao {
             tr = session.beginTransaction();
             session.saveOrUpdate(model);
             tr.commit();
-        }catch (Exception ex){
+        }catch(PersistenceException e){
+        	ConstraintViolationException sql = (ConstraintViolationException)(e.getCause());
+        	if(sql.getSQLState().equalsIgnoreCase("23505")){
+				try{
+					if(tr!=null)
+		                tr.rollback();
+		            tr = session.beginTransaction();
+					Poids p = findPoids((Poids)model);
+					p.setValeur(((Poids)model).getValeur());
+					session.update(p);
+					tr.commit();
+				}catch(Exception ex){
+					if(tr!=null)
+		                tr.rollback();
+					throw ex;
+				}
+			}else throw e;
+        }
+        catch (Exception ex){
             if(tr!=null)
                 tr.rollback();
             throw ex;
@@ -42,7 +67,6 @@ public class HibernateDao {
                 session.close();
         }
     }
-
     public void delete(BaseModele model) throws Exception{
 		Session session = null;
         Transaction tr = null;
@@ -101,14 +125,34 @@ public class HibernateDao {
                 session.close();
         }
     }
-    public Utilisateur login(Utilisateur model)  throws Exception{
+    public void findAll(BaseModelePagination pagination) {
+		Session session = null;
+	    try{
+	    	session = getSessionFactory().openSession();
+	    	String fromClause = "FROM " + pagination.getClasse().getName();
+	    	pagination.setListe(session.createQuery(fromClause , pagination.getClasse())
+	        		.setFirstResult(pagination.getFirstResult())
+	        		.setMaxResults(pagination.getMaxResult())
+	        		.list());
+	    	long total = (long)session.createQuery("SELECT COUNT(id) " + fromClause)
+	    				.uniqueResult();
+	    	pagination.setTotalResult(total);
+	    }catch (Exception ex){
+	        throw ex;
+	    }finally {
+	        if(session!=null)
+	            session.close();
+	    }
+	}
+	
+    public Utilisateur login(String email, String password)  throws Exception{
         Session session = null;
         try{
             session = getSessionFactory().openSession();
             Utilisateur user = session.createQuery("FROM Utilisateur "
-            		+ "WHERE email = :emailutilisateur AND password = :passwordutilisateur", model.getClass())
-            		.setParameter("emailutilisateur", model.getEmail())
-            		.setParameter("passwordutilisateur", model.getPassword()).uniqueResult();
+            		+ "WHERE email = :emailutilisateur AND password = :passwordutilisateur", Utilisateur.class)
+            		.setParameter("emailutilisateur", email)
+            		.setParameter("passwordutilisateur", password).uniqueResult();
             return (Utilisateur)user;
         }catch (Exception ex){
             throw ex;
@@ -117,6 +161,31 @@ public class HibernateDao {
                 session.close();
         }
     }
+    public Admin loginAdmin(Admin admin)  throws Exception{
+        Session session = null;
+        Transaction tr = null;
+        try{
+            session = getSessionFactory().openSession();
+            tr = session.beginTransaction();
+            Admin user = session.createQuery("FROM Admin "
+            		+ "WHERE identifiant = :emailadmin AND password = :passwordadmin", Admin.class)
+            		.setParameter("emailadmin", admin.getIdentifiant())
+            		.setParameter("passwordadmin", admin.getPassword()).uniqueResult();
+            if(user == null) throw new Exception("Connexion échouée, vos identifiants sont incorrect");
+            user.loggedIn();
+            session.update(user);
+            tr.commit();
+            return (Admin)user;
+        }catch (Exception ex){
+            if(tr!=null)
+            	tr.rollback();
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+    }
+    
     public BaseModele getRandom(BaseModele model){
     	Session session = null;
         try{
@@ -131,13 +200,88 @@ public class HibernateDao {
                 session.close();
         }
     }
-	public AnalyseRegime findUnclosedRegime(Utilisateur model) {
+	public AnalyseRegime findActiveRegime(Utilisateur model) {
 		Session session = null;
         try{
         	session = getSessionFactory().openSession();
         	return (AnalyseRegime)(session.createQuery("FROM AnalyseRegime "
-            		+ "WHERE utilisateur.id = :idutilisateur AND closed = FALSE", AnalyseRegime.class)
+            		+ "WHERE idutilisateur = :idutilisateur AND active = TRUE", AnalyseRegime.class)
             		.setParameter("idutilisateur", model.getId()).uniqueResult());
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+	public void findAllRegime(Utilisateur model, BaseModelePagination pagination) {
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	String query = "FROM Regime "
+            		+ "WHERE idutilisateur = :idutilisateur AND active = FALSE";
+        	pagination.setListe(session.createQuery(query, Regime.class)
+            		.setParameter("idutilisateur", model.getId())
+            		.setFirstResult(pagination.getFirstResult())
+            		.setMaxResults(pagination.getMaxResult())
+            		.list());
+        	long total = (long)session.createQuery("SELECT COUNT(id) FROM Regime"
+            		+ " WHERE idutilisateur = :idutilisateur")
+            		.setParameter("idutilisateur", model.getId())
+            		.uniqueResult();
+        	pagination.setTotalResult(total);
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+	public void findAllByRegime(Regime model, BaseModelePagination pagination) {
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	String fromClause = "FROM " + pagination.getClasse().getName();
+        	pagination.setListe(session.createQuery(fromClause 
+        			+ " WHERE idregime = :idregime ORDER BY date", pagination.getClasse())
+            		.setParameter("idregime", model.getId())
+            		.setFirstResult(pagination.getFirstResult())
+            		.setMaxResults(pagination.getMaxResult())
+            		.list());
+        	long total = (long)session.createQuery("SELECT COUNT(id) " + fromClause
+            		+ " WHERE idregime = :idregime")
+            		.setParameter("idregime", model.getId())
+            		.uniqueResult();
+        	pagination.setTotalResult(total);
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+	public List<Poids> findAllPoids(Regime model){
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	return session.createQuery("FROM Poids "
+            		+ "WHERE idregime = :idregime", Poids.class)
+            		.setParameter("idregime", model.getId())
+            		.list();
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+	public Poids findPoids(Poids poids){
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	return session.createQuery("FROM Poids WHERE date = :date and idregime = :idregime",poids.getClass())
+        	.setParameter("date", poids.getDate())
+        	.setParameter("idregime", poids.getRegime().getId()).uniqueResult();
         }catch (Exception ex){
             throw ex;
         }finally {

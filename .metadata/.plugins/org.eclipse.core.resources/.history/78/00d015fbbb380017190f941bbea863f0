@@ -1,0 +1,9 @@
+package s6.suiviRegime.modele;
+
+import java.util.List;
+
+public class BaseModelePagination {
+	List<BaseModele> liste;
+	Class<? extends BaseModele> classe;
+	
+}

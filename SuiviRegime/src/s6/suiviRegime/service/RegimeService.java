@@ -1,7 +1,11 @@
 package s6.suiviRegime.service;
 
+import java.util.Date;
+import java.util.List;
+
 import s6.suiviRegime.modele.Alimentation;
 import s6.suiviRegime.modele.AnalyseRegime;
+import s6.suiviRegime.modele.BaseModelePagination;
 import s6.suiviRegime.modele.Poids;
 import s6.suiviRegime.modele.Regime;
 import s6.suiviRegime.modele.SportRegime;
@@ -31,19 +35,29 @@ public class RegimeService {
 		regime.setUtilisateur(utilisateur);
 		regime.setDebut(debut);
 		regime.setFin(fin);
-		regime.setPoidsObjectif(poidsObjectif);
 		regime.setPoidsInitial(poidsInitial);
-		service.save(regime);
+		regime.setPoidsObjectif(poidsObjectif);
+		getService().save(regime);
 	}
 	public void addRegime(String utilisateur, String debut, String fin, String poidsObjectif, String poidsInitial) throws Exception{
 		addRegime(UtilisateurService.getInstance().getUtilisateur(utilisateur), debut, fin, poidsObjectif, poidsInitial);
 	}
 	public void addPoids(Regime regime,String date, String poids) throws Exception{
+		Date now = new Date();
+		if(regime.getDebut().after(now)) throw new Exception("Le début du régime n'a pas encore commencé");
 		Poids p = new Poids();
 		p.setRegime(regime);
 		p.setDate(date);
 		p.setValeur(poids);
-		service.save(p);
+		if(p.getDate().before(regime.getDebut())){
+			regime.setDebut(p.getDate());
+			getService().update(((AnalyseRegime)regime).getRegime());
+		} else if(p.getDate().after(now)){
+			throw new Exception("Ce jour n'est pas encore arrivé !");
+		}else if(p.getDate().equals(regime.getDebut())){
+			throw new Exception("Plus besoin de rajouter le poids à la date du début du régime! Ca correspond au poids initial! Remplacez la date sinon!");
+		}
+		getService().save(p);
 	}
 	public void addPoids(String regime, String date, String poids) throws Exception{
 		addPoids(getRegime(regime), date, poids);
@@ -55,7 +69,7 @@ public class RegimeService {
 		a.setDate(date);
 		a.setPeriode(periode);
 		a.setRepas(repas);
-		service.save(a);
+		getService().save(a);
 	}
 	public void addAlimentation(String regime, String date, String repas, String boisson, String periode) throws Exception {
 		addAlimentation(getRegime(regime), date, repas, boisson, periode);
@@ -66,7 +80,7 @@ public class RegimeService {
 		s.setDate(date);
 		s.setSport(SportService.getInstance().getSport(sport));
 		s.setRythme(rythme);
-		service.save(s);
+		getService().save(s);
 	}
 	public void addSport(String regime, String date, String sport, String rythme) throws Exception{
 		addSport(getRegime(regime), date, sport, rythme);
@@ -74,63 +88,103 @@ public class RegimeService {
 	
 	public Regime getRegime(String regime) throws Exception{
 		try{
-			return (Regime) service.get(regime, new Regime());
+			return (Regime) getService().get(regime, new Regime());
 		}catch(Exception e){
 			throw new Exception("Regime introuvable, valeur incorrecte");
 		}
 	}
-	public AnalyseRegime findUnclosed(Utilisateur model) throws Exception{
-		return getService().getDao().findUnclosedRegime(model);
+	public AnalyseRegime findActive(Utilisateur model) throws Exception{
+		AnalyseRegime analyse = getService().getDao().findActiveRegime(model);
+		if(analyse != null && analyse.getFin().before(new Date())){
+			Regime r = new Regime(analyse.getId());
+			r.setActive(false);
+			getService().update(r);
+			return null;
+		}
+		return analyse;
+	}
+	public void findAllUtilisateur(Utilisateur u, BaseModelePagination pagination) throws Exception{
+		getService().getDao().findAllRegime(u, pagination);
+	}
+	public void findAllByRegime(Regime r, BaseModelePagination pagination) throws Exception{
+		 getService().getDao().findAllByRegime(r, pagination);
+	}
+	public void desactive(Regime regime)throws Exception{
+		if(regime instanceof AnalyseRegime) regime = ((AnalyseRegime) regime).getRegime();
+		regime.setActive(false);
+		getService().update(regime);
+	}
+	public AnalyseRegime active(String id)throws Exception{
+		Regime r = (Regime) getService().get(id, new Regime());
+		return active(r, true);
+	}
+	public AnalyseRegime active(Regime regime, boolean full)throws Exception{
+		if(!full)getService().getDao().findById(regime);
+		AnalyseRegime pre = findActive(regime.getUtilisateur());
+		if(pre != null){
+			pre.setActive(false);
+			getService().update(pre.getRegime());
+		}
+		if(regime.getFin().before(new Date())){
+			throw new Exception("Veuillez modifier la date de fin de ce régime en une date ultérieure");
+		}
+		regime.setActive(true);
+		getService().update(regime);
+		return findActive(regime.getUtilisateur());
 	}
 	public Poids getPoids(String poids) throws Exception{
 		try{
-			return (Poids) service.get(poids, new Poids());
+			return (Poids) getService().get(poids, new Poids());
 		}catch(Exception e){
 			throw new Exception("Poids introuvable, valeur incorrecte");
 		}
 	}
 	public Alimentation getAlimentation(String alimentation) throws Exception{
 		try{
-			return (Alimentation) service.get(alimentation, new Alimentation());
+			return (Alimentation) getService().get(alimentation, new Alimentation());
 		}catch(Exception e){
 			throw new Exception("Alimentation introuvable, valeur incorrecte");
 		}
 	}
 	public SportRegime getSportRegime(String sportRegime) throws Exception{
 		try{
-			return (SportRegime) service.get(sportRegime, new SportRegime());
+			return (SportRegime) getService().get(sportRegime, new SportRegime());
 		}catch(Exception e){
 			throw new Exception("Sport introuvable, valeur incorrecte");
 		}
 	}
 	
 	public void deleteRegime(String regime) throws Exception{
-		service.delete(regime, new Regime());
+		getService().delete(regime, new Regime());
 	}
 	public void deletePoids(String poids) throws Exception{
-		service.delete(poids, new Poids());
+		getService().delete(poids, new Poids());
 	}
 	public void deleteAlimentation(String alimentation) throws Exception{
-		service.delete(alimentation, new Alimentation());
+		getService().delete(alimentation, new Alimentation());
 	}
 	public void deleteSportRegime(String sportRegime) throws Exception{
-		service.delete(sportRegime, new SportRegime());
+		getService().delete(sportRegime, new SportRegime());
 	}
 
-	public void updateRegime(String id, String utilisateur, String debut, String fin, String poidsObjectif) throws Exception{
+	public void updateRegime(String id, String utilisateur, String debut, String fin, String poidsObjectif, String poidsInitial) throws Exception{
+		updateRegime(id, UtilisateurService.getInstance().getUtilisateur(utilisateur), debut, fin, poidsObjectif, poidsInitial);
+	}
+	public void updateRegime(String id, Utilisateur utilisateur, String debut, String fin, String poidsObjectif, String poidsInitial) throws Exception{
 		Regime regime = getRegime(id);
-		regime.setUtilisateur(UtilisateurService.getInstance().getUtilisateur(utilisateur));
+		regime.setUtilisateur(utilisateur);
 		regime.setDebut(debut);
 		regime.setFin(fin);
 		regime.setPoidsObjectif(poidsObjectif);
-		service.update(regime);
+		regime.setPoidsInitial(poidsInitial);
+		getService().update(regime);
 	}
 	public void updatePoids(String id, String regime,String date, String poids) throws Exception{
 		Poids p = getPoids(id);
 		p.setRegime(getRegime(regime));
 		p.setDate(date);
 		p.setValeur(poids);
-		service.update(p);
+		getService().update(p);
 	}
 	public void updateAlimentation(String id, String regime, String date, String repas, String boisson, String periode) throws Exception {
 		Alimentation a = getAlimentation(id);
@@ -139,7 +193,7 @@ public class RegimeService {
 		a.setDate(date);
 		a.setPeriode(periode);
 		a.setRepas(repas);
-		service.save(a);
+		getService().save(a);
 	}
 	public void updateSport(String id, String regime, String date, String sport, String rythme) throws Exception{
 		SportRegime s = new SportRegime();
@@ -147,6 +201,20 @@ public class RegimeService {
 		s.setDate(date);
 		s.setSport(SportService.getInstance().getSport(sport));
 		s.setRythme(rythme);
-		service.update(s);
+		getService().update(s);
+	}
+
+	public String getEvolutionPoids(Regime regime) {
+		List<Poids> poids = getService().getDao().findAllPoids(regime);
+		String evolution = "[";
+		evolution += "{y: '" + regime.getDebut() + "',a: '" + regime.getPoidsInitial() + "'}";
+		for(int i = 0; i<poids.size();i++){
+			evolution += ",{"
+						+"y: '" + poids.get(i).getDate() + "',"
+						+"a: '" + poids.get(i).getValeur() + "'"
+						+"}";
+		}
+		evolution += "]";
+		return evolution;
 	}
 }

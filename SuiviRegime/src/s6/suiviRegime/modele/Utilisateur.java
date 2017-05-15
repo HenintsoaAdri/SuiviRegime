@@ -68,6 +68,12 @@ public class Utilisateur extends BaseModele{
 		if(isFemme()) ne+="e";
 		return ne+" le "+getDateNaissanceString();
 	}
+	public int getAge(){
+		return DateUtil.getInstance().getUntilNow(getDateNaissance())/365;
+	}
+	public String getAgeString(){
+		return getAge() + " ans";
+	}
 	public void setDateNaissance(Date dateNaissance) {
 		this.dateNaissance = dateNaissance;
 	}
@@ -115,12 +121,10 @@ public class Utilisateur extends BaseModele{
 	public String getPassword() {
 		return password;
 	}
-
 	public void setPassword(String password) throws Exception {
 		if(password.isEmpty())throw new Exception("Un mot de passe est requis");
 		this.password = password;
 	}
-	
 	public void setPassword(String password, String confirmpassword) throws Exception {
 		if(!password.equals(confirmpassword)){
 			throw new Exception("Veuillez reconfirmer votre mot de passe. Ils ne correspondent pas.");
@@ -131,7 +135,6 @@ public class Utilisateur extends BaseModele{
 	public String getAdresse() {
 		return adresse;
 	}
-
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
@@ -139,7 +142,6 @@ public class Utilisateur extends BaseModele{
 	public List<Regime> getRegime() {
 		return regime;
 	}
-
 	public void setRegime(List<Regime> regime) {
 		this.regime = regime;
 	}

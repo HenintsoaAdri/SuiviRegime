@@ -1,0 +1,52 @@
+package s6.suiviRegime.modele;
+
+import java.util.List;
+
+public class BaseModelePagination {
+	List<? extends BaseModele> liste;
+	Class<? extends BaseModele> classe;
+	int maxResult;
+	int page;
+	int totalResult;
+	
+	public BaseModelePagination(Class<? extends BaseModele> model, int maxResult, int page){
+		setClasse(model);
+		setMaxResult(maxResult);
+		setPage(page);
+	}
+	
+	public List<? extends BaseModele> getListe() {
+		return liste;
+	}
+	public void setListe(List<? extends BaseModele> liste) {
+		this.liste = liste;
+	}
+	public Class<? extends BaseModele> getClasse() {
+		return classe;
+	}
+	public void setClasse(Class<? extends BaseModele> classe) {
+		this.classe = classe;
+	}
+	public int getMaxResult() {
+		return maxResult;
+	}
+	public void setMaxResult(int maxResult) {
+		this.maxResult = maxResult;
+	}
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page;
+	}
+	public int getTotalResult() {
+		return totalResult;
+	}
+	public void setTotalResult(int totalResult) {
+		this.totalResult = totalResult;
+	}
+	
+	public int getNombrePage(){
+		return (getTotalResult()/getMaxResult()) + 1;
+	}
+}

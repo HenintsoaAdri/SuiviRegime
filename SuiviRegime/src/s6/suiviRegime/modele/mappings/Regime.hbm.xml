@@ -12,11 +12,12 @@
             	<param name="sequence_name">regime_idregime_seq</param>
             </generator>
         </id>
-        <many-to-one name="utilisateur" class="s6.suiviRegime.modele.Utilisateur" column="idutilisateur" lazy="false" not-null="true" fetch="select"/>
+        <many-to-one name="utilisateur" class="s6.suiviRegime.modele.Utilisateur" column="idutilisateur" lazy="proxy" not-null="true" fetch="select"/>
         <property name="debut" column="debutregime" type="date"/>
         <property name="fin" column="finregime" type="date"/>
         <property name="poidsInitial" column="poidsinitialregime" type="float"/>
         <property name="poidsObjectif" column="poidsobjectifregime" type="float"/>
+        <property name="active" column="activeregime" type="boolean"/>
         <bag name="alimentation" cascade="delete-orphan" fetch="select" inverse="true" order-by="datealimentation,periodealimentation">
 	         <key column="idregime" not-null="true"/>
 	         <one-to-many class="s6.suiviRegime.modele.Alimentation"/>
@@ -25,7 +26,7 @@
 	         <key column="idregime" not-null="true"/>
 	         <one-to-many class="s6.suiviRegime.modele.SportRegime"/>
         </bag>
-        <bag name="poids" cascade="delete-orphan" fetch="select" inverse="true" order-by="datepoids" lazy="false">
+        <bag name="poids" cascade="delete-orphan" fetch="select" inverse="true" order-by="datepoids">
 	         <key column="idregime" not-null="true"/>
 	         <one-to-many class="s6.suiviRegime.modele.Poids"/>
         </bag>

@@ -15,7 +15,7 @@ public class Poids extends BaseModele{
 		super(id);
 	}
 
-	public Poids(int id, Regime regime, Date date, float valeur) {
+	public Poids(int id, Regime regime, Date date, float valeur) throws Exception {
 		super();
 		this.setId(id);
 		this.setRegime(regime);
@@ -26,25 +26,31 @@ public class Poids extends BaseModele{
 	public Regime getRegime() {
 		return regime;
 	}
-	public void setRegime(Regime regime) {
+	public void setRegime(Regime regime) throws Exception {
+		if(!regime.isActive()) throw new Exception("Ce régime est inactif, veuillez l'activer pour y enregister un poids");
 		this.regime = regime;
 	}
 	
 	public Date getDate() {
 		return date;
 	}
+	public String getDateString(){
+		return DateUtil.getInstance().DateToString(getDate());
+	}
 	public void setDate(Date date) {
 		this.date = date;
 	}
 	public void setDate(String date) throws Exception {
-		if(date == null || date.isEmpty()) setDate(new Date());
-		else setDate(DateUtil.getInstance().stringToDate(date));
+		Date value = new Date();
+		if(date != null && !date.isEmpty()) value = DateUtil.getInstance().stringToDate(date);
+		setDate(value);
 	}
 	
 	public float getValeur() {
 		return valeur;
 	}
-	public void setValeur(float valeur) {
+	public void setValeur(float valeur) throws Exception {
+		if(valeur < 30) throw new Exception("Valeur de poids invalide");
 		this.valeur = valeur;
 	}
 	public void setValeur(String valeur) throws Exception{

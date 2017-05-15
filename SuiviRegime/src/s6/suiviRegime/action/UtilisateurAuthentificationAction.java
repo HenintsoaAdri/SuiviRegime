@@ -1,9 +1,10 @@
 package s6.suiviRegime.action;
 
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import java.util.Map;
 
@@ -12,25 +13,26 @@ import s6.suiviRegime.service.BaseService;
 import s6.suiviRegime.service.RegimeService;
 import s6.suiviRegime.service.UtilisateurService;
 
-public class UtilisateurAuthentificationAction extends ActionSupport {
-	private boolean inscription = true;
+public class UtilisateurAuthentificationAction extends ActionSupport implements SessionAware{
+	private SessionMap<String, Object> session;
 	private Utilisateur utilisateur;
 	private String erreur;
 	private String dateNaissance;
-	private String email;
 	private String password;
 	private String confirmPassword;
-	
+
+	public String execute()throws Exception{
+		if(session.get("user") != null) return ERROR;
+		return SUCCESS;
+	}
 	public String inscription()throws Exception{
 		ConfigurableApplicationContext context = null;
 		try{
-			Map<String, Object> session = ActionContext.getContext().getSession();
 			context = new ClassPathXmlApplicationContext("list-beans.xml");
 			BaseService service = (BaseService) context.getBean("baseService");
 			getUtilisateur().setDateNaissance(dateNaissance);
 			getUtilisateur().setPassword(getPassword(), getConfirmPassword());
 			service.save(getUtilisateur());
-			setInscription(false);
 			session.put("user", getUtilisateur());
 			return SUCCESS;
 			
@@ -44,32 +46,21 @@ public class UtilisateurAuthentificationAction extends ActionSupport {
 			}
 		}
 	}
-	public String openInscription()throws Exception{
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		if(session.get("user") != null) return ERROR;
-		return SUCCESS;
-	}
-	public String openLogin()throws Exception{
-		Map<String, Object> session = ActionContext.getContext().getSession();
-		if(session.get("user") != null) return ERROR;
-		return SUCCESS;
-	}
 	
 	public String login()throws Exception{
 		ConfigurableApplicationContext context = null;
 		try{
-			Map<String, Object> session = ActionContext.getContext().getSession();
 			if(session.get("user") != null) return SUCCESS;
 			context = new ClassPathXmlApplicationContext("list-beans.xml");
 			UtilisateurService service = (UtilisateurService) context.getBean("utilisateurService");
-			RegimeService regService = (RegimeService)context.getBean("regimeService");
-			session.put("user", service.login(getEmail(),getPassword()));
-			session.put("regime", regService.findUnclosed((Utilisateur)session.get("user")));
+			RegimeService regimeService = (RegimeService) context.getBean("regimeService");
+			setUtilisateur(service.login(getUtilisateur()));
+			session.put("user", getUtilisateur());
+			session.put("regime", regimeService.findActive(getUtilisateur()));
 			return SUCCESS;
 		}catch(Exception e){
 			setErreur(e.getMessage());
 			e.printStackTrace();
-			setInscription(false);
 			return ERROR;
 		}finally{
 			if(context != null){
@@ -79,29 +70,14 @@ public class UtilisateurAuthentificationAction extends ActionSupport {
 	}
 	
 	public String logout()throws Exception{
-		ConfigurableApplicationContext context = null;
 		try{
-			context = new ClassPathXmlApplicationContext("list-beans.xml");
-			Map<String, Object> session = ActionContext.getContext().getSession();
-			if(session.get("user") != null) session.remove("user");
+			if(session.get("user") != null) session.invalidate();
 			return "success";
 		}catch(Exception e){
 			setErreur(e.getMessage());
 			e.printStackTrace();
-			setInscription(false);
 			return "error";
-		}finally{
-			if(context != null){
-				context.close();
-			}
 		}
-	}
-	
-	public boolean getInscription() {
-		return inscription;
-	}
-	public void setInscription(boolean inscription) {
-		this.inscription = inscription;
 	}
 
 	public Utilisateur getUtilisateur() {
@@ -139,10 +115,8 @@ public class UtilisateurAuthentificationAction extends ActionSupport {
 		this.confirmPassword = confirmPassword;
 	}
 
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
+	@Override
+	public void setSession(Map<String, Object> session) {
+		this.session = (SessionMap<String, Object>)session;
 	}	
 }

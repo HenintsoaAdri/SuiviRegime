@@ -1,0 +1,29 @@
+package s6.suiviRegime.action;
+
+import java.util.Map;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import s6.suiviRegime.modele.Admin;
+
+public class CrudAction extends ActionSupport implements SessionAware{
+	private Admin admin;
+	private BasePagination liste;
+	
+	
+
+	public Admin getAdmin() {
+		return admin;
+	}
+	public void setAdmin(Admin admin) {
+		this.admin = admin;
+	}
+	
+	@Override
+	public void setSession(Map<String, Object> session) {
+		setAdmin(session.get("Admin"));
+	}
+
+}

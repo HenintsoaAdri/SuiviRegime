@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Following You ! Mon Tableau de Bord</title>
 	<!-- BOOTSTRAP STYLES-->
-    <link href="/SuiviRegime/css/bootstrap.css" rel="stylesheet" />
+    <link href="/SuiviRegime/css/bootstrap.min.css" rel="stylesheet" />
      <!-- FONTAWESOME STYLES-->
     <link href="/SuiviRegime/css/font-awesome.min.css" rel="stylesheet" />
      <!-- MORRIS CHART STYLES-->
@@ -34,7 +34,7 @@
 						padding: 15px 50px 5px 50px;
 						float: right;
 						font-size: 16px;"> 
-				<%-- Bonjour, <% out.print(((Utilisateur)session.getAttribute("user")).getFullName()); %>! &nbsp; <a href="Deconnexion" class="btn btn-danger square-btn-adjust">Deconnexion</a> --%>
+				Bonjour, <% out.print(((Utilisateur)session.getAttribute("user")).getFullName()); %>! &nbsp; <a href="/SuiviRegime/Utilisateur/Deconnexion" class="btn btn-danger square-btn-adjust">Deconnexion</a>
 			</div>
         </nav>   
            <!-- /. NAV TOP  -->
@@ -69,4 +69,5 @@
             
         </nav>  
         <!-- /. NAV SIDE  -->
+    <script src="/SuiviRegime/js/jquery.min.js"></script>
         <div id="page-wrapper" >

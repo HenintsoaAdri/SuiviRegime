@@ -23,5 +23,8 @@
 	         <key column="idutilisateur" not-null="true"/>
 	         <one-to-many class="s6.suiviRegime.modele.Regime"/>
         </bag>
+        <union-subclass name="s6.suiviRegime.modele.AnalyseUtilisateur" table="analyseutilisateur">
+        	<property name="regimeTotal" column="regimetotal" type="int"/>
+        </union-subclass>
     </class>
 </hibernate-mapping>

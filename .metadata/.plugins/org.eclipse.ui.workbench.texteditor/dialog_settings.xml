@@ -2,30 +2,30 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="submit" key="selection"/>
+		<item value="morris-line-chart" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="submit"/>
-			<item value="DateU"/>
-			<item value="inuteSport"/>
-			<item value="StringUtil"/>
-			<item value="$"/>
-			<item value="BaseService.getInstance()"/>
-			<item value="SPORT_REGIME"/>
-			<item value="obj"/>
+			<item value="morris-line-chart"/>
+			<item value="mo"/>
+			<item value="page"/>
+			<item value="Showing"/>
+			<item value="Show"/>
+			<item value="Regime"/>
+			<item value="service"/>
+			<item value="regime.getPoids()"/>
 		</list>
 		<list key="replacehistory">
+			<item value="Poids"/>
+			<item value="getService()"/>
+			<item value="liste"/>
+			<item value="?regime.id="/>
 			<item value="inuteSportTotal"/>
 			<item value="DateUtil"/>
 			<item value="service"/>
 			<item value="REGIME_SPORT"/>
-			<item value="REGIME_"/>
-			<item value="model"/>
-			<item value="SPORTCONSEIL"/>
-			<item value="SPORTREGIME"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">

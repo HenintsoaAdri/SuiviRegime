@@ -18,7 +18,7 @@
         <display-name>Following You</display-name>
   
    <welcome-file-list>
-      <welcome-file>HelloWorld.jsp</welcome-file>
+      <welcome-file>index.html</welcome-file>
    </welcome-file-list>
    
    <context-param>

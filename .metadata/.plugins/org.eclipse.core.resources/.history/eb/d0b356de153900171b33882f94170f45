@@ -1,0 +1,43 @@
+package s6.suiviRegime.modele;
+
+import java.util.Date;
+
+public class AnalyseSport extends Sport {
+	private int conseilTotal;
+	
+	public AnalyseSport() {
+		super();
+	}
+	
+	public AnalyseSport(int id, String libelle, String activite) {
+		super(id, libelle, activite);
+	}
+
+	public AnalyseSport(int id) {
+		super(id);
+	}
+	
+	
+	public AnalyseSport(int conseilTotal) {
+		super();
+		this.conseilTotal = conseilTotal;
+	}
+
+	public AnalyseSport(int conseilTotal) {
+		super();
+		this.conseilTotal = conseilTotal;
+	}
+
+	public AnalyseSport(int conseilTotal) {
+		super();
+		this.conseilTotal = conseilTotal;
+	}
+
+	public int getConseilTotal() {
+		return conseilTotal;
+	}
+	public void setConseilTotal(int conseilTotal) {
+		this.conseilTotal = conseilTotal;
+	}
+	
+}

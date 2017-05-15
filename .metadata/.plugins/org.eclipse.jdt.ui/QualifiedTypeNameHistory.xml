@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="java.io.FileReader"/>
-<fullyQualifiedTypeName name="s6.suiviRegime.utilitaire.DaoGenerateur"/>
-<fullyQualifiedTypeName name="oracle.security.o3logon.O3LoginClientHelper"/>
-<fullyQualifiedTypeName name="s6.suiviRegime.daoGenere.ObjectDao"/>
-<fullyQualifiedTypeName name="java.lang.reflect.Method"/>
-<fullyQualifiedTypeName name="javax.el.MethodInfo"/>
-<fullyQualifiedTypeName name="java.lang.Object"/>
-<fullyQualifiedTypeName name="s6.suiviRegime.dao.ObjectDao"/>
-<fullyQualifiedTypeName name="java.lang.String"/>
 <fullyQualifiedTypeName name="java.lang.Exception"/>
-<fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="java.sql.PreparedStatement"/>
 <fullyQualifiedTypeName name="java.lang.reflect.Field"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.dao.HibernateUtil"/>
@@ -19,7 +9,6 @@
 <fullyQualifiedTypeName name="java.util.Set"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.modele.BaseModele"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.test.DaoGenerateurTest"/>
-<fullyQualifiedTypeName name="s6.suiviRegime.modele.Poids"/>
 <fullyQualifiedTypeName name="java.sql.Date"/>
 <fullyQualifiedTypeName name="java.time.LocalDate"/>
 <fullyQualifiedTypeName name="com.sun.javafx.collections.SetListenerHelper"/>
@@ -29,7 +18,6 @@
 <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
 <fullyQualifiedTypeName name="org.hibernate.criterion.Restrictions"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.modele.SportConseil"/>
-<fullyQualifiedTypeName name="org.hibernate.Query"/>
 <fullyQualifiedTypeName name="com.sun.media.sound.ModelAbstractChannelMixer"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.modele.Utilisateur"/>
 <fullyQualifiedTypeName name="com.opensymphony.xwork2.inject.Context"/>
@@ -45,19 +33,31 @@
 <fullyQualifiedTypeName name="java.util.Calendar"/>
 <fullyQualifiedTypeName name="java.util.concurrent.TimeUnit"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.modele.SportRegime"/>
-<fullyQualifiedTypeName name="java.util.Date"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.utilitaire.DateUtil"/>
-<fullyQualifiedTypeName name="java.util.List"/>
-<fullyQualifiedTypeName name="s6.suiviRegime.modele.AnalyseRegime"/>
-<fullyQualifiedTypeName name="s6.suiviRegime.service.RegimeService"/>
 <fullyQualifiedTypeName name="com.opensymphony.xwork2.Action"/>
 <fullyQualifiedTypeName name="org.aopalliance.intercept.Invocation"/>
-<fullyQualifiedTypeName name="org.apache.struts2.interceptor.SessionAware"/>
 <fullyQualifiedTypeName name="java.text.NumberFormat"/>
-<fullyQualifiedTypeName name="s6.suiviRegime.utilitaire.StringUtil"/>
 <fullyQualifiedTypeName name="java.sql.Timestamp"/>
 <fullyQualifiedTypeName name="java.time.LocalDateTime"/>
 <fullyQualifiedTypeName name="java.text.DateFormat"/>
+<fullyQualifiedTypeName name="org.apache.struts2.interceptor.SessionAware"/>
+<fullyQualifiedTypeName name="java.util.Vector"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.modele.Regime"/>
+<fullyQualifiedTypeName name="java.util.Date"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.utilitaire.StringUtil"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.service.RegimeService"/>
+<fullyQualifiedTypeName name="org.apache.struts2.dispatcher.SessionMap"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.modele.AnalyseRegime"/>
+<fullyQualifiedTypeName name="java.lang.System"/>
+<fullyQualifiedTypeName name="java.lang.String"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.modele.Poids"/>
 <fullyQualifiedTypeName name="s6.suiviRegime.service.BaseService"/>
+<fullyQualifiedTypeName name="com.opensymphony.xwork2.ActionSupport"/>
+<fullyQualifiedTypeName name="javax.persistence.PersistenceException"/>
+<fullyQualifiedTypeName name="org.hibernate.exception.ConstraintViolationException"/>
+<fullyQualifiedTypeName name="org.postgresql.util.PSQLException"/>
+<fullyQualifiedTypeName name="java.text.DecimalFormat"/>
+<fullyQualifiedTypeName name="java.util.List"/>
+<fullyQualifiedTypeName name="org.hibernate.Query"/>
+<fullyQualifiedTypeName name="s6.suiviRegime.modele.BaseModelePagination"/>
 </qualifiedTypeNameHistroy>

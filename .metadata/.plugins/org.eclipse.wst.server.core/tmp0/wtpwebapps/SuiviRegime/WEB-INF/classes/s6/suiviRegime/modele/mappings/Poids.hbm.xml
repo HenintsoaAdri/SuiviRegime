@@ -12,8 +12,10 @@
             	<param name="sequence_name">poids_idpoids_seq</param>
             </generator>
         </id>
-        <many-to-one name="regime" class="s6.suiviRegime.modele.Regime" column="idregime" lazy="proxy" not-null="true" fetch="select"/>
+        <properties name="poids_ui" unique="true">
+	        <many-to-one name="regime" class="s6.suiviRegime.modele.Regime" column="idregime" lazy="proxy" not-null="true" fetch="select"/>
+	        <property name="date" column="datepoids" type="date"/>
+        </properties>        
         <property name="valeur" column="valeurpoids" type="float"/>
-        <property name="date" column="datepoids" type="date"/>
     </class>
 </hibernate-mapping>

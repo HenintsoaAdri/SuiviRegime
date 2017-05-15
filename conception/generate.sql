@@ -1,6 +1,6 @@
 /*==============================================================*/
 /* DBMS name:      PostgreSQL 8                                 */
-/* Created on:     12/05/2017 11:15:11                          */
+/* Created on:     14/05/2017 11:50:48                          */
 /*==============================================================*/
 
 
@@ -17,6 +17,8 @@ drop table ALIMENTATION;
 drop index CONSEILALIMENTATION_PK;
 
 drop table ALIMENTATIONCONSEIL;
+
+drop index POIDS_UI;
 
 drop index POIDS_REGIME_FK;
 
@@ -144,6 +146,14 @@ IDREGIME
 );
 
 /*==============================================================*/
+/* Index: POIDS_UI                                              */
+/*==============================================================*/
+create unique index POIDS_UI on POIDS (
+IDREGIME,
+DATEPOIDS
+);
+
+/*==============================================================*/
 /* Table: REGIME                                                */
 /*==============================================================*/
 create table REGIME (
@@ -153,6 +163,7 @@ create table REGIME (
    FINREGIME            DATE                 null,
    POIDSOBJECTIFREGIME  FLOAT4               null,
    POIDSINITIALREGIME   FLOAT4               null,
+   ACTIVEREGIME         BOOL                 null,
    constraint PK_REGIME primary key (IDREGIME)
 );
 

@@ -27,6 +27,11 @@ $('.form').find('input, textarea').on('keyup blur focus', function (e) {
 
 });
 
+$(document).ready(function(){
+	target = $('.active a').attr('href');
+  	$(target).show();
+    $('.tab-content > div').not(target).hide();
+});
 $('.tab a').on('click', function (e) {
   
   e.preventDefault();

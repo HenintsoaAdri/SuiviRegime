@@ -1,5 +1,6 @@
 package s6.suiviRegime.utilitaire;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class StringUtil {
@@ -84,6 +85,12 @@ public class StringUtil {
 		}
 		return false;
 	}
+    public String formatFloatSign(float nombre){
+    	DecimalFormat format = (DecimalFormat) NumberFormat.getInstance();
+    	format.setPositivePrefix("+");
+    	format.setMaximumFractionDigits(2);
+    	return format.format(nombre);
+    }
     public String formatFloat(float nombre){
     	NumberFormat format = NumberFormat.getInstance();
     	format.setMaximumFractionDigits(2);

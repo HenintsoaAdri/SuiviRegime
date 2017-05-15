@@ -13,8 +13,8 @@
     <div class="form">
       
       <ul class="tab-group">
-        <li class="tab <% if((boolean)request.getAttribute("inscription")) out.print("active"); %>"><a href="#inscription">Inscription</a></li>
-        <li class="tab <% if(!(boolean)request.getAttribute("inscription")) out.print("active"); %>"><a href="#connexion">Connexion</a></li>
+        <li class="tab"><a href="#inscription">Inscription</a></li>
+        <li class="tab active"><a href="#connexion">Connexion</a></li>
       </ul>
       
       <div class="tab-content">
@@ -86,15 +86,7 @@
 	              Adresse
 	            </label>
 	            <input type="text" autocomplete="off" name="utilisateur.adresse"/>
-	          </div>
-	          
-           <% if(request.getAttribute("erreur") != null && (boolean)request.getAttribute("inscription")){ %>    
-		  <div class="alert alert-danger alert-dismissable fade in">
-		    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-		    <strong>Probl&egrave;me!</strong> <% out.print(request.getAttribute("erreur")); %>
-		  </div>     
-		  <% } %>
-	          
+	          </div>	          
 	          <button type="submit" class="button button-block">S'inscrire</button>
 	          
           </form>
@@ -104,22 +96,22 @@
         <div id="connexion">   
           <h1>Vous revoilà!</h1>
           
-          <form action="/SuiviRegime/Utilisateur/" method="post">
+          <form action="/SuiviRegime/Utilisateur/Connexion" method="post">
           
             <div class="field-wrap">
             <label>
               Adresse Email<span class="req">*</span>
             </label>
-            <input type="email"required name="email"/>
+            <input type="email"required name="utilisateur.email"/>
           </div>
           
           <div class="field-wrap">
             <label>
               Mot de passe<span class="req">*</span>
             </label>
-            <input type="password"required autocomplete="off" name="password"/>
+            <input type="password"required autocomplete="off" name="utilisateur.password"/>
           </div>
-           <% if(request.getAttribute("erreur") != null && !(boolean)request.getAttribute("inscription")){ %>    
+           <% if(request.getAttribute("erreur") != null){ %>    
 		  <div class="alert alert-danger alert-dismissable fade in">
 		    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 		    <strong>Probl&egrave;me!</strong> <% out.print(request.getAttribute("erreur")); %>

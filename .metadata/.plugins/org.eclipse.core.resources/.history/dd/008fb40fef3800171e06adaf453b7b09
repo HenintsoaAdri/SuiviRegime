@@ -1,0 +1,9 @@
+package s6.suiviRegime.action;
+
+import org.apache.struts2.interceptor.SessionAware;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+public class CrudAction extends ActionSupport implements SessionAware{
+
+}

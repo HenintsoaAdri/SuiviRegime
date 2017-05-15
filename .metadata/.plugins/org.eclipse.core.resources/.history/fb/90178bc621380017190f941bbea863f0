@@ -1,0 +1,258 @@
+package s6.suiviRegime.action;
+
+import java.util.List;
+import java.util.Map;
+
+import org.apache.struts2.dispatcher.SessionMap;
+import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.context.ConfigurableApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import com.opensymphony.xwork2.ActionSupport;
+
+import s6.suiviRegime.modele.Utilisateur;
+import s6.suiviRegime.service.BaseService;
+import s6.suiviRegime.service.RegimeService;
+import s6.suiviRegime.modele.AnalyseRegime;
+import s6.suiviRegime.modele.Regime;
+
+public class RegimeAction extends ActionSupport implements SessionAware{
+	private Utilisateur user;
+	private String id;
+	private String erreur;
+	private String debut;
+	private String fin;
+	private String poidsInitial;
+	private String poidsObjectif;
+	private boolean active;
+	private Regime regime;
+	private List<Regime> liste;
+	private AnalyseRegime regimeActif;
+	private SessionMap<String, Object> session;
+	
+	public String execute() throws Exception{
+		return SUCCESS;
+	}
+	public String edit()throws Exception{
+		ConfigurableApplicationContext context = null;
+		try{
+			context = new ClassPathXmlApplicationContext("list-beans.xml");
+			RegimeService service = (RegimeService)context.getBean("regimeService");
+			setRegime(service.getRegime(getId()));
+			return SUCCESS;
+		}catch(Exception e){
+			setErreur(e.getMessage());
+			e.printStackTrace();
+			return ERROR;
+		}finally{
+			if(context != null){
+				context.close();
+			}
+		}
+	}
+	public String index()throws Exception{
+		ConfigurableApplicationContext context = null;
+		try{
+			context = new ClassPathXmlApplicationContext("list-beans.xml");
+			RegimeService service = (RegimeService)context.getBean("regimeService");
+			setListe(service.findAllUtilisateur(getUser()));
+			return SUCCESS;
+		}catch(Exception e){
+			setErreur(e.getMessage());
+			e.printStackTrace();
+			return ERROR;
+		}finally{
+			if(context != null){
+				context.close();
+			}
+		}
+	}
+	public String save()throws Exception{
+		ConfigurableApplicationContext context = null;
+		try{
+			context = new ClassPathXmlApplicationContext("list-beans.xml");
+			RegimeService service = (RegimeService)context.getBean("regimeService");
+			service.addRegime(getUser(), getDebut(), getFin(), getPoidsObjectif(), getPoidsInitial());
+			return SUCCESS;
+		}catch(Exception e){
+			setErreur(e.getMessage());
+			e.printStackTrace();
+			return ERROR;
+		}finally{
+			if(context != null){
+				context.close();
+			}
+		}
+	}
+	public String activate()throws Exception{
+		ConfigurableApplicationContext context = null;
+		try{
+			context = new ClassPathXmlApplicationContext("list-beans.xml");
+			RegimeService service = (RegimeService)context.getBean("regimeService");
+			AnalyseRegime actif = service.active(getId());
+			session.put("regime", actif);
+			setRegimeActif(actif);
+			return SUCCESS;
+		}catch(Exception e){
+			setErreur(e.getMessage());
+			e.printStackTrace();
+			return ERROR;
+		}finally{
+			if(context != null){
+				context.close();
+			}
+		}
+	}
+	public String deactivate()throws Exception{
+		ConfigurableApplicationContext context = null;
+		try{
+			context = new ClassPathXmlApplicationContext("list-beans.xml");
+			RegimeService service = (RegimeService)context.getBean("regimeService");
+			if(getRegimeActif() != null){
+				service.desactive(getRegimeActif());
+			}
+			session.remove("regime");
+			return SUCCESS;
+		}catch(Exception e){
+			setErreur(e.getMessage());
+			e.printStackTrace();
+			return ERROR;
+		}finally{
+			if(context != null){
+				context.close();
+			}
+		}
+	}
+	public String update()throws Exception{
+		ConfigurableApplicationContext context = null;
+		try{
+			context = new ClassPathXmlApplicationContext("list-beans.xml");
+			BaseService service = (BaseService)context.getBean("baseService");
+			getRegime().setUtilisateur(getUser());
+			getRegime().setDebut(getDebut());
+			getRegime().setFin(getFin());
+			getRegime().setPoidsInitial(getPoidsInitial());
+			getRegime().setPoidsObjectif(getPoidsObjectif());
+			System.out.println(getActive());
+			service.update(getRegime());
+			return SUCCESS;
+		}catch(Exception e){
+			setErreur(e.getMessage());
+			e.printStackTrace();
+			return ERROR;
+		}finally{
+			if(context != null){
+				context.close();
+			}
+		}
+	}
+	public String delete(){
+		ConfigurableApplicationContext context = null;
+		try{
+			context = new ClassPathXmlApplicationContext("list-beans.xml");
+			RegimeService service = (RegimeService)context.getBean("regimeService");
+			service.deleteRegime(getId());
+			return SUCCESS;
+		}catch(Exception e){
+			setErreur(e.getMessage());
+			e.printStackTrace();
+			return ERROR;
+		}finally{
+			if(context != null){
+				context.close();
+			}
+		}
+	}
+	
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	
+	public Utilisateur getUser() {
+		return user;
+	}
+	public void setUser(Utilisateur user){
+		this.user = user;
+	}
+	
+	public String getErreur() {
+		return erreur;
+	}
+	public void setErreur(String erreur) {
+		this.erreur = erreur;
+	}
+		
+	public String getDebut() {
+		return debut;
+	}
+	public void setDebut(String debut) {
+		this.debut = debut;
+	}
+
+	public String getFin() {
+		return fin;
+	}
+	public void setFin(String fin) {
+		this.fin = fin;
+	}
+
+	public String getPoidsInitial() {
+		return poidsInitial;
+	}
+	public void setPoidsInitial(String poidsInitial) {
+		this.poidsInitial = poidsInitial;
+	}
+
+	public String getPoidsObjectif() {
+		return poidsObjectif;
+	}
+	public void setPoidsObjectif(String poidsObjectif) {
+		this.poidsObjectif = poidsObjectif;
+	}
+		
+	public List<Regime> getListe() {
+		return liste;
+	}
+	public void setListe(List<Regime> liste) {
+		this.liste = liste;
+	}
+	
+	public AnalyseRegime getRegimeActif() {
+		return regimeActif;
+	}
+	public void setRegimeActif(AnalyseRegime regimeActif) {
+		this.regimeActif = regimeActif;
+	}
+	
+	public Regime getRegime() {
+		return regime;
+	}
+	public void setRegime(Regime regime) {
+		this.regime = regime;
+	}
+	
+	public boolean isActive() {
+		return active;
+	}
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+	
+	public SessionMap<String, Object> getSession() {
+		return session;
+	}
+	public void setSession(SessionMap<String, Object> session) {
+		this.session = session;
+	}
+	
+	@Override
+	public void setSession(Map<String, Object> session) {
+		setSession((SessionMap<String, Object>) session);
+		setUser((Utilisateur)session.get("user"));
+		setRegimeActif((AnalyseRegime)session.get("regime"));
+	}
+	
+}

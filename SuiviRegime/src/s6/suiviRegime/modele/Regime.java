@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import s6.suiviRegime.utilitaire.DateUtil;
+import s6.suiviRegime.utilitaire.StringUtil;
 
 public class Regime extends BaseModele{
 	private Utilisateur utilisateur;
@@ -14,7 +15,7 @@ public class Regime extends BaseModele{
 	private List<Poids> poids;
 	private List<Alimentation> alimentation;
 	private List<SportRegime> sport;
-	private boolean closed;
+	private boolean active = false;
 	
 	public Regime(){}
 	
@@ -22,13 +23,14 @@ public class Regime extends BaseModele{
 		super(id);
 	}
 
-	public Regime(int id, Utilisateur utilisateur, Date debut, Date fin, float poidsObjectif, float poidsInitial) {
+	public Regime(int id, Utilisateur utilisateur, Date debut, Date fin, float poidsObjectif, float poidsInitial, boolean active) throws Exception {
 		super(id);
 		this.setUtilisateur(utilisateur);
 		this.setDebut(debut);
 		this.setFin(fin);
 		this.setPoidsObjectif(poidsObjectif);
 		this.setPoidsInitial(poidsInitial);
+		this.setActive(active);
 	}
 	
 	public Utilisateur getUtilisateur() {
@@ -40,7 +42,11 @@ public class Regime extends BaseModele{
 	public Date getDebut() {
 		return debut;
 	}
-	public void setDebut(Date debut) {
+	public String getDebutString(){
+		return DateUtil.getInstance().DateToString(getDebut());
+	}
+	public void setDebut(Date debut) throws Exception {
+		if(debut == null) throw new Exception("Une date de début doit etre spécifiée");
 		this.debut = debut;
 	}
 	public void setDebut(String date) throws Exception {
@@ -50,7 +56,11 @@ public class Regime extends BaseModele{
 	public Date getFin() {
 		return fin;
 	}
-	public void setFin(Date fin) {
+	public String getFinString(){
+		return DateUtil.getInstance().DateToString(getFin());
+	}
+	public void setFin(Date fin) throws Exception {
+		if(fin == null) throw new Exception("Une date de fin doit etre spécifiée");
 		this.fin = fin;
 	}
 	public void setFin(String date) throws Exception {
@@ -60,7 +70,11 @@ public class Regime extends BaseModele{
 	public float getPoidsInitial() {
 		return poidsInitial;
 	}
-	public void setPoidsInitial(float poidsInitial) {
+	public String getPoidsInitialString() {
+		return StringUtil.getInstance().formatFloat(getPoidsInitial()) + " kg";
+	}
+	public void setPoidsInitial(float poidsInitial) throws Exception{
+		if(poidsInitial<30) throw new Exception("Vous ne pouvez suivre un régime avec un poids en dessous de 30 kg");
 		this.poidsInitial = poidsInitial;
 	}
 	public void setPoidsInitial(String poidsInitial) throws Exception{
@@ -77,7 +91,11 @@ public class Regime extends BaseModele{
 	public float getPoidsObjectif() {
 		return poidsObjectif;
 	}
-	public void setPoidsObjectif(float poidsObjectif) {
+	public String getPoidsObjectifString() {
+		return StringUtil.getInstance().formatFloat(getPoidsObjectif()) + " kg";
+	}
+	public void setPoidsObjectif(float poidsObjectif) throws Exception{
+		if(poidsObjectif<30) throw new Exception("Votre objectif est un poids inaproprié");
 		this.poidsObjectif = poidsObjectif;
 	}
 	public void setPoidsObjectif(String poidsObjectif) throws Exception{
@@ -115,11 +133,11 @@ public class Regime extends BaseModele{
 		this.sport = sport;
 	}
 
-	public boolean isClosed() {
-		return closed;
+	public boolean isActive() {
+		return active;
 	}
-	public void setClosed(boolean closed) {
-		this.closed = closed;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 }

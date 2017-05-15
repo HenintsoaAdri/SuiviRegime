@@ -32,12 +32,12 @@ public class UtilisateurService {
 		u.setAdresse(adresse);
 		service.save(u);
 	}
+	public Utilisateur login(Utilisateur u) throws Exception{
+		return login(u.getEmail(), u.getPassword());
+	}
 	public Utilisateur login(String email, String password) throws Exception{
 		if(email == null || email.isEmpty()) throw new Exception("Votre adresse email est requise !");
-		Utilisateur u = new Utilisateur();
-		u.setEmail(email.trim());
-		u.setPassword(password);
-		Utilisateur user = service.getDao().login(u);
+		Utilisateur user = service.getDao().login(email.trim(), password);
 		if(user == null) throw new Exception("Vos identifiants sont incorrectes ou on ne vous connait pas encore !");
 		return (Utilisateur)user;
 	}

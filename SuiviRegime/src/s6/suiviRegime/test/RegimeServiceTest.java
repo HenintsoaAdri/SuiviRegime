@@ -66,7 +66,7 @@ public class RegimeServiceTest {
 	@Test
 	public void testUpdateRegime() throws Exception {
 		HibernateDao dao = new HibernateDao();
-		RegimeService.getInstance().updateRegime("2","2","07-05-2017","07-07-2017","55,5");
+		RegimeService.getInstance().updateRegime("2","2","07-05-2017","07-07-2017","55,5","62");
 		Regime regime = new Regime(2);
 		dao.findById(regime);
 		assertEquals(Date.valueOf("2017-07-07"), regime.getFin());

@@ -1,0 +1,31 @@
+package s6.suiviRegime.modele;
+
+import java.util.Date;
+
+public class AnalyseSport extends Sport {
+	private int conseilTotal;
+	
+	public AnalyseSport() {
+		super();
+	}
+	public AnalyseSport(int id, String nom, String prenom, Date dateNaissance, String sexe, String email,
+			String password, String adresse) throws Exception {
+		super(id, nom, prenom, dateNaissance, sexe, email, password, adresse);
+	}
+	public AnalyseSport(int id) {
+		super(id);
+	}
+	
+	public AnalyseSport(int id, String nom, String prenom, Date dateNaissance, String sexe, String email,
+			String password, String adresse, int conseilTotal) throws Exception {
+		super(id, nom, prenom, dateNaissance, sexe, email, password, adresse);
+		setConseilTotal(conseilTotal);
+	}
+	public int getConseilTotal() {
+		return conseilTotal;
+	}
+	public void setConseilTotal(int conseilTotal) {
+		this.conseilTotal = conseilTotal;
+	}
+	
+}

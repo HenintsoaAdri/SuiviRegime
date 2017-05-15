@@ -75,7 +75,8 @@ public class Creation {
 				res.getDate("DEBUTREGIME"),
 				res.getDate("FINREGIME"),
 				res.getFloat("POIDSOBJECTIFREGIME"),
-				res.getFloat("POIDSINITIALREGIME"));
+				res.getFloat("POIDSINITIALREGIME"),
+				res.getBoolean("ACTIVEREGIME"));
 		return model;
 	}
 	public static Regime creerRegime(ResultSet res) throws Exception{

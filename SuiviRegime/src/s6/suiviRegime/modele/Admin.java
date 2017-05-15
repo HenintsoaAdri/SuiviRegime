@@ -42,5 +42,8 @@ public class Admin extends BaseModele {
 	public void setLastLogin(String lastLogin) throws Exception {
 		setLastLogin(DateUtil.getInstance().stringToDate(lastLogin));
 	}
+	public void loggedIn(){
+		setLastLogin(new Date());
+	}
 	
 }

@@ -20,6 +20,7 @@
         <!-- Echo all executed SQL to stdout -->
         <property name="show_sql">true</property>
         
+		<mapping resource="s6/suiviRegime/modele/mappings/Admin.hbm.xml"/>
         <mapping resource="s6/suiviRegime/modele/mappings/Alimentation.hbm.xml"/>
 		<mapping resource="s6/suiviRegime/modele/mappings/AlimentationConseil.hbm.xml"/>
 		<mapping resource="s6/suiviRegime/modele/mappings/Poids.hbm.xml"/>

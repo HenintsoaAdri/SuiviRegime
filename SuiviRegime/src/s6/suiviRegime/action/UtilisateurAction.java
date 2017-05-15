@@ -3,7 +3,6 @@ package s6.suiviRegime.action;
 import java.util.Map;
 
 import org.apache.struts2.interceptor.SessionAware;
-import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -11,15 +10,19 @@ import com.opensymphony.xwork2.ActionSupport;
 
 import s6.suiviRegime.modele.AlimentationConseil;
 import s6.suiviRegime.modele.AnalyseRegime;
+import s6.suiviRegime.modele.BaseModelePagination;
+import s6.suiviRegime.modele.Regime;
 import s6.suiviRegime.modele.Utilisateur;
 import s6.suiviRegime.service.MultiService;
-import s6.suiviRegime.service.UtilisateurService;
+import s6.suiviRegime.service.RegimeService;
 
 public class UtilisateurAction extends ActionSupport implements SessionAware{
 	private Utilisateur user;
 	private String erreur;
 	private AlimentationConseil	randomTips;
-	private AnalyseRegime regime;
+	private AnalyseRegime regimeActif;
+	private BaseModelePagination listeRegime;
+	private int page;
 	
 	public String index()throws Exception{
 		
@@ -27,6 +30,11 @@ public class UtilisateurAction extends ActionSupport implements SessionAware{
 		try{
 			context = new ClassPathXmlApplicationContext("list-beans.xml");
 			MultiService service = (MultiService)context.getBean("multiService");
+			RegimeService regimeService = (RegimeService)context.getBean("regimeService");
+			if(getRegimeActif() == null){
+				setListeRegime(new BaseModelePagination(Regime.class, 10, getPage()));
+				regimeService.findAllUtilisateur(getUser(), getListeRegime());
+			}
 			setRandomTips(service.getRandomTips());
 			return SUCCESS;
 		}catch(Exception e){
@@ -60,16 +68,31 @@ public class UtilisateurAction extends ActionSupport implements SessionAware{
 	public void setRandomTips(AlimentationConseil randomTips) {
 		this.randomTips = randomTips;
 	}
-	public AnalyseRegime getRegime() {
-		return regime;
+	public AnalyseRegime getRegimeActif() {
+		return regimeActif;
 	}
-	public void setRegime(AnalyseRegime regime) {
-		this.regime = regime;
+	public void setRegimeActif(AnalyseRegime regimeActif) {
+		this.regimeActif = regimeActif;
 	}
+	
+	public BaseModelePagination getListeRegime() {
+		return listeRegime;
+	}
+	public void setListeRegime(BaseModelePagination listeRegime) {
+		this.listeRegime = listeRegime;
+	}
+
+	public int getPage() {
+		return page;
+	}
+	public void setPage(int page) {
+		this.page = page - 1;
+	}
+
 	@Override
 	public void setSession(Map<String, Object> session) {
 		setUser((Utilisateur)session.get("user"));
-		setRegime((AnalyseRegime)session.get("regime"));
+		setRegimeActif((AnalyseRegime)session.get("regime"));
 	}
 	
 }

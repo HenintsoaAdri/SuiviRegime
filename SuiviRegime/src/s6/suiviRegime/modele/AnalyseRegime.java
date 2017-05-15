@@ -15,31 +15,31 @@ public class AnalyseRegime extends Regime{
 	
 	public AnalyseRegime() {
 		super();
-		setClosed(false);
+		setActive(true);
 	}
-	public AnalyseRegime(int id, Utilisateur utilisateur, Date debut, Date fin, float poidsObjectif, float poidsInitial, boolean closed) {
-		super(id, utilisateur, debut, fin, poidsObjectif, poidsInitial);
+	public AnalyseRegime(int id, Utilisateur utilisateur, Date debut, Date fin, float poidsObjectif, float poidsInitial, boolean active) throws Exception {
+		super(id, utilisateur, debut, fin, poidsObjectif, poidsInitial,active);
 	}
 	public AnalyseRegime(int id) {
 		super(id);
-		setClosed(false);
+		setActive(true);
 	}
 
 	public AnalyseRegime(int id, Utilisateur utilisateur, Date debut, Date fin, float poidsObjectif, float poidsInitial,
-			int minuteSportTotal, float poidsTotalPerdu, boolean closed) {
-		super(id, utilisateur, debut, fin, poidsObjectif, poidsInitial);
+			int minuteSportTotal, float poidsTotalPerdu, boolean active) throws Exception {
+		super(id, utilisateur, debut, fin, poidsObjectif, poidsInitial, active);
 		
 		setMinuteSportTotal(minuteSportTotal);
 		setPoidsTotalPerdu(poidsTotalPerdu);
 	}
 	
 	@Override
-	public void setDebut(Date debut) {
+	public void setDebut(Date debut) throws Exception {
 		super.setDebut(debut);
 		setJourPasse(DateUtil.getInstance().getUntilNow(debut));
 	}
 	@Override
-	public void setFin(Date fin) {
+	public void setFin(Date fin) throws Exception {
 		super.setFin(fin);
 		setJourRestant(DateUtil.getInstance().getBetweenNow(fin));
 	}
@@ -68,7 +68,7 @@ public class AnalyseRegime extends Regime{
 		return getPoidsTotalPerdu()/(getJourPasse()/7f);
 	}
 	public String getPoidsPerduParSemaineString(){
-		return StringUtil.getInstance().formatFloat(getPoidsPerduParSemaine()) + " kg";
+		return StringUtil.getInstance().formatFloatSign(-getPoidsPerduParSemaine()) + " kg";
 	}
 	
 	public int getJourRestant() {
@@ -83,5 +83,14 @@ public class AnalyseRegime extends Regime{
 	}
 	public void setJourPasse(int jourPasse) {
 		this.jourPasse = jourPasse;
+	}
+	public Regime getRegime() throws Exception{
+		return new Regime(this.getId(),
+				this.getUtilisateur(),
+				this.getDebut(),
+				this.getFin(),
+				this.getPoidsObjectif(),
+				this.getPoidsInitial(),
+				this.isActive());
 	}
 }

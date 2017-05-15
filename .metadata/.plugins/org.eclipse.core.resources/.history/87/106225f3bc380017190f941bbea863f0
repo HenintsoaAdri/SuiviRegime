@@ -1,0 +1,218 @@
+package s6.suiviRegime.dao;
+
+import s6.suiviRegime.modele.AnalyseRegime;
+import s6.suiviRegime.modele.Regime;
+import s6.suiviRegime.modele.BaseModele;
+import s6.suiviRegime.modele.Poids;
+import s6.suiviRegime.modele.Utilisateur;
+import org.hibernate.Criteria;
+import org.hibernate.ObjectNotFoundException;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
+import org.hibernate.exception.ConstraintViolationException;
+
+import java.util.List;
+
+import javax.persistence.PersistenceException;
+
+public class HibernateDao {
+    private SessionFactory sessionFactory; // = HibernateUtil.getSessionFactory();
+    
+    public HibernateDao(){
+    }
+    public SessionFactory getSessionFactory() {
+        return sessionFactory;
+    }
+
+    public void setSessionFactory(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
+    public void save(BaseModele model) throws Exception{
+        Session session = null;
+        Transaction tr = null;
+        try{
+            session = getSessionFactory().openSession();
+            tr = session.beginTransaction();
+            session.saveOrUpdate(model);
+            tr.commit();
+        }catch(PersistenceException e){
+        	ConstraintViolationException sql = (ConstraintViolationException)(e.getCause());
+        	if(sql.getSQLState().equalsIgnoreCase("23505")){
+				try{
+					if(tr!=null)
+		                tr.rollback();
+		            tr = session.beginTransaction();
+					Poids p = findPoids((Poids)model);
+					p.setValeur(((Poids)model).getValeur());
+					session.update(p);
+					tr.commit();
+				}catch(Exception ex){
+					if(tr!=null)
+		                tr.rollback();
+					throw ex;
+				}
+			}else throw e;
+        }
+        catch (Exception ex){
+            if(tr!=null)
+                tr.rollback();
+            throw ex;
+        }finally {
+            if(session != null)
+                session.close();
+        }
+    }
+
+    public void delete(BaseModele model) throws Exception{
+		Session session = null;
+        Transaction tr = null;
+	    try{
+	        session = getSessionFactory().openSession();
+            tr = session.beginTransaction();
+	        session.delete(model);
+            tr.commit();
+	    }catch (Exception ex){
+	        throw ex;
+	    }finally {
+	        if(session!=null)
+	            session.close();
+	    }
+	}
+	public void update(BaseModele model) throws Exception{
+		Session session = null;
+        Transaction tr = null;
+	    try{
+	        session = getSessionFactory().openSession();
+            tr = session.beginTransaction();
+	        session.update(model);
+            tr.commit();
+	    }catch (Exception ex){
+	        throw ex;
+	    }finally {
+	        if(session!=null)
+	            session.close();
+	    }
+	}
+	public void findById(BaseModele model) throws Exception{
+        Session session = null;
+        try{
+            session = getSessionFactory().openSession();
+            session.load(model,model.getId());
+        }catch(ObjectNotFoundException e){
+        	throw new Exception("Informations introuvable");
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+    }
+
+    public List<BaseModele> findAll(BaseModele model)  throws Exception{
+        Session session = null;
+        try{
+            session = getSessionFactory().openSession();
+            Criteria criteria = session.createCriteria(model.getClass());
+            return criteria.list();
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+    }
+    public Utilisateur login(Utilisateur model)  throws Exception{
+        Session session = null;
+        try{
+            session = getSessionFactory().openSession();
+            Utilisateur user = session.createQuery("FROM Utilisateur "
+            		+ "WHERE email = :emailutilisateur AND password = :passwordutilisateur", model.getClass())
+            		.setParameter("emailutilisateur", model.getEmail())
+            		.setParameter("passwordutilisateur", model.getPassword()).uniqueResult();
+            return (Utilisateur)user;
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+    }
+    public BaseModele getRandom(BaseModele model){
+    	Session session = null;
+        try{
+            session = getSessionFactory().openSession();
+            Criteria criteria = session.createCriteria(model.getClass())
+            		.add(Restrictions.sqlRestriction("1=1 order by random()"));
+            return (BaseModele)criteria.list().get(0);
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+    }
+	public AnalyseRegime findActiveRegime(Utilisateur model) {
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	return (AnalyseRegime)(session.createQuery("FROM AnalyseRegime "
+            		+ "WHERE idutilisateur = :idutilisateur AND active = TRUE", AnalyseRegime.class)
+            		.setParameter("idutilisateur", model.getId()).uniqueResult());
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+	public List<Regime> findAllRegime(Utilisateur model) {
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	List<Regime> liste =session.createQuery("FROM Regime "
+            		+ "WHERE idutilisateur = :idutilisateur AND active = FALSE", Regime.class)
+            		.setParameter("idutilisateur", model.getId()).list();
+        	return liste;
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+	public List<Poids> findAllPoids(Regime model,BaseModelePagination pagination) {
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	List<Poids> liste =session.createQuery("FROM Poids "
+            		+ "WHERE idregime = :idregime", Poids.class)
+            		.setParameter("idregime", model.getId())
+            		.setFirstResult(offset)
+            		.setMaxResults(max)
+            		.list();
+        	return liste;
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+	public Poids findPoids(Poids poids){
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	return session.createQuery("FROM Poids WHERE date = :date and idregime = :idregime",poids.getClass())
+        	.setParameter("date", poids.getDate())
+        	.setParameter("idregime", poids.getRegime().getId()).uniqueResult();
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+}
