@@ -223,18 +223,20 @@
             <result name="login" type="redirectAction">Connexion</result>
       </action>
       <action name="Utilisateur/Conseil/Alimentation" 
-            class="s6.suiviRegime.action.ConseilAction" 
-            method="alimentation">
+            class="s6.suiviRegime.action.CrudAction" 
+            method="list">
             <interceptor-ref name="loginStack"/>
+            <param name="classe">s6.suiviRegime.modele.AlimentationConseil</param>
             <result name="success">/Utilisateur/Conseil/alimentation.jsp</result>
             <result name="none" type="redirectAction">Utilisateur/Conseil/Alimentation</result>
             <result name="error" type="redirectAction">Utilisateur</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
       <action name="Utilisateur/Conseil/Sport" 
-            class="s6.suiviRegime.action.ConseilAction" 
-            method="sport">
+            class="s6.suiviRegime.action.CrudAction" 
+            method="list">
             <interceptor-ref name="loginStack"/>
+            <param name="classe">s6.suiviRegime.modele.SportConseil</param>
             <result name="success">/Utilisateur/Conseil/sport.jsp</result>
             <result name="none" type="redirectAction">Utilisateur/Conseil/Sport</result>
             <result name="error" type="redirectAction">Utilisateur</result>
@@ -279,7 +281,7 @@
             class="s6.suiviRegime.action.CrudAction" 
             method="list">
             <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.Utilisateur</param>
+            <param name="classe">s6.suiviRegime.modele.AnalyseUtilisateur</param>
             <result name="success">/Administrateur/Utilisateur/index.jsp</result>
             <result name="none" type="redirectAction">Administrateur/Utilisateur</result>
             <result name="error" type="redirectAction">Administrateur</result>
@@ -290,7 +292,7 @@
             method="delete">
             <interceptor-ref name="adminStack"/>
             <param name="classe">s6.suiviRegime.modele.Utilisateur</param>
-            <result name="success">/Administrateur/Utilisateur/index.jsp</result>
+            <result name="error" type="redirectAction">Administrateur/Utilisateur</result>
             <result name="error" type="redirectAction">Administrateur/Utilisateur</result>
             <result name="login" type="redirectAction">Administrateur/Connexion</result>
       </action>
@@ -298,7 +300,7 @@
             class="s6.suiviRegime.action.CrudAction" 
             method="list">
             <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.Sport</param>
+            <param name="classe">s6.suiviRegime.modele.AnalyseSport</param>
             <result name="success">/Administrateur/Sport/index.jsp</result>
             <result name="none" type="redirectAction">Administrateur/Sport</result>
             <result name="error" type="redirectAction">Administrateur</result>
@@ -309,7 +311,7 @@
             method="delete">
             <interceptor-ref name="adminStack"/>
             <param name="classe">s6.suiviRegime.modele.Sport</param>
-            <result name="success">/Administrateur/Sport/index.jsp</result>
+            <result name="error" type="redirectAction">Administrateur/Sport</result>
             <result name="error" type="redirectAction">Administrateur/Sport</result>
             <result name="login" type="redirectAction">Administrateur/Connexion</result>
       </action>
@@ -329,7 +331,7 @@
             method="delete">
             <interceptor-ref name="adminStack"/>
             <param name="classe">s6.suiviRegime.modele.AlimentationConseil</param>
-            <result name="success">/Administrateur/Conseil/Alimentation/index.jsp</result>
+            <result name="error" type="redirectAction">Administrateur/Conseil/Alimentation</result>
             <result name="error" type="redirectAction">Administrateur/Conseil/Alimentation</result>
             <result name="login" type="redirectAction">Administrateur/Connexion</result>
       </action>
@@ -349,7 +351,7 @@
             method="delete">
             <interceptor-ref name="adminStack"/>
             <param name="classe">s6.suiviRegime.modele.SportConseil</param>
-            <result name="success">/Administrateur/Conseil/Alimentation/index.jsp</result>
+            <result name="error" type="redirectAction">Administrateur</result>
             <result name="error" type="redirectAction">Administrateur</result>
             <result name="login" type="redirectAction">Administrateur/Connexion</result>
       </action>

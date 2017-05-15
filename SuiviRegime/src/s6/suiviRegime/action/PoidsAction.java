@@ -16,15 +16,11 @@ import s6.suiviRegime.modele.AnalyseRegime;
 import s6.suiviRegime.modele.BaseModelePagination;
 import s6.suiviRegime.modele.Poids;
 
-public class PoidsAction extends ActionSupport implements SessionAware{
-	private Utilisateur user;
-	private String erreur;
+public class PoidsAction extends UtilisateurSectionAction{
 	private Poids poids;
 	private String date;
 	private String valeur;
 	private BaseModelePagination liste;
-	private AnalyseRegime regimeActif;
-	private int page = 0;
 	private String evolution;
 	private SessionMap<String, Object> session;
 	
@@ -127,20 +123,6 @@ public class PoidsAction extends ActionSupport implements SessionAware{
 		}
 	}
 	
-	public Utilisateur getUser() {
-		return user;
-	}
-	public void setUser(Utilisateur user){
-		this.user = user;
-	}
-	
-	public String getErreur() {
-		return erreur;
-	}
-	public void setErreur(String erreur) {
-		this.erreur = erreur;
-	}
-	
 	public Poids getPoids() {
 		return poids;
 	}
@@ -167,20 +149,6 @@ public class PoidsAction extends ActionSupport implements SessionAware{
 	}
 	public void setListe(BaseModelePagination liste) {
 		this.liste = liste;
-	}
-	
-	public int getPage() {
-		return page;
-	}
-	public void setPage(int page) {
-		this.page = page - 1;
-	}
-	
-	public AnalyseRegime getRegimeActif() {
-		return regimeActif;
-	}
-	public void setRegimeActif(AnalyseRegime regimeActif) {
-		this.regimeActif = regimeActif;
 	}
 	
 	public String getEvolution() {

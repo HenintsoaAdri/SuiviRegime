@@ -1,7 +1,7 @@
 <%@ include file="../includes/header.jsp" %>
 <%@page import="java.util.List"%>
 <% Utilisateur user = (Utilisateur)request.getAttribute("user");
-	BaseModelePagination liste = (BaseModelePagination)request.getAttribute("conseil");
+	BaseModelePagination liste = (BaseModelePagination)request.getAttribute("liste");
 	int pageNumero = (int)request.getAttribute("page");
 %>
          <div id="page-inner">

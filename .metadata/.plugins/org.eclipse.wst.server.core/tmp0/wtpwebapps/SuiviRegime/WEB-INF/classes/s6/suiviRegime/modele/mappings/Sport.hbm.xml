@@ -22,5 +22,8 @@
 	         <key column="idsport" not-null="true"/>
 	         <one-to-many class="s6.suiviRegime.modele.SportRegime"/>
         </bag>
+        <union-subclass name="s6.suiviRegime.modele.AnalyseSport" table="analysesport">
+        	<property name="conseilTotal" column="conseiltotal" type="int"/>
+        </union-subclass>
     </class>
 </hibernate-mapping>

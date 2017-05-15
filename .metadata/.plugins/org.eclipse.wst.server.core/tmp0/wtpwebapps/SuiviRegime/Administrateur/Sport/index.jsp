@@ -26,14 +26,16 @@
                                         <th>#</th>
                                         <th>Sport</th>
                                         <th>Activit&eacute;</th>
+                                        <th>Nb. conseil total</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <% for(Sport s : (List<Sport>)liste.getListe()){ %>
+                                <% for(AnalyseSport s : (List<AnalyseSport>)liste.getListe()){ %>
                                     <tr>
                                         <td><% out.print(s.getId()); %></td>
                                         <td><% out.print(s.getLibelle()); %></td>
                                         <td><% out.print(s.getActivite()); %></td>
+                                        <td><% out.print(s.getConseilTotal()); %></td>
                                         <td><a class="btn btn-danger" href="/SuiviRegime/Administrateur/Sport/delete?id=<% out.print(s.getId()); %>">Supprimer</a></td>
                                     </tr>
                                 <% } %>
