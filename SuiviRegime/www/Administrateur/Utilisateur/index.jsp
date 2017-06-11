@@ -9,6 +9,12 @@
                     <h1 class="page-header">Utilisateurs</h1>
                 </div>
                 <!-- /.col-lg-12 -->
+                <div class="col-lg-12">
+                	<a class="btn btn-success" href="/SuiviRegime/Administrateur/Utilisateur/add">
+                		<span class="glyphicon glyphicon-plus-sign" ></span> Nouveau
+                	</a>
+                </div>
+                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
@@ -44,6 +50,8 @@
                                         <td><% out.print(u.getAdresse()); %></td>
                                         <td><% out.print(u.getEmail()); %></td>
                                         <td><% out.print(u.getRegimeTotal()); %></td>
+                                        <td><a class="btn btn-default" href="/SuiviRegime/Administrateur/Utilisateur/detail?utilisateur.id=<% out.print(u.getId()); %>">Voir les d&eacute;tails</a></td>
+                                        <td><a class="btn btn-warning" href="/SuiviRegime/Administrateur/Utilisateur/edit?item.id=<% out.print(u.getId()); %>">Modifier</a></td>
                                         <td><a class="btn btn-danger" href="/SuiviRegime/Administrateur/Utilisateur/delete?id=<% out.print(u.getId()); %>">Supprimer</a></td>
                                     </tr>
                                 <% } %>

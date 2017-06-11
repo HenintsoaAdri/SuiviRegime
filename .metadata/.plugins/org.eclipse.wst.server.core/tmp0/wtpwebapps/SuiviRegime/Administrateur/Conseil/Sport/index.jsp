@@ -9,6 +9,12 @@
                     <h1 class="page-header">Conseils Sportif</h1>
                 </div>
                 <!-- /.col-lg-12 -->
+                <div class="col-lg-12">
+                	<a class="btn btn-success" href="/SuiviRegime/Administrateur/Conseil/Sport/add">
+                		<span class="glyphicon glyphicon-plus-sign" ></span> Nouveau
+                	</a>
+                </div>
+                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
@@ -36,9 +42,10 @@
                                         <td><% out.print(c.getId()); %></td>
                                         <td><% out.print(c.getSport().getLibelle()); %></td>
                                         <td><% out.print(c.getSport().getActivite()); %></td>
-                                        <td><% out.print(c.getRythme()); %></td>
+                                        <td><% out.print(c.getRythme()); %> minutes</td>
                                         <td><% out.print(c.getDetails()); %></td>
-                                        <td><a class="btn btn-danger" href="/SuiviRegime/Administrateur/Conseil/Alimentation/delete?id=<% out.print(c.getId()); %>">Supprimer</a></td>
+                                        <td><a class="btn btn-warning" href="/SuiviRegime/Administrateur/Conseil/Sport/edit?item.id=<% out.print(c.getId()); %>">Modifier</a></td>
+                                        <td><a class="btn btn-danger" href="/SuiviRegime/Administrateur/Conseil/Sport/delete?id=<% out.print(c.getId()); %>">Supprimer</a></td>
                                     </tr>
                                 <% } %>
                                 </tbody>
@@ -48,7 +55,13 @@
 		                         	<% for(int i=0; i<liste.getNombrePage();i++){ %>
 									<li class="<% if(i == pageNumero) out.print("active"); %>"><a href="?page=<% out.print(i+1); %>"><% out.print(i+1); %></a></li>
 									<% } %>
-								 </ul> 
+								 </ul>
+						        <% if(request.getAttribute("erreur") != null){ %>    
+								<div class="alert alert-danger alert-dismissable fade in">
+								   <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+								   <strong>Probl&egrave;me!</strong> <% out.print(request.getAttribute("erreur")); %>
+								</div>     
+								<% } %> 
                         </div>
                         <!-- /.panel-body -->
                     </div>

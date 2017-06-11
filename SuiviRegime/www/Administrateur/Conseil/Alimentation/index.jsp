@@ -9,6 +9,12 @@
                     <h1 class="page-header">Conseils d'Alimentation</h1>
                 </div>
                 <!-- /.col-lg-12 -->
+                <div class="col-lg-12">
+                	<a class="btn btn-success" href="/SuiviRegime/Administrateur/Conseil/Sport/add">
+                		<span class="glyphicon glyphicon-plus-sign" ></span> Nouveau
+                	</a>
+                </div>
+                <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
             <div class="row">
@@ -38,6 +44,7 @@
                                         <td><% out.print(c.getMatin()); %></td>
                                         <td><% out.print(c.getMidi()); %></td>
                                         <td><% out.print(c.getSoir()); %></td>
+                                        <td><a class="btn btn-warning" href="/SuiviRegime/Administrateur/Conseil/Alimentation/edit?item.id=<% out.print(c.getId()); %>">Modifier</a></td>
                                         <td><a class="btn btn-danger" href="/SuiviRegime/Administrateur/Conseil/Alimentation/delete?id=<% out.print(c.getId()); %>">Supprimer</a></td>
                                     </tr>
                                 <% } %>

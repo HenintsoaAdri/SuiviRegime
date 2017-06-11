@@ -1,0 +1,275 @@
+/**
+ * Pagination.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package s6.suiviRegime.service;
+
+public class Pagination  implements java.io.Serializable {
+    private int firstResult;
+
+    private int maxResult;
+
+    private boolean moreThanOne;
+
+    private int nombrePage;
+
+    private int page;
+
+    private long totalResult;
+
+    public Pagination() {
+    }
+
+    public Pagination(
+           int firstResult,
+           int maxResult,
+           boolean moreThanOne,
+           int nombrePage,
+           int page,
+           long totalResult) {
+           this.firstResult = firstResult;
+           this.maxResult = maxResult;
+           this.moreThanOne = moreThanOne;
+           this.nombrePage = nombrePage;
+           this.page = page;
+           this.totalResult = totalResult;
+    }
+
+
+    /**
+     * Gets the firstResult value for this Pagination.
+     * 
+     * @return firstResult
+     */
+    public int getFirstResult() {
+        return firstResult;
+    }
+
+
+    /**
+     * Sets the firstResult value for this Pagination.
+     * 
+     * @param firstResult
+     */
+    public void setFirstResult(int firstResult) {
+        this.firstResult = firstResult;
+    }
+
+
+    /**
+     * Gets the maxResult value for this Pagination.
+     * 
+     * @return maxResult
+     */
+    public int getMaxResult() {
+        return maxResult;
+    }
+
+
+    /**
+     * Sets the maxResult value for this Pagination.
+     * 
+     * @param maxResult
+     */
+    public void setMaxResult(int maxResult) {
+        this.maxResult = maxResult;
+    }
+
+
+    /**
+     * Gets the moreThanOne value for this Pagination.
+     * 
+     * @return moreThanOne
+     */
+    public boolean isMoreThanOne() {
+        return moreThanOne;
+    }
+
+
+    /**
+     * Sets the moreThanOne value for this Pagination.
+     * 
+     * @param moreThanOne
+     */
+    public void setMoreThanOne(boolean moreThanOne) {
+        this.moreThanOne = moreThanOne;
+    }
+
+
+    /**
+     * Gets the nombrePage value for this Pagination.
+     * 
+     * @return nombrePage
+     */
+    public int getNombrePage() {
+        return nombrePage;
+    }
+
+
+    /**
+     * Sets the nombrePage value for this Pagination.
+     * 
+     * @param nombrePage
+     */
+    public void setNombrePage(int nombrePage) {
+        this.nombrePage = nombrePage;
+    }
+
+
+    /**
+     * Gets the page value for this Pagination.
+     * 
+     * @return page
+     */
+    public int getPage() {
+        return page;
+    }
+
+
+    /**
+     * Sets the page value for this Pagination.
+     * 
+     * @param page
+     */
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+
+    /**
+     * Gets the totalResult value for this Pagination.
+     * 
+     * @return totalResult
+     */
+    public long getTotalResult() {
+        return totalResult;
+    }
+
+
+    /**
+     * Sets the totalResult value for this Pagination.
+     * 
+     * @param totalResult
+     */
+    public void setTotalResult(long totalResult) {
+        this.totalResult = totalResult;
+    }
+
+    private java.lang.Object __equalsCalc = null;
+    public synchronized boolean equals(java.lang.Object obj) {
+        if (!(obj instanceof Pagination)) return false;
+        Pagination other = (Pagination) obj;
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (__equalsCalc != null) {
+            return (__equalsCalc == obj);
+        }
+        __equalsCalc = obj;
+        boolean _equals;
+        _equals = true && 
+            this.firstResult == other.getFirstResult() &&
+            this.maxResult == other.getMaxResult() &&
+            this.moreThanOne == other.isMoreThanOne() &&
+            this.nombrePage == other.getNombrePage() &&
+            this.page == other.getPage() &&
+            this.totalResult == other.getTotalResult();
+        __equalsCalc = null;
+        return _equals;
+    }
+
+    private boolean __hashCodeCalc = false;
+    public synchronized int hashCode() {
+        if (__hashCodeCalc) {
+            return 0;
+        }
+        __hashCodeCalc = true;
+        int _hashCode = 1;
+        _hashCode += getFirstResult();
+        _hashCode += getMaxResult();
+        _hashCode += (isMoreThanOne() ? Boolean.TRUE : Boolean.FALSE).hashCode();
+        _hashCode += getNombrePage();
+        _hashCode += getPage();
+        _hashCode += new Long(getTotalResult()).hashCode();
+        __hashCodeCalc = false;
+        return _hashCode;
+    }
+
+    // Type metadata
+    private static org.apache.axis.description.TypeDesc typeDesc =
+        new org.apache.axis.description.TypeDesc(Pagination.class, true);
+
+    static {
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://service.suiviRegime.s6", "Pagination"));
+        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("firstResult");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "firstResult"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("maxResult");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "maxResult"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("moreThanOne");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "moreThanOne"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "boolean"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("nombrePage");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "nombrePage"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("page");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "page"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("totalResult");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "totalResult"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "long"));
+        elemField.setNillable(false);
+        typeDesc.addFieldDesc(elemField);
+    }
+
+    /**
+     * Return type metadata object
+     */
+    public static org.apache.axis.description.TypeDesc getTypeDesc() {
+        return typeDesc;
+    }
+
+    /**
+     * Get Custom Serializer
+     */
+    public static org.apache.axis.encoding.Serializer getSerializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanSerializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+    /**
+     * Get Custom Deserializer
+     */
+    public static org.apache.axis.encoding.Deserializer getDeserializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanDeserializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+}

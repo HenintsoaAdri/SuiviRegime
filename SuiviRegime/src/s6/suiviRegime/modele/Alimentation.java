@@ -51,6 +51,17 @@ public class Alimentation extends BaseModele{
 	public int getPeriode() {
 		return periode;
 	}
+	public String getPeriodeString() {
+		return getPeriodeStringValue(getPeriode());
+	}
+	public String getPeriodeStringValue(int i){
+		switch (i) {
+		case 1: return "Matin";
+		case 2: return "Midi";
+		case 3: return "Soir";
+		default:return "";
+		}
+	}
 	public void setPeriode(int periode) {
 		this.periode = periode;
 	}

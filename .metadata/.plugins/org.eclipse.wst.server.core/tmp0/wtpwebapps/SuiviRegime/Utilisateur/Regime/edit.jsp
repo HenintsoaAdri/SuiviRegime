@@ -7,7 +7,7 @@
 			<div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Nouveau r&eacute;gime</h2>   
+                     <h2>Modifier un r&eacute;gime</h2>   
                         <h5>Cr&eacute;er votre nouveau r&eacute;gime.</h5>
                        
                     </div>

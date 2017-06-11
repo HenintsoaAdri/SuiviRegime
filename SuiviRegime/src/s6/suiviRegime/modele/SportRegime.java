@@ -15,7 +15,7 @@ public class SportRegime extends BaseModele{
 	public SportRegime(int id) {
 		super(id);
 	}
-	public SportRegime(int id, Regime regime, Sport sport, Date date, int rythme) {
+	public SportRegime(int id, Regime regime, Sport sport, Date date, int rythme) throws Exception {
 		this.setId(id);
 		this.setSport(sport);
 		this.setRegime(regime);
@@ -23,7 +23,7 @@ public class SportRegime extends BaseModele{
 		this.setRythme(rythme);
 	}
 
-	public SportRegime(int id, int idSport, String libelle, String activite, Regime regime, Date date, int rythme) {
+	public SportRegime(int id, int idSport, String libelle, String activite, Regime regime, Date date, int rythme) throws Exception {
 		this.setId(id);
 		this.setSport(new Sport(idSport, libelle, activite));
 		this.setRegime(regime);
@@ -49,6 +49,9 @@ public class SportRegime extends BaseModele{
 	public Date getDate() {
 		return date;
 	}
+	public String getDateString(){
+		return DateUtil.getInstance().DateToString(getDate());
+	}
 	public void setDate(Date date) {
 		this.date = date;
 	}
@@ -60,7 +63,8 @@ public class SportRegime extends BaseModele{
 	public int getRythme() {
 		return rythme;
 	}
-	public void setRythme(int rythme) {
+	public void setRythme(int rythme) throws Exception {
+		if(rythme < 1) throw new Exception("Valeur de rythme invalide");
 		this.rythme = rythme;
 	}
 	public void setRythme(String rythme)throws Exception{

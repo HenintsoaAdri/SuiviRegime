@@ -158,6 +158,7 @@
 		                            <% out.print(user.getSexeString()); %><br>
 		                            Adresse : <% out.print(user.getAdresse()); %><br>
 		                            Email : <% out.print(user.getEmail()); %></p>
+				                	<a class="btn btn-primary" href="/SuiviRegime/Utilisateur/edit">Modifier mes informations</a>
 				                </div>
 			                </div>
 	             		</div>

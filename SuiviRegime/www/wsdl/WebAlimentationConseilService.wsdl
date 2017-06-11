@@ -1,0 +1,394 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://service.suiviRegime.s6" xmlns:intf="http://service.suiviRegime.s6" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns1="http://modele.suiviRegime.s6" xmlns:tns2="http://lang.java" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.suiviRegime.s6">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://modele.suiviRegime.s6">
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://service.suiviRegime.s6"/>
+   <import namespace="http://lang.java"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="BaseModele">
+    <sequence>
+     <element name="id" type="xsd:int"/>
+    </sequence>
+   </complexType>
+   <complexType name="AlimentationConseil">
+    <complexContent>
+     <extension base="tns1:BaseModele">
+      <sequence>
+       <element name="matin" nillable="true" type="xsd:string"/>
+       <element name="midi" nillable="true" type="xsd:string"/>
+       <element name="nom" nillable="true" type="xsd:string"/>
+       <element name="soir" nillable="true" type="xsd:string"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+   <complexType name="BaseModelePagination">
+    <complexContent>
+     <extension base="impl:Pagination">
+      <sequence>
+       <element name="classe" nillable="true" type="xsd:anyType"/>
+       <element name="liste" nillable="true" type="impl:ArrayOf_xsd_anyType"/>
+      </sequence>
+     </extension>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://service.suiviRegime.s6">
+   <import namespace="http://xml.apache.org/xml-soap"/>
+   <import namespace="http://lang.java"/>
+   <import namespace="http://modele.suiviRegime.s6"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="ArrayOf_tns1_AlimentationConseil">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="tns1:AlimentationConseil[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+   <complexType name="Pagination">
+    <sequence>
+     <element name="firstResult" type="xsd:int"/>
+     <element name="maxResult" type="xsd:int"/>
+     <element name="moreThanOne" type="xsd:boolean"/>
+     <element name="nombrePage" type="xsd:int"/>
+     <element name="page" type="xsd:int"/>
+     <element name="totalResult" type="xsd:long"/>
+    </sequence>
+   </complexType>
+   <complexType name="ArrayOf_xsd_anyType">
+    <complexContent>
+     <restriction base="soapenc:Array">
+      <attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:anyType[]"/>
+     </restriction>
+    </complexContent>
+   </complexType>
+  </schema>
+  <schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://xml.apache.org/xml-soap">
+   <import namespace="http://service.suiviRegime.s6"/>
+   <import namespace="http://lang.java"/>
+   <import namespace="http://modele.suiviRegime.s6"/>
+   <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+   <complexType name="Vector">
+    <sequence>
+     <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:anyType"/>
+    </sequence>
+   </complexType>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="findAllRequest">
+
+   </wsdl:message>
+
+   <wsdl:message name="findRequest">
+
+      <wsdl:part name="id" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="createRequest">
+
+      <wsdl:part name="matin" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="nom" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="midi" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="soir" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllPaginateRequest">
+
+      <wsdl:part name="page" type="xsd:int">
+
+      </wsdl:part>
+
+      <wsdl:part name="maxResult" type="xsd:int">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateRequest">
+
+      <wsdl:part name="id" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="matin" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="nom" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="midi" type="xsd:string">
+
+      </wsdl:part>
+
+      <wsdl:part name="soir" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="updateResponse">
+
+   </wsdl:message>
+
+   <wsdl:message name="deleteRequest">
+
+      <wsdl:part name="conseil" type="xsd:string">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllPaginateResponse">
+
+      <wsdl:part name="findAllPaginateReturn" type="tns1:BaseModelePagination">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findAllResponse">
+
+      <wsdl:part name="findAllReturn" type="impl:ArrayOf_tns1_AlimentationConseil">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="findResponse">
+
+      <wsdl:part name="findReturn" type="tns1:AlimentationConseil">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="createResponse">
+
+   </wsdl:message>
+
+   <wsdl:portType name="WebAlimentationConseilService">
+
+      <wsdl:operation name="update" parameterOrder="id matin nom midi soir">
+
+         <wsdl:input message="impl:updateRequest" name="updateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:updateResponse" name="updateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="find" parameterOrder="id">
+
+         <wsdl:input message="impl:findRequest" name="findRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findResponse" name="findResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="delete" parameterOrder="conseil">
+
+         <wsdl:input message="impl:deleteRequest" name="deleteRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:deleteResponse" name="deleteResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="create" parameterOrder="matin nom midi soir">
+
+         <wsdl:input message="impl:createRequest" name="createRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:createResponse" name="createResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAll">
+
+         <wsdl:input message="impl:findAllRequest" name="findAllRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findAllResponse" name="findAllResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAllPaginate" parameterOrder="page maxResult">
+
+         <wsdl:input message="impl:findAllPaginateRequest" name="findAllPaginateRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:findAllPaginateResponse" name="findAllPaginateResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="WebAlimentationConseilServiceSoapBinding" type="impl:WebAlimentationConseilService">
+
+      <wsdlsoap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="update">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="updateRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="updateResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="find">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="delete">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deleteRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deleteResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="create">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="createRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="createResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAll">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findAllRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findAllResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="findAllPaginate">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="findAllPaginateRequest">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="findAllPaginateResponse">
+
+            <wsdlsoap:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="http://service.suiviRegime.s6" use="encoded"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="WebAlimentationConseilServiceService">
+
+      <wsdl:port binding="impl:WebAlimentationConseilServiceSoapBinding" name="WebAlimentationConseilService">
+
+         <wsdlsoap:address location="http://localhost:8090/SuiviRegime/services/WebAlimentationConseilService"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

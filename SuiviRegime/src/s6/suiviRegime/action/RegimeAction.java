@@ -26,9 +26,6 @@ public class RegimeAction extends UtilisateurSectionAction{
 	private BaseModelePagination liste;
 	private SessionMap<String, Object> session;
 	
-	public String execute() throws Exception{
-		return SUCCESS;
-	}
 	public String edit()throws Exception{
 		ConfigurableApplicationContext context = null;
 		try{
@@ -51,8 +48,9 @@ public class RegimeAction extends UtilisateurSectionAction{
 		try{
 			context = new ClassPathXmlApplicationContext("list-beans.xml");
 			RegimeService service = (RegimeService)context.getBean("regimeService");
-			setListe(new BaseModelePagination(Regime.class, 10, getPage()));
+			setListe(new BaseModelePagination(AnalyseRegime.class, 10, getPage()));
 			service.findAllUtilisateur(getUser(), getListe());
+			if(getListe().getNombrePage() < getPage() - 1) return NONE;
 			return SUCCESS;
 		}catch(Exception e){
 			setErreur(e.getMessage());

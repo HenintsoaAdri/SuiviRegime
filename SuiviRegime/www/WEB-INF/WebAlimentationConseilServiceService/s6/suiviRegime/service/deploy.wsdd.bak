@@ -1,0 +1,97 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from WebAlimentationConseilServiceService WSDL service -->
+
+  <service name="WebAlimentationConseilService" provider="java:RPC" style="rpc" use="encoded">
+      <parameter name="wsdlTargetNamespace" value="http://service.suiviRegime.s6"/>
+      <parameter name="wsdlServiceElement" value="WebAlimentationConseilServiceService"/>
+      <parameter name="schemaUnqualified" value="http://modele.suiviRegime.s6,http://service.suiviRegime.s6,http://xml.apache.org/xml-soap"/>
+      <parameter name="wsdlServicePort" value="WebAlimentationConseilService"/>
+      <parameter name="className" value="s6.suiviRegime.service.WebAlimentationConseilServiceSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="WebAlimentationConseilService"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="update" qname="operNS:update" xmlns:operNS="http://service.suiviRegime.s6" soapAction="" >
+        <parameter qname="id" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="matin" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="nom" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="midi" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="soir" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="find" qname="operNS:find" xmlns:operNS="http://service.suiviRegime.s6" returnQName="findReturn" returnType="rtns:AlimentationConseil" xmlns:rtns="http://modele.suiviRegime.s6" soapAction="" >
+        <parameter qname="id" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="delete" qname="operNS:delete" xmlns:operNS="http://service.suiviRegime.s6" soapAction="" >
+        <parameter qname="conseil" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="create" qname="operNS:create" xmlns:operNS="http://service.suiviRegime.s6" soapAction="" >
+        <parameter qname="matin" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="nom" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="midi" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="soir" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <operation name="findAll" qname="operNS:findAll" xmlns:operNS="http://service.suiviRegime.s6" returnQName="findAllReturn" returnType="rtns:ArrayOf_tns1_AlimentationConseil" xmlns:rtns="http://service.suiviRegime.s6" returnItemType="tns2:AlimentationConseil" xmlns:tns2="http://modele.suiviRegime.s6" soapAction="" >
+      </operation>
+      <operation name="findAllPaginate" qname="operNS:findAllPaginate" xmlns:operNS="http://service.suiviRegime.s6" returnQName="findAllPaginateReturn" returnType="rtns:BaseModelePagination" xmlns:rtns="http://modele.suiviRegime.s6" soapAction="" >
+        <parameter qname="page" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="maxResult" type="tns:int" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="findAllPaginate find update create delete findAll"/>
+
+      <arrayMapping
+        xmlns:ns="http://service.suiviRegime.s6"
+        qname="ns:ArrayOf_tns1_AlimentationConseil"
+        type="java:s6.suiviRegime.modele.AlimentationConseil[]"
+        innerType="cmp-ns:AlimentationConseil" xmlns:cmp-ns="http://modele.suiviRegime.s6"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://service.suiviRegime.s6"
+        qname="ns:Pagination"
+        type="java:s6.suiviRegime.service.Pagination"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://modele.suiviRegime.s6"
+        qname="ns:AlimentationConseil"
+        type="java:s6.suiviRegime.modele.AlimentationConseil"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://modele.suiviRegime.s6"
+        qname="ns:BaseModelePagination"
+        type="java:s6.suiviRegime.modele.BaseModelePagination"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <typeMapping
+        xmlns:ns="http://modele.suiviRegime.s6"
+        qname="ns:BaseModele"
+        type="java:s6.suiviRegime.modele.BaseModele"
+        serializer="org.apache.axis.encoding.ser.BeanSerializerFactory"
+        deserializer="org.apache.axis.encoding.ser.BeanDeserializerFactory"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+      <arrayMapping
+        xmlns:ns="http://service.suiviRegime.s6"
+        qname="ns:ArrayOf_xsd_anyType"
+        type="java:java.lang.Object[]"
+        innerType="cmp-ns:anyType" xmlns:cmp-ns="http://www.w3.org/2001/XMLSchema"
+        encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
+      />
+  </service>
+</deployment>

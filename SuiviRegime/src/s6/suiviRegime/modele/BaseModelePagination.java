@@ -47,7 +47,7 @@ public class BaseModelePagination {
 	}
 	
 	public int getNombrePage(){
-		return (int) Math.ceil(getTotalResult()/(float)getMaxResult());
+		return (int) ((getTotalResult()/getMaxResult()) + 1);
 	}
 	public boolean isMoreThanOne(){
 		return getNombrePage() > 1;

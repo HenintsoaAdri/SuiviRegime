@@ -1,0 +1,21 @@
+package s6.suiviRegime.modele;
+
+public class BaseModele  implements java.io.Serializable {
+    private int id;
+
+    public BaseModele() {
+    }
+
+    public BaseModele(
+           int id) {
+           this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+}

@@ -1,0 +1,31 @@
+package s6.suiviRegime.modele;
+
+import java.util.List;
+
+import s6.suiviRegime.service.Pagination;
+
+public class BaseModelePagination extends Pagination{
+	private List<? extends BaseModele> liste;
+	private Class<? extends BaseModele> classe;
+	
+	public BaseModelePagination(){}
+	
+	public BaseModelePagination(Class<? extends BaseModele> model, int maxResult, int page) throws Exception{
+		setClasse(model);
+		setMaxResult(maxResult);
+		setPage(page);
+	}
+	
+	public List<? extends BaseModele> getListe() {
+		return liste;
+	}
+	public void setListe(List<? extends BaseModele> liste) {
+		this.liste = liste;
+	}
+	public Class<? extends BaseModele> getClasse() {
+		return classe;
+	}
+	public void setClasse(Class<? extends BaseModele> classe) {
+		this.classe = classe;
+	}
+}

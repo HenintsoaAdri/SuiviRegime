@@ -11,6 +11,7 @@ public class AnalyseRegime extends Regime{
 	private float poidsTotalPerdu;
 	private int jourRestant;
 	private int jourPasse;
+	private int idutilisateur;
 	
 	
 	public AnalyseRegime() {
@@ -41,7 +42,7 @@ public class AnalyseRegime extends Regime{
 	@Override
 	public void setFin(Date fin) throws Exception {
 		super.setFin(fin);
-		setJourRestant(DateUtil.getInstance().getBetweenNow(fin));
+		setJourRestant(DateUtil.getInstance().getBetweenNow(getDebut(), fin));
 	}
 	
 	public int getMinuteSportTotal() {
@@ -92,5 +93,11 @@ public class AnalyseRegime extends Regime{
 				this.getPoidsObjectif(),
 				this.getPoidsInitial(),
 				this.isActive());
+	}
+	public int getIdutilisateur() {
+		return idutilisateur;
+	}
+	public void setIdutilisateur(int idutilisateur) {
+		this.idutilisateur = idutilisateur;
 	}
 }

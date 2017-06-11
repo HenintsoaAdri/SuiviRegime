@@ -42,6 +42,11 @@ public class BaseService {
 	public void get(BaseModele model)throws Exception{
 		dao.findById(model);
 	}
+	public void delete(int idBase, BaseModele base) throws Exception{
+		base.setId(idBase);
+		get(base);
+		delete(base);
+	}
 	public void delete(String idBase, BaseModele base) throws Exception{
 		delete(get(idBase, base));
 	}
@@ -56,6 +61,9 @@ public class BaseService {
 	}
 	public List<BaseModele> findAll(BaseModele model) throws Exception{
 		return dao.findAll(model);
+	}
+	public List<BaseModele> findAll(Class<? extends BaseModele> classe) throws Exception{
+		return dao.findAll(classe.newInstance());
 	}
 	public void findAll(BaseModelePagination pagination) throws Exception{
 		dao.findAll(pagination);

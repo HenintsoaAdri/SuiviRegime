@@ -2,6 +2,7 @@ package s6.suiviRegime.action;
 
 import java.util.Map;
 
+import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
@@ -14,7 +15,13 @@ public class UtilisateurSectionAction extends ActionSupport implements SessionAw
 	private String erreur;
 	private AnalyseRegime regimeActif;
 	private int page;
-				
+	private SessionMap<String, Object> session;
+
+	public String execute() throws Exception{
+		if(getRegimeActif() != null) return SUCCESS;
+		return ERROR;
+	}
+	
 	public Utilisateur getUser() {
 		return user;
 	}
@@ -42,8 +49,16 @@ public class UtilisateurSectionAction extends ActionSupport implements SessionAw
 		this.page = page - 1;
 	}
 	
+	public SessionMap<String, Object> getSession() {
+		return session;
+	}
+	public void setSession(SessionMap<String, Object> session) {
+		this.session = session;
+	}
+	
 	@Override
 	public void setSession(Map<String, Object> session) {
+		setSession((SessionMap<String, Object>)session);
 		setUser((Utilisateur)session.get("user"));
 		setRegimeActif((AnalyseRegime)session.get("regime"));
 	}

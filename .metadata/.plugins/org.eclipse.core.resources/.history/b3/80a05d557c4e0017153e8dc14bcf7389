@@ -1,0 +1,16 @@
+/**
+ * WebAlimentationConseilServiceService.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package s6.suiviRegime.service;
+
+public interface WebAlimentationConseilServiceService extends javax.xml.rpc.Service {
+    public java.lang.String getWebAlimentationConseilServiceAddress();
+
+    public s6.suiviRegime.service.WebAlimentationConseilService getWebAlimentationConseilService() throws javax.xml.rpc.ServiceException;
+
+    public s6.suiviRegime.service.WebAlimentationConseilService getWebAlimentationConseilService(java.net.URL portAddress) throws javax.xml.rpc.ServiceException;
+}

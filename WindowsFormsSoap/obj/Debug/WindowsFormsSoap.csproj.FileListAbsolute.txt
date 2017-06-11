@@ -1,0 +1,14 @@
+c:\users\mandar\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\bin\Debug\WindowsFormsSoap.exe.config
+c:\users\mandar\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\bin\Debug\WindowsFormsSoap.exe
+c:\users\mandar\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\bin\Debug\WindowsFormsSoap.pdb
+c:\users\mandar\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.csprojResolveAssemblyReference.cache
+c:\users\mandar\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.Properties.Resources.resources
+c:\users\mandar\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.csproj.GenerateResource.Cache
+c:\users\mandar\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.exe
+c:\users\mandar\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.pdb
+C:\Users\mandaR\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.EditionClient.resources
+C:\Users\mandaR\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.ListeClient.resources
+C:\Users\mandaR\documents\visual studio 2015\Projects\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.AjoutClient.resources
+E:\dossier\etude\mr Naina\S6\projet\WindowsFormsSoap\WindowsFormsSoap\WindowsFormsSoap\bin\Debug\WindowsFormsSoap.exe.config
+E:\dossier\etude\mr Naina\S6\projet\WindowsFormsSoap\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.exe
+E:\dossier\etude\mr Naina\S6\projet\WindowsFormsSoap\WindowsFormsSoap\WindowsFormsSoap\obj\Debug\WindowsFormsSoap.pdb

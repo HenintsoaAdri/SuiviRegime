@@ -1,0 +1,94 @@
+package s6.suiviRegime.service;
+import java.util.List;
+import java.util.Vector;
+
+import s6.suiviRegime.modele.AlimentationConseil;
+import s6.suiviRegime.modele.BaseModele;
+import s6.suiviRegime.modele.BaseModelePagination;
+
+public class WebAlimentationConseilService {
+	private BaseService service;
+	
+	public WebAlimentationConseilService(){}
+	private static class Holder
+	{		
+		private final static MultiService instance = new MultiService();
+	}
+	public static MultiService getInstance(){
+		return Holder.instance;
+	}
+	
+	public BaseService getService() {
+		return service;
+	}
+	public void setService(BaseService service) {
+		this.service = service;
+	}
+
+	public void addAlimentationConseil(String nom, String matin, String midi, String soir) throws Exception{
+		AlimentationConseil model = new AlimentationConseil();
+		model.setNom(nom);
+		model.setMatin(matin);
+		model.setMidi(midi);
+		model.setSoir(soir);
+		addAlimentationConseil(model);
+	}
+	public void addAlimentationConseil(AlimentationConseil a) throws Exception{
+		service.save(a);
+	}
+	public void findAllAlimentationConseil(BaseModelePagination pagination) throws Exception{
+		service.findAll(pagination);
+	}
+	public BaseModelePagination findAllAlimentationConseil(int page) throws Exception{
+		BaseModelePagination pagination = new BaseModelePagination(AlimentationConseil.class, 10, page);
+		findAllAlimentationConseil(pagination);
+		return pagination;
+	}
+	public List<AlimentationConseil> findAllAlimentationConseilList() throws Exception{
+		List<BaseModele> liste = service.findAll(new AlimentationConseil());
+		List<AlimentationConseil> conseil = new Vector<AlimentationConseil>();
+		for(BaseModele c : liste){
+			conseil.add((AlimentationConseil)c);
+		}
+		return conseil;
+	}
+	public AlimentationConseil getAlimentationConseil(String alimentation) throws Exception{
+		try{
+			return (AlimentationConseil)service.get(alimentation, new AlimentationConseil());
+		}catch(Exception e){
+			throw new Exception("Conseil d'alimentation introuvable, valeur incorrecte");
+		}
+	}
+	public void getAlimentationConseil(AlimentationConseil alimentation) throws Exception{
+		service.get(alimentation);
+	}
+	public void updateAlimentationConseil(String id, String nom, String matin, String midi, String soir) throws Exception{
+		AlimentationConseil model = getAlimentationConseil(id);
+		updateAlimentationConseil(model, nom, matin, midi, soir);
+	}	
+	public void updateAlimentationConseil(int id, String nom, String matin, String midi, String soir) throws Exception{
+		AlimentationConseil model = new AlimentationConseil(id);
+		service.get(model);
+		updateAlimentationConseil(model, nom, matin, midi, soir);
+	}	
+	public void updateAlimentationConseil(AlimentationConseil model, String nom, String matin, String midi, String soir) throws Exception{
+		model.setNom(nom);
+		model.setMatin(matin);
+		model.setMidi(midi);
+		model.setSoir(soir);
+		service.update(model);
+	}
+	public void deleteAlimentationConseil(String id) throws Exception{
+		service.delete(id, new AlimentationConseil());
+	}	
+	public void deleteAlimentationConseil(int id) throws Exception{
+		service.delete(new AlimentationConseil(id));
+	}
+	public void deleteAlimentationConseil(AlimentationConseil a) throws Exception{
+		service.delete(a);
+	}
+	
+	public AlimentationConseil getRandomTips(){
+		return (AlimentationConseil)service.getRandom(new AlimentationConseil());
+	}
+}

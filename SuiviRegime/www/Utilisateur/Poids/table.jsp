@@ -17,9 +17,8 @@
              		</p>
              	</div>
              </div>
-             <% if(regime != null){ 
-					if(liste.getListe() != null && !liste.getListe().isEmpty()){ %>
-		     
+		  
+			 <% if(regime != null){ %>   
 		     <div class="row">
 		     	<div class="col-xs-12">                     
                     <div class="panel panel-default">
@@ -31,10 +30,15 @@
                         </div>
                     </div>            
                 </div>
+		     <hr>
 		     	<div class="col-xs-12">
-		     		<a href="/SuiviRegime/Utilisateur/Poids/add" class="btn btn-danger square-btn-adjust">Ajouter un poids</a>
+		     		<a href="/SuiviRegime/Utilisateur/Poids/add" class="btn btn-danger square-btn-adjust">
+		     		Ajouter un poids
+		     		</a>
 		     	</div>
+		     <hr>
              	<div class="col-xs-12">
+				<% if(liste.getListe() != null && !liste.getListe().isEmpty()){ %>
 					<div class="panel panel-default">
 		                <div class="panel-heading">
 		                    Liste des poids enregistr&eacute;s
@@ -78,10 +82,14 @@
 		                  </div>
 		            	</div>
                 <!-- /. ROW  -->
-		        </div>  
-	        </div>
-	        <% } %>
-	        <div class="row">
+	        <% } else{ %>
+     			<div class="alert alert-danger">
+				  <% out.print("Aucun poids enregistr&eacute; pour ce r&eacute;gime actif pour l'instant"); %> 
+				</div>
+	        <% } %>  
+		        </div>
+	         </div>
+	         <div class="row">
                  <div class="col-md-4 col-sm-12 col-xs-12">           
 					<div class="panel panel-back noti-box">
 		                <span class="icon-box bg-color-green set-icon">

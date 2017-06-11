@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://WebService.Banque.S6/" targetNamespace="http://WebService.Banque.S6/" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="AjoutClient" type="tns:AjoutClient" />
+  <xs:element name="AjoutClientResponse" type="tns:AjoutClientResponse" />
+  <xs:element name="DeleteClient" type="tns:DeleteClient" />
+  <xs:element name="DeleteClientResponse" type="tns:DeleteClientResponse" />
+  <xs:element name="Exception" type="tns:Exception" />
+  <xs:element name="getAllClient" type="tns:getAllClient" />
+  <xs:element name="getAllClientResponse" type="tns:getAllClientResponse" />
+  <xs:element name="updateClient" type="tns:updateClient" />
+  <xs:element name="updateClientResponse" type="tns:updateClientResponse" />
+  <xs:complexType name="AjoutClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:client" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="client">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:baseModele">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="adresse" type="xs:string" />
+          <xs:element minOccurs="0" maxOccurs="unbounded" name="comptes" nillable="true" type="tns:compte" />
+          <xs:element minOccurs="0" name="dateNaissance" type="tns:date" />
+          <xs:element name="idClient" type="xs:int" />
+          <xs:element minOccurs="0" name="mail" type="xs:string" />
+          <xs:element minOccurs="0" name="nom" type="xs:string" />
+          <xs:element minOccurs="0" name="prenom" type="xs:string" />
+          <xs:element minOccurs="0" name="sexe" type="xs:string" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="baseModele">
+    <xs:sequence>
+      <xs:element name="id" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="compte">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:baseModele">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="dateCreation" type="tns:date" />
+          <xs:element name="idAgence" type="xs:int" />
+          <xs:element name="idClient" type="xs:int" />
+          <xs:element name="idCompte" type="xs:int" />
+          <xs:element name="idTypeCompte" type="xs:int" />
+          <xs:element minOccurs="0" name="numero" type="xs:string" />
+          <xs:element name="solde" type="xs:double" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="date">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="AjoutClientResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="Exception">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="message" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:client" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="updateClientResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="DeleteClient">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="arg0" type="tns:client" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DeleteClientResponse">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getAllClient">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:complexType name="getAllClientResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="return" type="tns:client" />
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

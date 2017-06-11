@@ -1,9 +1,0 @@
-package s6.suiviRegime.modele;
-
-import java.util.Date;
-
-public class Admin extends BaseModele {
-	String identifiant;
-	String password;
-	Date lastLogin;
-}

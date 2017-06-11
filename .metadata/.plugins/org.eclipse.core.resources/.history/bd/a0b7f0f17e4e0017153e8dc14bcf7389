@@ -1,0 +1,52 @@
+package s6.suiviRegime.service;
+import java.util.List;
+import java.util.Vector;
+
+import s6.suiviRegime.modele.AlimentationConseil;
+import s6.suiviRegime.modele.BaseModele;
+import s6.suiviRegime.modele.BaseModelePagination;
+
+public class WebAlimentationConseilService {
+	private MultiService service = 
+	
+	public WebAlimentationConseilService(){}
+
+	public void create(String nom, String matin, String midi, String soir) throws Exception{
+		AlimentationConseil model = new AlimentationConseil();
+		model.setNom(nom);
+		model.setMatin(matin);
+		model.setMidi(midi);
+		model.setSoir(soir);
+		addAlimentationConseil(model);
+	}
+	
+	public BaseModelePagination findAll(int page, int maxResult) throws Exception{
+		BaseModelePagination pagination = new BaseModelePagination(AlimentationConseil.class, maxResult, page);
+		service.findAllAlimentationConseil(pagination);
+		return pagination;
+	}
+	public List<AlimentationConseil> findAllAlimentationConseilList() throws Exception{
+		return service.findAllAlimentationConseilList();
+	}
+	public AlimentationConseil find(String id) throws Exception{
+		return service.getAlimentationConseil(id);
+	}
+	
+	public void updateAlimentationConseil(String id, String nom, String matin, String midi, String soir) throws Exception{
+		service.updateAlimentationConseil(id, nom, matin, midi, soir);
+	}
+	
+	public void delete(String id) throws Exception{
+		service.deleteAlimentationConseil(id);
+	}	
+	public void deleteAlimentationConseil(int id) throws Exception{
+		service.delete(new AlimentationConseil(id));
+	}
+	public void deleteAlimentationConseil(AlimentationConseil a) throws Exception{
+		service.delete(a);
+	}
+	
+	public AlimentationConseil getRandomTips(){
+		return (AlimentationConseil)service.getRandom(new AlimentationConseil());
+	}
+}

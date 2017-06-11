@@ -7,8 +7,8 @@
 			<div id="page-inner">
                 <div class="row">
                     <div class="col-md-12">
-                     <h2>Nouvel enregistrement</h2>   
-                        <h5>Enregistrer un nouveau poids.</h5>
+                     <h2>Modifier un enregistrement</h2>   
+                        <h5>Modifier un poids.</h5>
                        
                     </div>
                 </div>

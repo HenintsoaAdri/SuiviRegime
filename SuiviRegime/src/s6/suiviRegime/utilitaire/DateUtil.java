@@ -57,8 +57,9 @@ public class DateUtil {
     	return DateFormat.getDateInstance(DateFormat.FULL, Locale.FRANCE).format(date);
     }
     
-    public int getBetweenNow(Date date){
+    public int getBetweenNow(Date compare, Date date){
     	long now = Calendar.getInstance().getTime().getTime();
+    	if(compare != null)now = Math.max(now, compare.getTime());
 		return (int)Math.max(0,TimeUnit.MILLISECONDS.toDays(date.getTime() - now));
     }
 

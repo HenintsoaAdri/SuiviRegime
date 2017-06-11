@@ -78,7 +78,7 @@
 	            <label>
 	              Confirmer votre Mot de passe<span class="req">*</span>
 	            </label>
-	            <input type="password" required autocomplete="off"/>
+	            <input type="password" required autocomplete="off" name="confirmPassword"/>
 	          </div>
 	          
 	          <div class="field-wrap">

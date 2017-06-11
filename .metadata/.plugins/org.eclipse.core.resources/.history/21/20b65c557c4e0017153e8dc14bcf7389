@@ -1,0 +1,151 @@
+/**
+ * WebAlimentationConseilServiceSoapBindingSkeleton.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package s6.suiviRegime.service;
+
+public class WebAlimentationConseilServiceSoapBindingSkeleton implements s6.suiviRegime.service.WebAlimentationConseilService, org.apache.axis.wsdl.Skeleton {
+    private s6.suiviRegime.service.WebAlimentationConseilService impl;
+    private static java.util.Map _myOperations = new java.util.Hashtable();
+    private static java.util.Collection _myOperationsList = new java.util.ArrayList();
+
+    /**
+    * Returns List of OperationDesc objects with this name
+    */
+    public static java.util.List getOperationDescByName(java.lang.String methodName) {
+        return (java.util.List)_myOperations.get(methodName);
+    }
+
+    /**
+    * Returns Collection of OperationDescs
+    */
+    public static java.util.Collection getOperationDescs() {
+        return _myOperationsList;
+    }
+
+    static {
+        org.apache.axis.description.OperationDesc _oper;
+        org.apache.axis.description.FaultDesc _fault;
+        org.apache.axis.description.ParameterDesc [] _params;
+        _params = new org.apache.axis.description.ParameterDesc [] {
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "id"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "matin"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "nom"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "midi"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "soir"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+        };
+        _oper = new org.apache.axis.description.OperationDesc("update", _params, null);
+        _oper.setElementQName(new javax.xml.namespace.QName("http://service.suiviRegime.s6", "update"));
+        _oper.setSoapAction("");
+        _myOperationsList.add(_oper);
+        if (_myOperations.get("update") == null) {
+            _myOperations.put("update", new java.util.ArrayList());
+        }
+        ((java.util.List)_myOperations.get("update")).add(_oper);
+        _params = new org.apache.axis.description.ParameterDesc [] {
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "id"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+        };
+        _oper = new org.apache.axis.description.OperationDesc("find", _params, new javax.xml.namespace.QName("", "findReturn"));
+        _oper.setReturnType(new javax.xml.namespace.QName("http://modele.suiviRegime.s6", "AlimentationConseil"));
+        _oper.setElementQName(new javax.xml.namespace.QName("http://service.suiviRegime.s6", "find"));
+        _oper.setSoapAction("");
+        _myOperationsList.add(_oper);
+        if (_myOperations.get("find") == null) {
+            _myOperations.put("find", new java.util.ArrayList());
+        }
+        ((java.util.List)_myOperations.get("find")).add(_oper);
+        _params = new org.apache.axis.description.ParameterDesc [] {
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "conseil"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+        };
+        _oper = new org.apache.axis.description.OperationDesc("delete", _params, null);
+        _oper.setElementQName(new javax.xml.namespace.QName("http://service.suiviRegime.s6", "delete"));
+        _oper.setSoapAction("");
+        _myOperationsList.add(_oper);
+        if (_myOperations.get("delete") == null) {
+            _myOperations.put("delete", new java.util.ArrayList());
+        }
+        ((java.util.List)_myOperations.get("delete")).add(_oper);
+        _params = new org.apache.axis.description.ParameterDesc [] {
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "matin"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "nom"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "midi"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "soir"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"), java.lang.String.class, false, false), 
+        };
+        _oper = new org.apache.axis.description.OperationDesc("create", _params, null);
+        _oper.setElementQName(new javax.xml.namespace.QName("http://service.suiviRegime.s6", "create"));
+        _oper.setSoapAction("");
+        _myOperationsList.add(_oper);
+        if (_myOperations.get("create") == null) {
+            _myOperations.put("create", new java.util.ArrayList());
+        }
+        ((java.util.List)_myOperations.get("create")).add(_oper);
+        _params = new org.apache.axis.description.ParameterDesc [] {
+        };
+        _oper = new org.apache.axis.description.OperationDesc("findAll", _params, new javax.xml.namespace.QName("", "findAllReturn"));
+        _oper.setReturnType(new javax.xml.namespace.QName("http://service.suiviRegime.s6", "ArrayOf_tns1_AlimentationConseil"));
+        _oper.setElementQName(new javax.xml.namespace.QName("http://service.suiviRegime.s6", "findAll"));
+        _oper.setSoapAction("");
+        _myOperationsList.add(_oper);
+        if (_myOperations.get("findAll") == null) {
+            _myOperations.put("findAll", new java.util.ArrayList());
+        }
+        ((java.util.List)_myOperations.get("findAll")).add(_oper);
+        _params = new org.apache.axis.description.ParameterDesc [] {
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "page"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false), 
+            new org.apache.axis.description.ParameterDesc(new javax.xml.namespace.QName("", "maxResult"), org.apache.axis.description.ParameterDesc.IN, new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "int"), int.class, false, false), 
+        };
+        _oper = new org.apache.axis.description.OperationDesc("findAllPaginate", _params, new javax.xml.namespace.QName("", "findAllPaginateReturn"));
+        _oper.setReturnType(new javax.xml.namespace.QName("http://modele.suiviRegime.s6", "BaseModelePagination"));
+        _oper.setElementQName(new javax.xml.namespace.QName("http://service.suiviRegime.s6", "findAllPaginate"));
+        _oper.setSoapAction("");
+        _myOperationsList.add(_oper);
+        if (_myOperations.get("findAllPaginate") == null) {
+            _myOperations.put("findAllPaginate", new java.util.ArrayList());
+        }
+        ((java.util.List)_myOperations.get("findAllPaginate")).add(_oper);
+    }
+
+    public WebAlimentationConseilServiceSoapBindingSkeleton() {
+        this.impl = new s6.suiviRegime.service.WebAlimentationConseilServiceSoapBindingImpl();
+    }
+
+    public WebAlimentationConseilServiceSoapBindingSkeleton(s6.suiviRegime.service.WebAlimentationConseilService impl) {
+        this.impl = impl;
+    }
+    public void update(java.lang.String id, java.lang.String matin, java.lang.String nom, java.lang.String midi, java.lang.String soir) throws java.rmi.RemoteException
+    {
+        impl.update(id, matin, nom, midi, soir);
+    }
+
+    public s6.suiviRegime.modele.AlimentationConseil find(java.lang.String id) throws java.rmi.RemoteException
+    {
+        s6.suiviRegime.modele.AlimentationConseil ret = impl.find(id);
+        return ret;
+    }
+
+    public void delete(java.lang.String conseil) throws java.rmi.RemoteException
+    {
+        impl.delete(conseil);
+    }
+
+    public void create(java.lang.String matin, java.lang.String nom, java.lang.String midi, java.lang.String soir) throws java.rmi.RemoteException
+    {
+        impl.create(matin, nom, midi, soir);
+    }
+
+    public s6.suiviRegime.modele.AlimentationConseil[] findAll() throws java.rmi.RemoteException
+    {
+        s6.suiviRegime.modele.AlimentationConseil[] ret = impl.findAll();
+        return ret;
+    }
+
+    public s6.suiviRegime.modele.BaseModelePagination findAllPaginate(int page, int maxResult) throws java.rmi.RemoteException
+    {
+        s6.suiviRegime.modele.BaseModelePagination ret = impl.findAllPaginate(page, maxResult);
+        return ret;
+    }
+
+}

@@ -1,0 +1,43 @@
+package s6.suiviRegime.service;
+import java.util.List;
+import java.util.Vector;
+
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import s6.suiviRegime.modele.AlimentationConseil;
+import s6.suiviRegime.modele.BaseModele;
+import s6.suiviRegime.modele.BaseModelePagination;
+
+public class WebAlimentationConseilService {
+	private MultiService service;
+	
+	public WebAlimentationConseilService(){
+		ApplicationContext context = new ClassPathXmlApplicationContext("list-beans.xml");
+		service = (MultiService) context.getBean("baseService");
+	}
+
+	public void create(String nom, String matin, String midi, String soir){
+		service.addAlimentationConseil(nom, matin, midi, soir);
+	}
+	
+	public BaseModelePagination findAllPaginate(int page, int maxResult) throws Exception{
+		BaseModelePagination pagination = new BaseModelePagination(AlimentationConseil.class, maxResult, page);
+		service.findAllAlimentationConseil(pagination);
+		return pagination;
+	}
+	public List<AlimentationConseil> findAll() throws Exception{
+		return service.findAllAlimentationConseilList();
+	}
+	public AlimentationConseil find(String id) throws Exception{
+		return service.getAlimentationConseil(id);
+	}
+	
+	public void updateAlimentationConseil(String id, String nom, String matin, String midi, String soir) throws Exception{
+		service.updateAlimentationConseil(id, nom, matin, midi, soir);
+	}
+	
+	public void delete(String id) throws Exception{
+		service.deleteAlimentationConseil(id);
+	}
+}

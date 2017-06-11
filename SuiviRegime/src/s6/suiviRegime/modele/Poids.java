@@ -27,7 +27,6 @@ public class Poids extends BaseModele{
 		return regime;
 	}
 	public void setRegime(Regime regime) throws Exception {
-		if(!regime.isActive()) throw new Exception("Ce régime est inactif, veuillez l'activer pour y enregister un poids");
 		this.regime = regime;
 	}
 	

@@ -7,6 +7,7 @@ import s6.suiviRegime.modele.BaseModele;
 import s6.suiviRegime.modele.BaseModelePagination;
 import s6.suiviRegime.modele.Poids;
 import s6.suiviRegime.modele.Utilisateur;
+
 import org.hibernate.Criteria;
 import org.hibernate.ObjectNotFoundException;
 import org.hibernate.Session;
@@ -15,6 +16,7 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.exception.ConstraintViolationException;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
@@ -27,7 +29,6 @@ public class HibernateDao {
     public SessionFactory getSessionFactory() {
         return sessionFactory;
     }
-
     public void setSessionFactory(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
@@ -41,6 +42,7 @@ public class HibernateDao {
             session.saveOrUpdate(model);
             tr.commit();
         }catch(PersistenceException e){
+        	e.printStackTrace();
         	ConstraintViolationException sql = (ConstraintViolationException)(e.getCause());
         	if(sql.getSQLState().equalsIgnoreCase("23505")){
 				try{
@@ -129,7 +131,9 @@ public class HibernateDao {
 		Session session = null;
 	    try{
 	    	session = getSessionFactory().openSession();
+	    	
 	    	String fromClause = "FROM " + pagination.getClasse().getName();
+	    	
 	    	pagination.setListe(session.createQuery(fromClause , pagination.getClasse())
 	        		.setFirstResult(pagination.getFirstResult())
 	        		.setMaxResults(pagination.getMaxResult())
@@ -172,10 +176,12 @@ public class HibernateDao {
             		.setParameter("emailadmin", admin.getIdentifiant())
             		.setParameter("passwordadmin", admin.getPassword()).uniqueResult();
             if(user == null) throw new Exception("Connexion échouée, vos identifiants sont incorrect");
+            admin.setLastLogin(user.getLastLogin());;
+            admin.setId(user.getId());
             user.loggedIn();
             session.update(user);
             tr.commit();
-            return (Admin)user;
+            return (Admin)admin;
         }catch (Exception ex){
             if(tr!=null)
             	tr.rollback();
@@ -214,19 +220,39 @@ public class HibernateDao {
                 session.close();
         }
 	}
-	public void findAllRegime(Utilisateur model, BaseModelePagination pagination) {
+	public AnalyseRegime active(Regime pre, Regime post){
+		Session session = null;
+		Transaction tr = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	tr = session.beginTransaction();
+        	pre.setActive(false);
+        	session.update(pre);
+        	post.setActive(true);
+        	session.update(post);
+        	tr.commit();
+        	if(post instanceof AnalyseRegime) return (AnalyseRegime)post;
+        	return findActiveRegime(pre.getUtilisateur());
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+	public void findAllRegime(Utilisateur model, BaseModelePagination pagination, boolean all) {
 		Session session = null;
         try{
         	session = getSessionFactory().openSession();
-        	String query = "FROM Regime "
-            		+ "WHERE idutilisateur = :idutilisateur AND active = FALSE";
-        	pagination.setListe(session.createQuery(query, Regime.class)
+        	String query = "FROM " + pagination.getClasse().getName()
+            		+ " WHERE idutilisateur = :idutilisateur";
+        			if(!all)query += " AND active = FALSE";
+        	pagination.setListe(session.createQuery(query, pagination.getClasse())
             		.setParameter("idutilisateur", model.getId())
             		.setFirstResult(pagination.getFirstResult())
             		.setMaxResults(pagination.getMaxResult())
             		.list());
-        	long total = (long)session.createQuery("SELECT COUNT(id) FROM Regime"
-            		+ " WHERE idutilisateur = :idutilisateur")
+        	long total = (long)session.createQuery("SELECT COUNT(id) " + query)
             		.setParameter("idutilisateur", model.getId())
             		.uniqueResult();
         	pagination.setTotalResult(total);
@@ -242,6 +268,7 @@ public class HibernateDao {
         try{
         	session = getSessionFactory().openSession();
         	String fromClause = "FROM " + pagination.getClasse().getName();
+        	
         	pagination.setListe(session.createQuery(fromClause 
         			+ " WHERE idregime = :idregime ORDER BY date", pagination.getClasse())
             		.setParameter("idregime", model.getId())
@@ -282,6 +309,25 @@ public class HibernateDao {
         	return session.createQuery("FROM Poids WHERE date = :date and idregime = :idregime",poids.getClass())
         	.setParameter("date", poids.getDate())
         	.setParameter("idregime", poids.getRegime().getId()).uniqueResult();
+        }catch (Exception ex){
+            throw ex;
+        }finally {
+            if(session!=null)
+                session.close();
+        }
+	}
+	public BaseModele findDetailRegime(BaseModele model) throws Exception{
+		Session session = null;
+        try{
+        	session = getSessionFactory().openSession();
+        	Method getRegime = model.getClass().getMethod("getRegime", Regime.class);
+        	Regime regime = (Regime)getRegime.invoke(model);
+        	String fromClause = "FROM " + model.getClass().getName();
+        	
+        	return session.createQuery(fromClause + "WHERE idregime = :idregime",model.getClass())
+        	.setParameter("idregime", regime.getId())
+        	.uniqueResult();
+        	
         }catch (Exception ex){
             throw ex;
         }finally {

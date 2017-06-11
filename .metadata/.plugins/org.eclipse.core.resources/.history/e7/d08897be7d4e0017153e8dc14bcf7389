@@ -1,0 +1,230 @@
+/**
+ * AlimentationConseil.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package s6.suiviRegime.modele;
+
+public class AlimentationConseil  extends s6.suiviRegime.modele.BaseModele  implements java.io.Serializable {
+    private java.lang.String matin;
+
+    private java.lang.String midi;
+
+    private java.lang.String nom;
+
+    private java.lang.String soir;
+
+    public AlimentationConseil() {
+    }
+
+    public AlimentationConseil(
+           int id,
+           java.lang.String matin,
+           java.lang.String midi,
+           java.lang.String nom,
+           java.lang.String soir) {
+        super(
+            id);
+        this.matin = matin;
+        this.midi = midi;
+        this.nom = nom;
+        this.soir = soir;
+    }
+
+
+    /**
+     * Gets the matin value for this AlimentationConseil.
+     * 
+     * @return matin
+     */
+    public java.lang.String getMatin() {
+        return matin;
+    }
+
+
+    /**
+     * Sets the matin value for this AlimentationConseil.
+     * 
+     * @param matin
+     */
+    public void setMatin(java.lang.String matin) {
+        this.matin = matin;
+    }
+
+
+    /**
+     * Gets the midi value for this AlimentationConseil.
+     * 
+     * @return midi
+     */
+    public java.lang.String getMidi() {
+        return midi;
+    }
+
+
+    /**
+     * Sets the midi value for this AlimentationConseil.
+     * 
+     * @param midi
+     */
+    public void setMidi(java.lang.String midi) {
+        this.midi = midi;
+    }
+
+
+    /**
+     * Gets the nom value for this AlimentationConseil.
+     * 
+     * @return nom
+     */
+    public java.lang.String getNom() {
+        return nom;
+    }
+
+
+    /**
+     * Sets the nom value for this AlimentationConseil.
+     * 
+     * @param nom
+     */
+    public void setNom(java.lang.String nom) {
+        this.nom = nom;
+    }
+
+
+    /**
+     * Gets the soir value for this AlimentationConseil.
+     * 
+     * @return soir
+     */
+    public java.lang.String getSoir() {
+        return soir;
+    }
+
+
+    /**
+     * Sets the soir value for this AlimentationConseil.
+     * 
+     * @param soir
+     */
+    public void setSoir(java.lang.String soir) {
+        this.soir = soir;
+    }
+
+    private java.lang.Object __equalsCalc = null;
+    public synchronized boolean equals(java.lang.Object obj) {
+        if (!(obj instanceof AlimentationConseil)) return false;
+        AlimentationConseil other = (AlimentationConseil) obj;
+        if (obj == null) return false;
+        if (this == obj) return true;
+        if (__equalsCalc != null) {
+            return (__equalsCalc == obj);
+        }
+        __equalsCalc = obj;
+        boolean _equals;
+        _equals = super.equals(obj) && 
+            ((this.matin==null && other.getMatin()==null) || 
+             (this.matin!=null &&
+              this.matin.equals(other.getMatin()))) &&
+            ((this.midi==null && other.getMidi()==null) || 
+             (this.midi!=null &&
+              this.midi.equals(other.getMidi()))) &&
+            ((this.nom==null && other.getNom()==null) || 
+             (this.nom!=null &&
+              this.nom.equals(other.getNom()))) &&
+            ((this.soir==null && other.getSoir()==null) || 
+             (this.soir!=null &&
+              this.soir.equals(other.getSoir())));
+        __equalsCalc = null;
+        return _equals;
+    }
+
+    private boolean __hashCodeCalc = false;
+    public synchronized int hashCode() {
+        if (__hashCodeCalc) {
+            return 0;
+        }
+        __hashCodeCalc = true;
+        int _hashCode = super.hashCode();
+        if (getMatin() != null) {
+            _hashCode += getMatin().hashCode();
+        }
+        if (getMidi() != null) {
+            _hashCode += getMidi().hashCode();
+        }
+        if (getNom() != null) {
+            _hashCode += getNom().hashCode();
+        }
+        if (getSoir() != null) {
+            _hashCode += getSoir().hashCode();
+        }
+        __hashCodeCalc = false;
+        return _hashCode;
+    }
+
+    // Type metadata
+    private static org.apache.axis.description.TypeDesc typeDesc =
+        new org.apache.axis.description.TypeDesc(AlimentationConseil.class, true);
+
+    static {
+        typeDesc.setXmlType(new javax.xml.namespace.QName("http://modele.suiviRegime.s6", "AlimentationConseil"));
+        org.apache.axis.description.ElementDesc elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("matin");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "matin"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("midi");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "midi"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("nom");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "nom"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+        elemField = new org.apache.axis.description.ElementDesc();
+        elemField.setFieldName("soir");
+        elemField.setXmlName(new javax.xml.namespace.QName("", "soir"));
+        elemField.setXmlType(new javax.xml.namespace.QName("http://www.w3.org/2001/XMLSchema", "string"));
+        elemField.setNillable(true);
+        typeDesc.addFieldDesc(elemField);
+    }
+
+    /**
+     * Return type metadata object
+     */
+    public static org.apache.axis.description.TypeDesc getTypeDesc() {
+        return typeDesc;
+    }
+
+    /**
+     * Get Custom Serializer
+     */
+    public static org.apache.axis.encoding.Serializer getSerializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanSerializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+    /**
+     * Get Custom Deserializer
+     */
+    public static org.apache.axis.encoding.Deserializer getDeserializer(
+           java.lang.String mechType, 
+           java.lang.Class _javaType,  
+           javax.xml.namespace.QName _xmlType) {
+        return 
+          new  org.apache.axis.encoding.ser.BeanDeserializer(
+            _javaType, _xmlType, typeDesc);
+    }
+
+}

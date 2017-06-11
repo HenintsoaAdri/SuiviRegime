@@ -46,6 +46,26 @@ public class UtilisateurAuthentificationAction extends ActionSupport implements 
 			}
 		}
 	}
+	public String update()throws Exception {
+		ConfigurableApplicationContext context = null;
+		try{
+			context = new ClassPathXmlApplicationContext("list-beans.xml");
+			BaseService service = (BaseService) context.getBean("baseService");
+			getUtilisateur().setDateNaissance(dateNaissance);
+			getUtilisateur().setPassword(getPassword(), getConfirmPassword());
+			service.update(getUtilisateur());
+			return SUCCESS;
+			
+		}catch(Exception e){
+			setErreur(e.getMessage()+" Utilisateur non modifié. Des erreurs ont détéctées");
+			e.printStackTrace();
+			return ERROR;
+		}finally{
+			if(context != null){
+				context.close();
+			}
+		}
+	}
 	
 	public String login()throws Exception{
 		ConfigurableApplicationContext context = null;
@@ -79,7 +99,7 @@ public class UtilisateurAuthentificationAction extends ActionSupport implements 
 			return "error";
 		}
 	}
-
+	
 	public Utilisateur getUtilisateur() {
 		return utilisateur;
 	}

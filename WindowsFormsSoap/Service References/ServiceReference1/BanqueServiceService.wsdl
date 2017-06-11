@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<definitions xmlns:wsp="http://www.w3.org/ns/ws-policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:tns="http://WebService.Banque.S6/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsp1_2="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" name="BanqueServiceService" targetNamespace="http://WebService.Banque.S6/" xmlns="http://schemas.xmlsoap.org/wsdl/">
+  <types>
+    <xsd:schema>
+      <xsd:import schemaLocation="http://localhost:8585/?xsd=1" namespace="http://WebService.Banque.S6/" />
+    </xsd:schema>
+  </types>
+  <message name="getAllClient">
+    <part name="parameters" element="tns:getAllClient" />
+  </message>
+  <message name="getAllClientResponse">
+    <part name="parameters" element="tns:getAllClientResponse" />
+  </message>
+  <message name="Exception">
+    <part name="fault" element="tns:Exception" />
+  </message>
+  <message name="AjoutClient">
+    <part name="parameters" element="tns:AjoutClient" />
+  </message>
+  <message name="AjoutClientResponse">
+    <part name="parameters" element="tns:AjoutClientResponse" />
+  </message>
+  <message name="updateClient">
+    <part name="parameters" element="tns:updateClient" />
+  </message>
+  <message name="updateClientResponse">
+    <part name="parameters" element="tns:updateClientResponse" />
+  </message>
+  <message name="DeleteClient">
+    <part name="parameters" element="tns:DeleteClient" />
+  </message>
+  <message name="DeleteClientResponse">
+    <part name="parameters" element="tns:DeleteClientResponse" />
+  </message>
+  <portType name="BanqueWS">
+    <operation name="getAllClient">
+      <input wsam:Action="http://WebService.Banque.S6/BanqueWS/getAllClientRequest" message="tns:getAllClient" />
+      <output wsam:Action="http://WebService.Banque.S6/BanqueWS/getAllClientResponse" message="tns:getAllClientResponse" />
+      <fault wsam:Action="http://WebService.Banque.S6/BanqueWS/getAllClient/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="AjoutClient">
+      <input wsam:Action="http://WebService.Banque.S6/BanqueWS/AjoutClientRequest" message="tns:AjoutClient" />
+      <output wsam:Action="http://WebService.Banque.S6/BanqueWS/AjoutClientResponse" message="tns:AjoutClientResponse" />
+      <fault wsam:Action="http://WebService.Banque.S6/BanqueWS/AjoutClient/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="updateClient">
+      <input wsam:Action="http://WebService.Banque.S6/BanqueWS/updateClientRequest" message="tns:updateClient" />
+      <output wsam:Action="http://WebService.Banque.S6/BanqueWS/updateClientResponse" message="tns:updateClientResponse" />
+      <fault wsam:Action="http://WebService.Banque.S6/BanqueWS/updateClient/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+    <operation name="DeleteClient">
+      <input wsam:Action="http://WebService.Banque.S6/BanqueWS/DeleteClientRequest" message="tns:DeleteClient" />
+      <output wsam:Action="http://WebService.Banque.S6/BanqueWS/DeleteClientResponse" message="tns:DeleteClientResponse" />
+      <fault wsam:Action="http://WebService.Banque.S6/BanqueWS/DeleteClient/Fault/Exception" name="Exception" message="tns:Exception" />
+    </operation>
+  </portType>
+  <binding name="BanqueWSPortBinding" type="tns:BanqueWS">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <operation name="getAllClient">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="AjoutClient">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="updateClient">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+    <operation name="DeleteClient">
+      <soap:operation soapAction="" />
+      <input>
+        <soap:body use="literal" />
+      </input>
+      <output>
+        <soap:body use="literal" />
+      </output>
+      <fault name="Exception">
+        <soap:fault use="literal" name="Exception" namespace="" />
+      </fault>
+    </operation>
+  </binding>
+  <service name="BanqueServiceService">
+    <port name="BanqueWSPort" binding="tns:BanqueWSPortBinding">
+      <soap:address location="http://localhost:8585/" />
+    </port>
+  </service>
+</definitions>

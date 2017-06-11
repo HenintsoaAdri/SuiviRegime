@@ -36,6 +36,9 @@ public class Admin extends BaseModele {
 	public Date getLastLogin() {
 		return lastLogin;
 	}
+	public String getLastLoginString(){
+		return DateUtil.getInstance().DateTimeToString(getLastLogin());
+	}
 	public void setLastLogin(Date lastLogin) {
 		this.lastLogin = lastLogin;
 	}

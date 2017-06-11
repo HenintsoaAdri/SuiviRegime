@@ -3,7 +3,7 @@
         "-//Hibernate/Hibernate Mapping DTD//EN"
         "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-    <class name="s6.suiviRegime.modele.Regime" table="regime">
+    <class name="s6.suiviRegime.modele.Regime" table="regime" abstract="false">
         <meta attribute="class-description">
             This class contains the regime detail.
         </meta>
@@ -30,9 +30,11 @@
 	         <key column="idregime" not-null="true"/>
 	         <one-to-many class="s6.suiviRegime.modele.Poids"/>
         </bag>
+        
         <union-subclass name="s6.suiviRegime.modele.AnalyseRegime" table="analyseregime">
         	<property name="minuteSportTotal" column="rythmesporttotal" type="int"/>
         	<property name="poidsTotalPerdu" column="poidsperdu" type="float"/>
+        	<property name="idutilisateur" column="idutilisateurregime" type="int" />
         </union-subclass>
     </class>
 </hibernate-mapping>

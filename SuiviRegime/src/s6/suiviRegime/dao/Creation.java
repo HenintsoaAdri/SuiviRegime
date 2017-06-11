@@ -89,7 +89,7 @@ public class Creation {
 				res.getInt("IDSPORT"),
 				res.getString("LIBELLESPORT"),
 				res.getString("ACTIVITESSPORT"),
-				res.getFloat("RYTHMESPORTCONSEIL"),
+				res.getInt("RYTHMESPORTCONSEIL"),
 				res.getString("DETAILSPORTCONSEIL"));
 		return model;
 	}
@@ -97,7 +97,7 @@ public class Creation {
 		SportConseil model = new SportConseil(
 				res.getInt("IDSPORTCONSEIL"),
 				sport,
-				res.getFloat("RYTHMESPORTCONSEIL"),
+				res.getInt("RYTHMESPORTCONSEIL"),
 				res.getString("DETAILSPORTCONSEIL"));
 		return model;
 	}

@@ -1,0 +1,52 @@
+package s6.suiviRegime.service;
+
+import java.util.List;
+
+import javax.jws.WebMethod;
+import javax.jws.WebService;
+
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import s6.suiviRegime.modele.AlimentationConseil;
+import s6.suiviRegime.modele.BaseModelePagination;
+@WebService(name="WebAlimentationConseilService")
+public class WebAlimentationConseilService {
+	private MultiService service = (MultiService)new ClassPathXmlApplicationContext("list-beans.xml").getBean("multiService");
+	
+	public WebAlimentationConseilService() {
+		super();
+	}
+	
+	@WebMethod(operationName="create")
+	public void create(String nom, String matin, String midi, String soir) throws Exception{
+		service.addAlimentationConseil(nom, matin, midi, soir);
+	}
+	
+	@WebMethod(operationName="find")
+	public AlimentationConseil find(String id) throws Exception{
+		return service.getAlimentationConseil(id);
+	}
+	
+	@WebMethod(operationName="findAllPaginate")
+	public BaseModelePagination findAllPaginate(int page, int maxResult) throws Exception{
+		BaseModelePagination liste = new BaseModelePagination(AlimentationConseil.class, maxResult, page);
+		service.findAllAlimentationConseil(liste);
+		return liste;
+	}
+	
+	@WebMethod(operationName="findAll")
+	public AlimentationConseil[] findAll()throws Exception{
+		List<AlimentationConseil> liste = service.findAllAlimentationConseilList();
+		return liste;
+	}
+	
+	@WebMethod(operationName="update")
+	public void update(int id, String matin, String nom, String midi, String soir)throws Exception{
+		service.updateAlimentationConseil(id, nom, matin, midi, soir);
+	}
+	
+	@WebMethod(operationName="delete")
+	public void delete(int id) throws Exception{
+		service.deleteAlimentationConseil(id);
+	}
+}

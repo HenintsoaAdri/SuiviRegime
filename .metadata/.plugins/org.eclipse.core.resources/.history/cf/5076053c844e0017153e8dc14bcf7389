@@ -1,0 +1,68 @@
+/**
+ * Pagination.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package s6.suiviRegime.service;
+
+public class Pagination {
+    private int firstResult;
+    private int maxResult;
+    private boolean moreThanOne;
+    private int nombrePage;
+    private int page;
+    private long totalResult;
+
+    public Pagination() {
+    }
+
+    public Pagination(int firstResult, int maxResult, boolean moreThanOne, int nombrePage,
+           int page, long totalResult) {
+           setFirstResult(firstResult);
+    }
+
+    public int getFirstResult() {
+        return firstResult;
+    }
+    public void setFirstResult(int firstResult) {
+        this.firstResult = firstResult;
+    }
+
+    public int getMaxResult() {
+        return maxResult;
+    }
+    public void setMaxResult(int maxResult) {
+        this.maxResult = maxResult;
+    }
+    
+    public boolean isMoreThanOne() {
+        return moreThanOne;
+    }
+    public void setMoreThanOne(boolean moreThanOne) {
+        this.moreThanOne = moreThanOne;
+    }
+
+    public int getNombrePage() {
+        return nombrePage;
+    }
+    public void setNombrePage(int nombrePage) {
+        this.nombrePage = nombrePage;
+    }
+
+    public int getPage() {
+        return page;
+    }
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public long getTotalResult() {
+        return totalResult;
+    }
+    public void setTotalResult(long totalResult) {
+        this.totalResult = totalResult;
+    }
+
+}

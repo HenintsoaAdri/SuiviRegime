@@ -1,0 +1,17 @@
+/**
+ * WebAlimentationConseilService.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package s6.suiviRegime.service;
+
+public interface WebAlimentationConseilService extends java.rmi.Remote {
+    public void update(java.lang.String id, java.lang.String matin, java.lang.String nom, java.lang.String midi, java.lang.String soir) throws java.rmi.RemoteException;
+    public s6.suiviRegime.modele.AlimentationConseil find(java.lang.String id) throws java.rmi.RemoteException;
+    public void delete(java.lang.String conseil) throws java.rmi.RemoteException;
+    public void create(java.lang.String matin, java.lang.String nom, java.lang.String midi, java.lang.String soir) throws java.rmi.RemoteException;
+    public s6.suiviRegime.modele.AlimentationConseil[] findAll() throws java.rmi.RemoteException;
+    public s6.suiviRegime.modele.BaseModelePagination findAllPaginate(int page, int maxResult) throws java.rmi.RemoteException;
+}

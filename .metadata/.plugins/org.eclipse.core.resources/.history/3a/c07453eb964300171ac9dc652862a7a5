@@ -1,0 +1,45 @@
+package s6.suiviRegime.service;
+
+import java.util.List;
+
+import javax.jws.WebParam;
+import javax.jws.WebService;
+
+import s6.suiviRegime.modele.AlimentationConseil;
+import s6.suiviRegime.modele.BaseModelePagination;
+
+public class WebAlimentationConseilService {
+	private MultiService service = MultiService.getInstance();
+	
+	public WebAlimentationConseilService() {
+		super();
+	}
+
+	public void create(String nom, String matin, String midi, String soir) throws Exception{
+		service.addAlimentationConseil(nom, matin, midi, soir);
+	}
+	
+	public AlimentationConseil find(String id) throws Exception{
+		return service.getAlimentationConseil(id);
+	}
+	
+	public BaseModelePagination findAllPaginate(int page, int maxResult) throws Exception{
+		BaseModelePagination liste = new BaseModelePagination(AlimentationConseil.class, maxResult, page);
+		service.findAllAlimentationConseil(liste);
+		return liste;
+	}
+	
+	public AlimentationConseil[] findAll()throws Exception{
+		List<AlimentationConseil> liste = service.findAllAlimentationConseilList();
+		AlimentationConseil[] array = new AlimentationConseil[liste.size()];
+		return liste.toArray(array);
+	}
+	
+	public void update(int id, String matin, String nom, String midi, String soir)throws Exception{
+		service.updateAlimentationConseil(id, nom, matin, midi, soir);
+	}
+	
+	public void delete(int id) throws Exception{
+		service.deleteAlimentationConseil(id);
+	}
+}

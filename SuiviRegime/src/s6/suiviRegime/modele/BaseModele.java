@@ -1,17 +1,21 @@
 package s6.suiviRegime.modele;
 
-public class BaseModele {
-	private int id;
-	
-	public BaseModele() {}
-	public BaseModele(int id) {
-		this.setId(id);
-	}
-	
-	public int getId() {
-		return id;
-	}
-	public void setId(int id) {
-		this.id = id;
-	}
+public class BaseModele{
+    private int id;
+
+    public BaseModele() {
+    }
+
+    public BaseModele(
+           int id) {
+           this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 }

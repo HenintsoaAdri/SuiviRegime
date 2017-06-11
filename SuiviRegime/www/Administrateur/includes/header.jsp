@@ -3,6 +3,7 @@
 <%@page import="s6.suiviRegime.modele.*" %>
 <%@page import="java.time.format.DateTimeFormatter"%>
 <%@page import="java.time.LocalDate"%>
+<% Admin admin = (Admin)request.getAttribute("admin"); %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,6 +59,7 @@
             <!-- /.navbar-header -->
 
             <ul class="nav navbar-top-links navbar-right">
+            	<li>Derni&egrave;re connexion le <b><% out.print(admin.getLastLoginString()); %></b></li>
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">

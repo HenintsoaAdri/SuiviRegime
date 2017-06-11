@@ -63,13 +63,31 @@
             <result name="error">/Utilisateur/index.jsp</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
+      <action name="Utilisateur/edit" 
+            class="s6.suiviRegime.action.UtilisateurAction" 
+            method="start">
+            <interceptor-ref name="loginStack"/>
+            <result name="success">/Utilisateur/edit.jsp</result>
+            <result name="error" type="redirectAction">Utilisateur</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action>
+      <action name="Utilisateur/update" 
+            class="s6.suiviRegime.action.UtilisateurAuthentificationAction" 
+            method="update">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="redirectAction">Utilisateur</result>
+            <result name="error" type="redirectAction">Utilisateur/edit</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action>
       
+      <!-- REGIME -->
       <action name="Utilisateur/Regime" 
             class="s6.suiviRegime.action.RegimeAction" 
             method="index">
             <interceptor-ref name="loginStack"/>
             <result name="success">/Utilisateur/Regime/table.jsp</result>
             <result name="error" type="redirectAction">Utilisateur</result>
+            <result name="none" type="redirectAction">Utilisateur/Regime</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
       <action name="Utilisateur/Regime/add" 
@@ -129,7 +147,8 @@
             <result name="error" type="redirectAction">Utilisateur/Regime</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
-     
+      
+     <!-- POIDS -->
       <action name="Utilisateur/Poids" 
             class="s6.suiviRegime.action.PoidsAction" 
             method="index">
@@ -140,7 +159,7 @@
             <result name="login" type="redirectAction">Connexion</result>
       </action>
       <action name="Utilisateur/Poids/add" 
-            class="s6.suiviRegime.action.PoidsAction" 
+            class="s6.suiviRegime.action.UtilisateurSectionAction" 
             method="execute">
             <interceptor-ref name="loginStack"/>
             <result name="success">/Utilisateur/Poids/new.jsp</result>
@@ -181,178 +200,143 @@
             <result name="login" type="redirectAction">Connexion</result>
       </action>
       
+      <!-- ALIMENTATION -->
       <action name="Utilisateur/Alimentation" 
-            class="s6.suiviRegime.action.UtilisateurAction" 
+            class="s6.suiviRegime.action.AlimentationAction" 
             method="index">
             <interceptor-ref name="loginStack"/>
-            <result name="success">/Utilisateur/index.jsp</result>
-            <result name="error">/login.jsp</result>
+            <result name="success">/Utilisateur/Alimentation/table.jsp</result>
+            <result name="error" type="redirectAction">Utilisateur</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
       <action name="Utilisateur/Alimentation/add" 
-            class="s6.suiviRegime.action.UtilisateurAction" 
+            class="s6.suiviRegime.action.AlimentationAction" 
             method="index">
             <interceptor-ref name="loginStack"/>
-            <result name="success">/Utilisateur/index.jsp</result>
-            <result name="error">/login.jsp</result>
+            <result name="success">/Utilisateur/Alimentation/new.jsp</result>
+            <result name="error" type="redirectAction">Utilisateur/Alimentation</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
-      <action name="Utilisateur/Sport" 
-            class="s6.suiviRegime.action.UtilisateurAction" 
-            method="index">
+      <action name="Utilisateur/Alimentation/save" 
+            class="s6.suiviRegime.action.AlimentationAction" 
+            method="save">
             <interceptor-ref name="loginStack"/>
-            <result name="success">/Utilisateur/index.jsp</result>
-            <result name="error">/login.jsp</result>
+            <result name="success" type="redirectAction">Utilisateur/Alimentation</result>
+            <result name="error">/Utilisateur/Alimentation/new.jsp</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
-      <action name="Utilisateur/Sport/add" 
-            class="s6.suiviRegime.action.UtilisateurAction" 
-            method="index">
+      <action name="Utilisateur/Alimentation/edit" 
+            class="s6.suiviRegime.action.AlimentationAction" 
+            method="edit">
             <interceptor-ref name="loginStack"/>
-            <result name="success">/Utilisateur/index.jsp</result>
-            <result name="error">/login.jsp</result>
+            <result name="success">/Utilisateur/Alimentation/edit.jsp</result>
+            <result name="error" type="redirectAction">Utilisateur/Alimentation</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action>
+      <action name="Utilisateur/Alimentation/update" 
+            class="s6.suiviRegime.action.AlimentationAction" 
+            method="update">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="redirectAction">Utilisateur/Alimentation</result>
+            <result name="error">/Utilisateur/Alimentation/edit.jsp</result>
+            <result name="none" type="redirectAction">Utilisateur/Alimentation</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action>
+      <action name="Utilisateur/Alimentation/delete" 
+            class="s6.suiviRegime.action.AlimentationAction" 
+            method="delete">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="redirectAction">Utilisateur/Alimentation</result>
+            <result name="error" type="redirectAction">Utilisateur/Alimentation</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
       
-      <action name="Utilisateur/Conseil" 
-            class="s6.suiviRegime.action.ConseilAction" 
+      <!-- SPORT  -->
+      <action name="Utilisateur/Sport" 
+            class="s6.suiviRegime.action.SportRegimeAction" 
             method="index">
+            <interceptor-ref name="loginStack"/>
+            <result name="success">/Utilisateur/Sport/table.jsp</result>
+            <result name="error" type="redirectAction">Utilisateur</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action>
+      <action name="Utilisateur/Sport/add" 
+             class="s6.suiviRegime.action.SportRegimeAction" 
+            method="add">
+            <interceptor-ref name="loginStack"/>
+            <param name="classe">s6.suiviRegime.modele.Sport</param>
+            <result name="success">/Utilisateur/Sport/new.jsp</result>
+            <result name="error" type="redirectAction">Utilisateur/Sport</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action>
+      <action name="Utilisateur/Sport/save" 
+             class="s6.suiviRegime.action.SportRegimeAction" 
+            method="save">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="redirectAction">Utilisateur/Sport</result>
+            <result name="error">/Utilisateur/Sport/new.jsp</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action>
+      <action name="Utilisateur/Sport/edit" 
+             class="s6.suiviRegime.action.SportRegimeAction" 
+            method="edit">
+            <interceptor-ref name="loginStack"/>
+            <result name="success">/Utilisateur/Sport/edit.jsp</result>
+            <result name="error" type="redirectAction">Utilisateur/Sport</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action> 
+      <action name="Utilisateur/Sport/update" 
+             class="s6.suiviRegime.action.SportRegimeAction" 
+            method="update">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="redirectAction">Utilisateur/Sport</result>
+            <result name="error">/Utilisateur/Sport/edit.jsp</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action> 
+      <action name="Utilisateur/Sport/delete" 
+             class="s6.suiviRegime.action.SportRegimeAction" 
+            method="delete">
+            <interceptor-ref name="loginStack"/>
+            <result name="success" type="redirectAction">Utilisateur/Sport</result>
+            <result name="error">/Utilisateur/Sport/edit.jsp</result>
+            <result name="login" type="redirectAction">Connexion</result>
+      </action> 
+      
+      <!-- CONSEILS -->
+      <action name="Utilisateur/Conseil" 
+            class="s6.suiviRegime.action.UtilisateurAction" 
+            method="start">
             <interceptor-ref name="loginStack"/>
             <result name="success">/Utilisateur/Conseil/index.jsp</result>
             <result name="error" type="redirectAction">Utilisateur</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
       <action name="Utilisateur/Conseil/Alimentation" 
-            class="s6.suiviRegime.action.ConseilAction" 
-            method="alimentation">
+            class="s6.suiviRegime.action.CrudAction" 
+            method="list">
             <interceptor-ref name="loginStack"/>
+            <param name="classe">s6.suiviRegime.modele.AlimentationConseil</param>
             <result name="success">/Utilisateur/Conseil/alimentation.jsp</result>
             <result name="none" type="redirectAction">Utilisateur/Conseil/Alimentation</result>
             <result name="error" type="redirectAction">Utilisateur</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
       <action name="Utilisateur/Conseil/Sport" 
-            class="s6.suiviRegime.action.ConseilAction" 
-            method="sport">
+            class="s6.suiviRegime.action.CrudAction" 
+            method="list">
             <interceptor-ref name="loginStack"/>
+            <param name="classe">s6.suiviRegime.modele.SportConseil</param>
             <result name="success">/Utilisateur/Conseil/sport.jsp</result>
             <result name="none" type="redirectAction">Utilisateur/Conseil/Sport</result>
             <result name="error" type="redirectAction">Utilisateur</result>
             <result name="login" type="redirectAction">Connexion</result>
       </action>
-      
-      <!--////////////////////////////////////
-      
-       			ADMINISTRATEUR 
-      
-      //////////////////////////////////// -->
-      
-      <action name="Administrateur/Connexion" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="start">
-            <result name="success">/Administrateur/login.jsp</result>
-            <result name="error" type="redirectAction">Administrateur</result>
-      </action>
-      <action name="Administrateur/login" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="login">
-            <result name="success" type="redirectAction">Administrateur</result>
-            <result name="error">/Administrateur/login.jsp</result>
-      </action>
-      <action name="Administrateur/Deconnexion" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="logout">
-            <result name="success">/Administrateur/login.jsp</result>
-            <result name="error" type="redirectAction">Administrateur</result>
-      </action>
-      
       <action name="Administrateur" 
             class="s6.suiviRegime.action.CrudAction" 
-            method="list">
-            <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.Utilisateur</param>
-            <result name="success">/Administrateur/index.jsp</result>
-            <result name="error">/Administrateur/index.jsp</result>
-            <result name="login" type="redirectAction">Administrateur/Connexion</result>
-      </action>
-      <action name="Administrateur/Utilisateur" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="list">
-            <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.AnalyseUtilisateur</param>
-            <result name="success">/Administrateur/Utilisateur/index.jsp</result>
-            <result name="none" type="redirectAction">Administrateur/Utilisateur</result>
-            <result name="error" type="redirectAction">Administrateur</result>
-            <result name="login" type="redirectAction">Administrateur/Connexion</result>
-      </action>
-      <action name="Administrateur/Utilisateur/delete" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="delete">
-            <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.Utilisateur</param>
-            <result name="error" type="redirectAction">Administrateur/Utilisateur</result>
-            <result name="error" type="redirectAction">Administrateur/Utilisateur</result>
-            <result name="login" type="redirectAction">Administrateur/Connexion</result>
-      </action>
-      <action name="Administrateur/Sport" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="list">
-            <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.AnalyseSport</param>
-            <result name="success">/Administrateur/Sport/index.jsp</result>
-            <result name="none" type="redirectAction">Administrateur/Sport</result>
-            <result name="error" type="redirectAction">Administrateur</result>
-            <result name="login" type="redirectAction">Administrateur/Connexion</result>
-      </action>
-      <action name="Administrateur/Sport/delete" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="delete">
-            <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.Sport</param>
-            <result name="error" type="redirectAction">Administrateur/Sport</result>
-            <result name="error" type="redirectAction">Administrateur/Sport</result>
-            <result name="login" type="redirectAction">Administrateur/Connexion</result>
-      </action>
-      
-      <action name="Administrateur/Conseil/Alimentation" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="list">
-            <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.AlimentationConseil</param>
-            <result name="success">/Administrateur/Conseil/Alimentation/index.jsp</result>
-            <result name="none" type="redirectAction">Administrateur/Conseil/Alimentation</result>
-            <result name="error" type="redirectAction">Administrateur</result>
-            <result name="login" type="redirectAction">Administrateur/Connexion</result>
-      </action>
-      <action name="Administrateur/Conseil/Alimentation/delete" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="delete">
-            <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.AlimentationConseil</param>
-            <result name="error" type="redirectAction">Administrateur/Conseil/Alimentation</result>
-            <result name="error" type="redirectAction">Administrateur/Conseil/Alimentation</result>
-            <result name="login" type="redirectAction">Administrateur/Connexion</result>
-      </action>
-      
-      <action name="Administrateur/Conseil/Sport" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="list">
-            <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.SportConseil</param>
-            <result name="success">/Administrateur/Conseil/Sport/index.jsp</result>
-            <result name="none" type="redirectAction">Administrateur/Conseil/Sport</result>
-            <result name="error" type="redirectAction">Administrateur</result>
-            <result name="login" type="redirectAction">Administrateur/Connexion</result>
-      </action>
-      <action name="Administrateur/Conseil/Sport/delete" 
-            class="s6.suiviRegime.action.CrudAction" 
-            method="delete">
-            <interceptor-ref name="adminStack"/>
-            <param name="classe">s6.suiviRegime.modele.SportConseil</param>
-            <result name="error" type="redirectAction">Administrateur</result>
-            <result name="error" type="redirectAction">Administrateur</result>
-            <result name="login" type="redirectAction">Administrateur/Connexion</result>
-      </action>
-   	   	  
+            method="start">
+            <result name="success" type="redirectAction">Administrateur/Connexion</result>
+            <result name="error" type="redirectAction">Administrateur/Board</result>
+      </action>   	   	  
    </package>
+   <include file="strutsAdmin.xml"/>
 </struts>

@@ -1,5 +1,9 @@
 package s6.suiviRegime.service;
 
+import java.util.List;
+import java.util.Vector;
+
+import s6.suiviRegime.modele.BaseModele;
 import s6.suiviRegime.modele.Sport;
 import s6.suiviRegime.modele.SportConseil;
 
@@ -78,5 +82,13 @@ public class SportService {
 			conseil = new SportConseil();
 		}
 		return (SportConseil)service.getRandom(conseil);
+	}
+	public List<Sport> findAll() throws Exception {
+		List<BaseModele> liste = service.findAll(Sport.class);
+		List<Sport> listeSport = new Vector<Sport>();
+		for(BaseModele m : liste){
+			listeSport.add((Sport)m);
+		}
+		return listeSport;
 	}
 }

@@ -2,37 +2,37 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="morris-line-chart" key="selection"/>
+		<item value="class" key="selection"/>
 		<item value="true" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
-			<item value="morris-line-chart"/>
-			<item value="mo"/>
-			<item value="page"/>
-			<item value="Showing"/>
-			<item value="Show"/>
-			<item value="Regime"/>
-			<item value="service"/>
-			<item value="regime.getPoids()"/>
+			<item value="class"/>
+			<item value="interface"/>
+			<item value="classe"/>
+			<item value="aler"/>
+			<item value="Poids"/>
+			<item value="primary"/>
+			<item value="glyphicon-plus"/>
+			<item value="glyphicon-add"/>
 		</list>
 		<list key="replacehistory">
-			<item value="Poids"/>
-			<item value="getService()"/>
-			<item value="liste"/>
-			<item value="?regime.id="/>
-			<item value="inuteSportTotal"/>
-			<item value="DateUtil"/>
-			<item value="service"/>
-			<item value="REGIME_SPORT"/>
+			<item value="Alimentation"/>
+			<item value="warning"/>
+			<item value="glyphicon-plus-sign"/>
+			<item value="glyphicon-plus"/>
+			<item value="execute"/>
+			<item value="xe"/>
+			<item value="&amp;eacute;"/>
+			<item value="update"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
 		<item value="257" key="DIALOG_WIDTH"/>
 		<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
 		<item value="381" key="DIALOG_HEIGHT"/>
-		<item value="750" key="DIALOG_X_ORIGIN"/>
-		<item value="355" key="DIALOG_Y_ORIGIN"/>
+		<item value="322" key="DIALOG_X_ORIGIN"/>
+		<item value="130" key="DIALOG_Y_ORIGIN"/>
 	</section>
 </section>
